@@ -1,0 +1,5 @@
+*.pyc
+*.pyo
+*~
+backend/gt3de3/settings_secret.py
+
