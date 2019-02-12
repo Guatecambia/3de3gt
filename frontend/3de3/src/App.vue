@@ -8,13 +8,10 @@
           </div>
           <div class="col-10 page-menu-block">
             <nav>
-              <ul class="navbar-nav menu bd-navbar-nav flex-row smooth-scroll justify-content-center">
+              <ul class="navbar-nav nav-fill menu bd-navbar-nav flex-row smooth-scroll justify-content-center">
                 <li class="nav-item"><router-link to="#aspirantes" class="nav-link">Aspirantes</router-link></li>
-                <li class="nav-item"><span class="nav-link">|</span></li>
                 <li class="nav-item"><router-link to="#nosotros" class="nav-link">Exige 3de3</router-link></li>
-                <li class="nav-item"><span class="nav-link">|</span></li>
                 <li class="nav-item"><router-link to="#transparencia" class="nav-link">Estadisitcas</router-link></li>
-                <li class="nav-item"><span class="nav-link">|</span></li>
                 <li class="nav-item"><router-link to="#contacto" class="nav-link">Publica tu 3de3</router-link></li>
               </ul>
             </nav>
@@ -31,8 +28,18 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Heebo');
+
+html, body {
+  font-family: 'Heebo', sans-serif;
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Heebo', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -67,5 +74,32 @@ li.nav-item a:hover {
 
 .page-navbar{
   padding-top:10px;
+}
+
+.section {
+  margin-top: 35px;
+}
+
+hr.line {
+  border-top: 1px solid;
+  border-color: #000;
+}
+
+h2 {
+  text-align:center;
+  text-transform:uppercase;
+  font-weight: bolder;
+}
+.blue-font{
+  color: #0096DB;
+}
+.pink-font {
+  color: #EF2466;
+}
+.green-font {
+  color: #60bd55;
+}
+.nav-item {
+  border-right:1px solid #fff;
 }
 </style>
