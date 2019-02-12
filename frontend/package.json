@@ -1,0 +1,11 @@
+{
+  "name": "3de3_front",
+  "version": "0.0.1",
+  "author": "Javier Antonio Hernandez de Paz - javiercito53@gmail.com - javier@guatecambia.org.gt - http://www.guatecambia.org.gt",
+  "dependencies": {
+    "@vue/cli": "latest",
+    "bootstrap": "^4.2.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7"
+  }
+}

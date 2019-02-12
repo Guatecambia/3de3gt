@@ -13,4 +13,3 @@ RUN mkdir /code
 WORKDIR /code
 
 EXPOSE 80
-
