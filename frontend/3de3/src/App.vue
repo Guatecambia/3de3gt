@@ -90,11 +90,11 @@ h2 {
   text-transform:uppercase;
   font-weight: bolder;
 }
-.blue-font{
-  color: #0096DB;
-}
 .pink-font {
   color: #EF2466;
+}
+.blue-font{
+  color: #0096DB;
 }
 .green-font {
   color: #60bd55;

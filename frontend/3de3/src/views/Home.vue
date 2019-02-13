@@ -35,16 +35,22 @@
       </b-row>
     </b-container>
     <Applicant />
+    <Ask3de3 />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Applicant from '@/components/Applicant.vue'
+import Ask3de3 from '@/components/Ask3de3.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'home',
   components: {
-    Applicant
+    Applicant,
+    Ask3de3,
+    Footer
   }
 }
 
