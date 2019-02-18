@@ -1,5 +1,5 @@
 <template>
-  <div class="section ask3de3">
+  <div class="section ask3de3" id="exige">
     <b-container-fluid>
       <div class="row title">
         <div class="col-4">
@@ -20,84 +20,12 @@
         <div class="col-3">Cargo</div>
         <div class="col-1">Escribele en</div>
       </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
+      <b-row v-for="(applicant, index) in aspirant" class="ask">
+        <div class="col-4">{{ applicant.name }} {{ applicant.lastname }}</div>
+        <div class="col-4">{{ applicant.party }}</div>
+        <div class="col-3">{{ applicant.aspiredPosition }}</div>
         <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
-        </div>
-      </b-row>
-      <b-row class="ask">
-        <div class="col-4">Nombre y Apellidos</div>
-        <div class="col-4">Nombre de Partido</div>
-        <div class="col-3">Vicepresidente</div>
-        <div class="col-1">
-          tw fb
+          {{ applicant.twitter }} fb
         </div>
       </b-row>
     </b-container>
@@ -107,6 +35,36 @@
 <script>
 export default {
   name: 'Ask3de3',
+  data: function() {
+    return {
+      aspirant: [
+        {
+          name: "Nombre 1",
+          lastname: "Apellido 1",
+          party: "TODOS",
+          twitter: "@prueba",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+        },
+        {
+          name: "Nombre 1",
+          lastname: "Apellido 1",
+          party: "TODOS",
+          twitter: "@prueba",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+        },
+        {
+          name: "Nombre 1",
+          lastname: "Apellido 1",
+          party: "TODOS",
+          twitter: "@prueba",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+        },
+      ]
+    }
+  },
   props: {
     msg: String
   }

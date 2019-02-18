@@ -9,10 +9,10 @@
           <div class="col-10 page-menu-block">
             <nav>
               <ul class="navbar-nav nav-fill menu bd-navbar-nav flex-row smooth-scroll justify-content-center">
-                <li class="nav-item"><router-link to="#aspirantes" class="nav-link">Aspirantes</router-link></li>
-                <li class="nav-item"><router-link to="#nosotros" class="nav-link">Exige 3de3</router-link></li>
-                <li class="nav-item"><router-link to="#transparencia" class="nav-link">Estadisitcas</router-link></li>
-                <li class="nav-item"><router-link to="#contacto" class="nav-link">Publica tu 3de3</router-link></li>
+                <li class="nav-item"><a href="#" @click="scrollMeTo('aspirantes')" class="nav-link">Aspirantes</a></li>
+                <li class="nav-item"><router-link to="Ask3de3" class="nav-link">Exige 3de3</router-link></li>
+                <li class="nav-item"><router-link to="#estadisticas" class="nav-link">Estadisitcas</router-link></li>
+                <li class="nav-item"><router-link to="#publica" class="nav-link">Publica tu 3de3</router-link></li>
               </ul>
             </nav>
           </div>
@@ -26,9 +26,20 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+export default {
+  methods: {
+    scrollMeTo(refName){
+      var element = this.$refs[refName];
+      console.log(this.$refs);
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+    }
+  }
+}
+</script>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Heebo');
+@import url('https://fonts.googleapis.com/css?family=Heebo:400,900');
 
 html, body {
   font-family: 'Heebo', sans-serif;

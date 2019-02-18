@@ -1,5 +1,5 @@
 <template>
-  <div class="section aspirant">
+  <div class="section aspirant" id="aspirantes" ref="aspirantes">
     <b-container-fluid>
       <div class="row title">
         <div class="col-4">
@@ -19,19 +19,19 @@
           <h3>Aspirantes que ya publicaron su 3de3</h3>
           <div class="row">
             <div class="col-3">
-              <div class="big-num blue-font">10</div>
+              <div class="big-num blue-font">{{ statistics.president }}</div>
               <div class="desc">Aspirantes a la Presidencia</div>
             </div>
             <div class="col-3">
-              <div class="big-num pink-font">10</div>
+              <div class="big-num pink-font">{{ statistics.civicComitee }}</div>
               <div class="desc">Aspirantes a Alcaldías por Comités Cívicos</div>
             </div>
             <div class="col-3">
-              <div class="big-num pink-font">10</div>
+              <div class="big-num pink-font">{{ statistics.muniByParty }}</div>
               <div class="desc">Aspirantes a Alcaldías por Partidos Políticos</div>
             </div>
             <div class="col-3">
-              <div class="big-num green-font">10</div>
+              <div class="big-num green-font">{{ statistics.congress }}</div>
               <div class="desc">Aspirantes al Congreso</div>
             </div>
           </div>
@@ -87,183 +87,18 @@
     </b-container>
     <b-container id="with-3de3">
       <b-row>
-        <div class="col-3 aspirant-box">
+        <div v-for="(applicant, index) in aspirant" class="col-3 aspirant-box">
           <div class="party"> 
-            <img class="party-icon" src="https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg" />
+            <img class="party-icon" :src="applicant.partyPic" />
           </div>
           <div class="aspirant-pic">
-            <img class="img-fluid" src="http://3de3.mx/assets/photo-eb27110938cffff97427c79b76cdbe4f1e0b8583db5104f15b84c794fc67ed0c.jpg" />
+            <img class="img-fluid" :src="applicant.aspirantPic" />
           </div>
           <div class="aspirant-name">
-            Nombre y Apellido
+            {{ applicant.name }} {{ applicant.lastname }}
           </div>
           <div class="aspirant-position">
-            Puesto
-          </div>
-          <b-row class="aspirant-docs">
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
-              </a>
-            </div>
-          </b-row>
-        </div>
-        <div class="col-3 aspirant-box">
-          <div class="party"> 
-            <img class="party-icon" src="https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg" />
-          </div>
-          <div class="aspirant-pic">
-            <img class="img-fluid" src="http://3de3.mx/assets/photo-eb27110938cffff97427c79b76cdbe4f1e0b8583db5104f15b84c794fc67ed0c.jpg" />
-          </div>
-          <div class="aspirant-name">
-            Nombre y Apellido
-          </div>
-          <div class="aspirant-position">
-            Puesto
-          </div>
-          <b-row class="aspirant-docs">
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
-              </a>
-            </div>
-          </b-row>
-        </div>
-        <div class="col-3 aspirant-box">
-          <div class="party"> 
-            <img class="party-icon" src="https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg" />
-          </div>
-          <div class="aspirant-pic">
-            <img class="img-fluid" src="http://3de3.mx/assets/photo-eb27110938cffff97427c79b76cdbe4f1e0b8583db5104f15b84c794fc67ed0c.jpg" />
-          </div>
-          <div class="aspirant-name">
-            Nombre y Apellido
-          </div>
-          <div class="aspirant-position">
-            Puesto
-          </div>
-          <b-row class="aspirant-docs">
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
-              </a>
-            </div>
-          </b-row>
-        </div>
-        <div class="col-3 aspirant-box">
-          <div class="party"> 
-            <img class="party-icon" src="https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg" />
-          </div>
-          <div class="aspirant-pic">
-            <img class="img-fluid" src="http://3de3.mx/assets/photo-eb27110938cffff97427c79b76cdbe4f1e0b8583db5104f15b84c794fc67ed0c.jpg" />
-          </div>
-          <div class="aspirant-name">
-            Nombre y Apellido
-          </div>
-          <div class="aspirant-position">
-            Puesto
-          </div>
-          <b-row class="aspirant-docs">
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
-              </a>
-            </div>
-          </b-row>
-        </div>
-        <div class="col-3 aspirant-box">
-          <div class="party"> 
-            <img class="party-icon" src="https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg" />
-          </div>
-          <div class="aspirant-pic">
-            <img class="img-fluid" src="http://3de3.mx/assets/photo-eb27110938cffff97427c79b76cdbe4f1e0b8583db5104f15b84c794fc67ed0c.jpg" />
-          </div>
-          <div class="aspirant-name">
-            Nombre y Apellido
-          </div>
-          <div class="aspirant-position">
-            Puesto
-          </div>
-          <b-row class="aspirant-docs">
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
-              </a>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
-                <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
-              </a>
-            </div>
-          </b-row>
-        </div>
-        <div class="col-3 aspirant-box">
-          <div class="party"> 
-            <img class="party-icon" src="https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg" />
-          </div>
-          <div class="aspirant-pic">
-            <img class="img-fluid" src="http://3de3.mx/assets/photo-eb27110938cffff97427c79b76cdbe4f1e0b8583db5104f15b84c794fc67ed0c.jpg" />
-          </div>
-          <div class="aspirant-name">
-            Nombre y Apellido
-          </div>
-          <div class="aspirant-position">
-            Puesto
+            {{ applicant.aspiredPosition }}
           </div>
           <b-row class="aspirant-docs">
             <div class="col-3">
@@ -293,6 +128,139 @@
 <script>
 export default {
   name: 'Applicant',
+  data: function() {
+    return {
+      statistics: {
+        president: "10",
+        civicComitee: "20",
+        muniByParty: "90",
+        congress: "458"
+      },
+      aspirant: [
+        {
+          name: "Nombre 1",
+          lastname: "Apellido 1",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 2",
+          lastname: "Apellido 2",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 3",
+          lastname: "Apellido 3",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 3",
+          lastname: "Apellido 3",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 3",
+          lastname: "Apellido 3",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 3",
+          lastname: "Apellido 3",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 3",
+          lastname: "Apellido 3",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 3",
+          lastname: "Apellido 3",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+        {
+          name: "Nombre 3",
+          lastname: "Apellido 3",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+        },
+      ],
+      legislative: {
+      },
+      muni: {
+      }
+    }
+  },
   props: {
     msg: String
   }
@@ -385,9 +353,11 @@ li.nav-item:hover a{
   top:5px;
   right:25px;
 }
+
 .aspirant-pic img {
   border: 5px solid #000;
   border-radius: 50% !important;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.25),rgba(0, 0, 0, 0.25));
 }
 .aspirant-name {
   font-weight:bolder;
@@ -395,5 +365,27 @@ li.nav-item:hover a{
 }
 .aspirant-position {
   font.size: 0.9em;
+}
+.pic-overlay {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #EF2466;
+  width: 100%;
+  padding-top: 100%;
+}
+.aspirant-pic:hover .pic-overlay {
+  opacity: 0.5;
+  
+}
+.pic-buttons {
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
 }
 </style>
