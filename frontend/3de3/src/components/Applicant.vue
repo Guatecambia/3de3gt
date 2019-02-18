@@ -88,11 +88,13 @@
     <b-container id="with-3de3">
       <b-row>
         <div v-for="(applicant, index) in aspirant" class="col-3 aspirant-box">
+          <div class="picture-frame">
+            <div class="aspirant-pic">
+              <img class="img-fluid" :src="applicant.aspirantPic" />
+            </div>
+          </div>
           <div class="party"> 
             <img class="party-icon" :src="applicant.partyPic" />
-          </div>
-          <div class="aspirant-pic">
-            <img class="img-fluid" :src="applicant.aspirantPic" />
           </div>
           <div class="aspirant-name">
             {{ applicant.name }} {{ applicant.lastname }}
@@ -354,10 +356,18 @@ li.nav-item:hover a{
   right:25px;
 }
 
-.aspirant-pic img {
+.picture-frame {
   border: 5px solid #000;
   border-radius: 50% !important;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.25),rgba(0, 0, 0, 0.25));
+  overflow:hidden;
+}
+.aspirant-pic:hover {
+  background-color: #EF2466;
+  border-radius: 50%;
+  position:relative;
+}
+.aspirant-pic:hover img {
+  opacity: 0.5;
 }
 .aspirant-name {
   font-weight:bolder;
@@ -378,10 +388,6 @@ li.nav-item:hover a{
   background-color: #EF2466;
   width: 100%;
   padding-top: 100%;
-}
-.aspirant-pic:hover .pic-overlay {
-  opacity: 0.5;
-  
 }
 .pic-buttons {
   color: white;
