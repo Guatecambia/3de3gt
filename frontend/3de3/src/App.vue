@@ -4,13 +4,13 @@
     <header class="page-navbar container">
       <div class="row page-menu">
           <div class="col-2">
-              <a id="navbar-brand" href="#inicio"><img class="img-fluid" src="./assets/3de3.jpg" alt="3de3 Guatemala" /></a>
+              <router-link id="navbar-brand" to="/"><img class="img-fluid" src="./assets/3de3.png" alt="3de3 Guatemala" /></router-link>
           </div>
           <div class="col-10 page-menu-block">
             <nav>
               <ul class="navbar-nav nav-fill menu bd-navbar-nav flex-row smooth-scroll justify-content-center">
-                <li class="nav-item"><a href="#" @click="scrollMeTo('aspirantes')" class="nav-link">Aspirantes</a></li>
-                <li class="nav-item"><router-link to="Ask3de3" class="nav-link">Exige 3de3</router-link></li>
+                <li class="nav-item"><router-link to="/#aspirantes" class="nav-link">Aspirantes</router-link></li>
+                <li class="nav-item"><router-link to="/#exige" class="nav-link">Exige 3de3</router-link></li>
                 <li class="nav-item"><router-link to="#estadisticas" class="nav-link">Estadisitcas</router-link></li>
                 <li class="nav-item"><router-link to="#publica" class="nav-link">Publica tu 3de3</router-link></li>
               </ul>
@@ -18,23 +18,15 @@
           </div>
       </div>
     </header>
-    
-    <!--div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div-->
     <router-view/>
+    <Footer />    
   </div>
 </template>
 <script>
+import Footer from '@/components/Footer.vue'
 export default {
-  methods: {
-    scrollMeTo(refName){
-      var element = this.$refs[refName];
-      console.log(this.$refs);
-      var top = element.offsetTop;
-      window.scrollTo(0, top);
-    }
+  components: {
+    Footer
   }
 }
 </script>
@@ -96,7 +88,7 @@ hr.line {
   border-color: #000;
 }
 
-h2 {
+h2,h1 {
   text-align:center;
   text-transform:uppercase;
   font-weight: bolder;

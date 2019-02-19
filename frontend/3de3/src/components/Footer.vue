@@ -3,11 +3,11 @@
     <b-container>
       <b-row class="footer-links">
         <div col="col-12">
-          <a href="#">Privacidad</a>
+          <router-link to="/privacidad">Privacidad</router-link>
           |
-          <a href="#">Preguntas Frecuentes</a>
+          <router-link to="/faq">Preguntas Frecuentes</router-link>
           |
-          <a href="#">Acerca de</a>
+          <router-link to="/acerca-de">Acerca de</router-link>
         </div>
       </b-row>
       <b-row class="footer-logos">

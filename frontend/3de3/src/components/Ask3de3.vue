@@ -25,7 +25,8 @@
         <div class="col-4">{{ applicant.party }}</div>
         <div class="col-3">{{ applicant.aspiredPosition }}</div>
         <div class="col-1">
-          {{ applicant.twitter }} fb
+          <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo.png"/></a>
+          <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/fb-logo.png"/></a>
         </div>
       </b-row>
     </b-container>
@@ -42,7 +43,7 @@ export default {
           name: "Nombre 1",
           lastname: "Apellido 1",
           party: "TODOS",
-          twitter: "@prueba",
+          twitter: "prueba",
           aspiredPosition: "EX",
           executivePosition: "P",
         },
@@ -50,7 +51,7 @@ export default {
           name: "Nombre 1",
           lastname: "Apellido 1",
           party: "TODOS",
-          twitter: "@prueba",
+          twitter: "prueba",
           aspiredPosition: "EX",
           executivePosition: "P",
         },
@@ -58,7 +59,7 @@ export default {
           name: "Nombre 1",
           lastname: "Apellido 1",
           party: "TODOS",
-          twitter: "@prueba",
+          twitter: "prueba",
           aspiredPosition: "EX",
           executivePosition: "P",
         },
@@ -83,5 +84,9 @@ export default {
 }
 .ask {
   padding:15px 0 15px 0;
+}
+.sn-btn {
+  width:25px;
+  margin: 0 2px 0 2px;
 }
 </style>

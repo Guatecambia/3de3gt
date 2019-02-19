@@ -36,23 +36,28 @@
     </b-container>
     <Applicant />
     <Ask3de3 />
-    <Footer />
+    
   </div>
 </template>
 
 <script>
 import Applicant from '@/components/Applicant.vue'
 import Ask3de3 from '@/components/Ask3de3.vue'
-import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'home',
   components: {
     Applicant,
-    Ask3de3,
-    Footer
-  }
+    Ask3de3
+  },
+  async mounted() {
+    let twitterScript = document.createElement('script')
+    twitterScript.setAttribute('src', 'https://platform.twitter.com/widgets.js')
+    twitterScript.setAtt
+    document.head.appendChild(twitterScript)
+  },
 }
+
 
 </script>
 

@@ -89,6 +89,10 @@
       <b-row>
         <div v-for="(applicant, index) in aspirant" class="col-3 aspirant-box">
           <div class="picture-frame">
+            <div class="pic-buttons">
+              <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
+              <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/fb-logo-tr.png"/></a>
+            </div>
             <div class="aspirant-pic">
               <img class="img-fluid" :src="applicant.aspirantPic" />
             </div>
@@ -361,12 +365,18 @@ li.nav-item:hover a{
   border-radius: 50% !important;
   overflow:hidden;
 }
-.aspirant-pic:hover {
+.picture-frame:hover {
+  border: 5px solid #a32b52;
+}
+.aspirant-pic {
+  z-index:9;
+}
+.aspirant-pic:hover, .pic-buttons:hover + .aspirant-pic {
   background-color: #EF2466;
   border-radius: 50%;
   position:relative;
 }
-.aspirant-pic:hover img {
+.aspirant-pic:hover img, .pic-buttons:hover + .aspirant-pic img {
   opacity: 0.5;
 }
 .aspirant-name {
@@ -376,22 +386,20 @@ li.nav-item:hover a{
 .aspirant-position {
   font.size: 0.9em;
 }
-.pic-overlay {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.pic-buttons {
+  position:absolute;
+  left:50%;
+  top:50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  text-align: center;
-  background-color: #EF2466;
-  width: 100%;
-  padding-top: 100%;
+  opacity:0;
+  z-index:10;
 }
-.pic-buttons {
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
+.picture-frame:hover .pic-buttons {
+  opacity:100;
+}
+.sn-btn {
+  width:35px;
+  margin: 0 2px 0 2px;
 }
 </style>
