@@ -108,21 +108,40 @@
           </div>
           <b-row class="aspirant-docs">
             <div class="col-3">
-              <a href="#">
+              <b-button class="declaration-icon" v-b-modal="'fiscal'+index">
                 <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
-              </a>
+              </b-button>
+              <b-modal :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
+                <h2>Modal {{ index }}</h2>
+              </b-modal>
             </div>
             <div class="col-1"></div>
-            <div class="col-3">
-              <a href="#">
+            <div class="col-3">              
+              <b-button class="declaration-icon" v-b-modal="'interest'+index">
                 <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
-              </a>
+              </b-button>
+              <b-modal :id="'interest'+ index" size="xl" title="Declaración de Intereses">
+                <h6>Datos del declarante</h6>
+                <div class="declarant-data">
+                  <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
+                  <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
+                  <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
+                  <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
+                </div>
+                <h6>Declaración</h6>
+                <div v-for="(dataItem, index) in interestDeclarationData" class="declarant-form">
+                  <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
+                </div>
+              </b-modal>
             </div>
             <div class="col-1"></div>
             <div class="col-3">
-              <a href="#">
+              <b-button class="declaration-icon" v-b-modal="'patrimonial'+index">
                 <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
-              </a>
+              </b-button>
+              <b-modal :id="'patrimonial'+ index" size="xl" title="Declaración Patrimonial">
+                <h2>Modal {{ index }}</h2>
+              </b-modal>
             </div>
           </b-row>
         </div>
@@ -261,6 +280,65 @@ export default {
           aspirantPic: "http://avatars.io/twitter/lopezobrador_"
         },
       ],
+      aspirantData: {
+          name: "Declarante para",
+          lastname: "popup information",
+          gender: "M",
+          ethnicity: "I",
+          twitter: "@prueba",
+          maritalStatus: "S",
+          party: "TODOS",
+          aspiredPosition: "EX",
+          executivePosition: "P",
+          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
+          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
+      },
+      interestDeclarationData: [
+        {
+          fieldName: "field 1",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 2",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 3",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 4",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 5",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 6",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 7",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 8",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 9",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 10",
+          fieldValue: "Nunc in lorem luctus metus auctor tempor at id arcu. Etiam eu turpis ac odio euismod convallis sit amet vitae nisl. Suspendisse sed rutrum augue, ut aliquam neque. Donec volutpat consequat metus, eu pharetra ex sagittis in. Donec auctor ipsum sit amet luctus mattis. Suspendisse eu neque quis nunc accumsan dictum. Praesent non tellus vitae nibh hendrerit iaculis. Nulla facilisi. Proin faucibus, felis id consequat convallis, lacus elit rutrum quam, et volutpat turpis arcu aliquam nunc. Vestibulum sagittis leo a ante sodales, eu consequat urna imperdiet. Morbi semper dictum ipsum, quis iaculis tortor varius ut. Nulla cursus, orci cursus ornare mollis, lorem elit efficitur leo, quis bibendum erat lacus id mi. Maecenas malesuada augue sit amet erat interdum, at viverra nulla rutrum. Suspendisse et hendrerit eros. Sed molestie consequat vulputate."
+        },
+        {
+          fieldName: "field 11",
+          fieldValue: "value"
+        },
+      ],
       legislative: {
       },
       muni: {
@@ -269,6 +347,8 @@ export default {
   },
   props: {
     msg: String
+  },
+  methods: {
   }
 }
 </script>
@@ -401,5 +481,52 @@ li.nav-item:hover a{
 .sn-btn {
   width:35px;
   margin: 0 2px 0 2px;
+}
+.declaration-icon {
+  background-color:transparent;
+  border:none;
+  padding:0;
+}
+.declaration-icon:focus,.declaration-icon:active {
+   outline: none !important;
+   box-shadow: none;
+}
+</style>
+<style>
+.modal-content {
+  background-color: #333333 !important;
+  border: 5px solid;
+  border-color: #ee2466;
+}
+.modal-header, .modal-footer {
+  border:none;
+}
+.modal-header .close {
+  font-weight: lighter;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 0 5px;
+  color: white;
+  opacity: 1;
+  margin: 2px 3px 0 0;
+}
+h5.modal-title {
+  margin-top: 25px;
+  margin-left: 25px;
+  text-transform: uppercase;
+  font-weight: bolder;
+  color:white;
+}
+.modal-body {
+  margin-left: 25px;
+  text-align: left;
+  color: white;
+}
+.modal-body h6 {
+  color: #ee2466;
+  text-transform: uppercase;
+  font-weight: bolder;
+  text-align:left;
+  margin-top: 20px;
 }
 </style>
