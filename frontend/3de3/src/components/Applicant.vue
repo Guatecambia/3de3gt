@@ -140,7 +140,18 @@
                 <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
               </b-button>
               <b-modal :id="'patrimonial'+ index" size="xl" title="Declaración Patrimonial">
-                <h2>Modal {{ index }}</h2>
+                <h6>Datos del declarante</h6>
+                <div class="declarant-data">
+                  <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
+                  <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
+                  <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
+                  <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
+                </div>
+                <h6>Declaración</h6>
+                <div v-for="(dataItem, index) in patrimonialDeclarationData" class="declarant-form">
+                  <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
+                </div>
+
               </b-modal>
             </div>
           </b-row>
@@ -339,6 +350,52 @@ export default {
           fieldValue: "value"
         },
       ],
+      patrimonialDeclarationData: [
+        {
+          fieldName: "field 1",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 2",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 3",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 4",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 5",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 6",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 7",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 8",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 9",
+          fieldValue: "value"
+        },
+        {
+          fieldName: "field 10",
+          fieldValue: "Nunc in lorem luctus metus auctor tempor at id arcu. Etiam eu turpis ac odio euismod convallis sit amet vitae nisl. Suspendisse sed rutrum augue, ut aliquam neque. Donec volutpat consequat metus, eu pharetra ex sagittis in. Donec auctor ipsum sit amet luctus mattis. Suspendisse eu neque quis nunc accumsan dictum. Praesent non tellus vitae nibh hendrerit iaculis. Nulla facilisi. Proin faucibus, felis id consequat convallis, lacus elit rutrum quam, et volutpat turpis arcu aliquam nunc. Vestibulum sagittis leo a ante sodales, eu consequat urna imperdiet. Morbi semper dictum ipsum, quis iaculis tortor varius ut. Nulla cursus, orci cursus ornare mollis, lorem elit efficitur leo, quis bibendum erat lacus id mi. Maecenas malesuada augue sit amet erat interdum, at viverra nulla rutrum. Suspendisse et hendrerit eros. Sed molestie consequat vulputate."
+        },
+        {
+          fieldName: "field 11",
+          fieldValue: "value"
+        },
+      ],
       legislative: {
       },
       muni: {
@@ -438,6 +495,7 @@ li.nav-item:hover a{
   border-radius: 50% !important;
   top:5px;
   right:25px;
+  z-index:11;
 }
 
 .picture-frame {
