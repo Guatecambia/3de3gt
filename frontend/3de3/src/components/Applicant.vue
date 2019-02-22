@@ -91,7 +91,9 @@
           <div class="picture-frame">
             <div class="pic-buttons">
               <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
-              <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/fb-logo-tr.png"/></a>
+              <b-button class="ask-icon" v-b-modal="'applicantya'+index">
+                <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo-tr.png"/>
+              </b-button>
             </div>
             <div class="aspirant-pic">
               <img class="img-fluid" :src="applicant.aspirantPic" />
@@ -151,9 +153,21 @@
                 <div v-for="(dataItem, index) in patrimonialDeclarationData" class="declarant-form">
                   <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
                 </div>
-
               </b-modal>
             </div>
+            <b-modal :id="'applicantya'+index" size="lg" title="Instrucciones para compartir en Facebook">
+              <div class="declarant-data">
+                <span class="modal-text">Presiona el siguiente botón para abrir el dialogo de compartir en Facebook</span><br/>
+                <b-button class="btn btn-fb shareFb" v-on:click="shareFb()">Compartir en Facebook</b-button><br/>
+                <span class="modal-text">Copia el siguiente texto y pegalo en facebook</span><br/>
+                <span class="modal-text">{{ message.fbCopy }}</span><b-button v-clipboard:copy="message.fbCopy" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
+                <span class="modal-text">Copia y pega el siguiente usuario, en la lista desplegable selecciona al candidato</span><br/>
+                <span class="modal-text">@{{ applicant.twitter }}</span><b-button v-clipboard:copy="' @'+applicant.twitter" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
+                <span class="modal-text">Copia y pega el siguiente usuario, en la lista desplegable selecciona al partido del candidato</span><br/>
+                <span class="modal-text">@{{ applicant.party }}</span><b-button v-clipboard:copy="' @'+applicant.party" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
+                <span class="modal-text">Presiona el botón "Publicar en Facebook"</span><br/>              
+              </div>
+            </b-modal>
           </b-row>
         </div>
       </b-row>
@@ -166,6 +180,11 @@ export default {
   name: 'Applicant',
   data: function() {
     return {
+      message: {
+        copySucceeded: null,
+        fbCopy: "Digale a los otros candidatos de su partido que publiquen su #3de3",
+        cpError: "La versión de tu navegador no permite usar el botón de copiar, selecciona el texto y copialo manualmente"
+      },
       statistics: {
         president: "10",
         civicComitee: "20",
@@ -178,7 +197,7 @@ export default {
           lastname: "Apellido 1",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -191,7 +210,7 @@ export default {
           lastname: "Apellido 2",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -204,7 +223,7 @@ export default {
           lastname: "Apellido 3",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -217,7 +236,7 @@ export default {
           lastname: "Apellido 3",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -230,7 +249,7 @@ export default {
           lastname: "Apellido 3",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -243,7 +262,7 @@ export default {
           lastname: "Apellido 3",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -256,7 +275,7 @@ export default {
           lastname: "Apellido 3",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -269,7 +288,7 @@ export default {
           lastname: "Apellido 3",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -282,7 +301,7 @@ export default {
           lastname: "Apellido 3",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -296,7 +315,7 @@ export default {
           lastname: "popup information",
           gender: "M",
           ethnicity: "I",
-          twitter: "@prueba",
+          twitter: "prueba",
           maritalStatus: "S",
           party: "TODOS",
           aspiredPosition: "EX",
@@ -406,6 +425,15 @@ export default {
     msg: String
   },
   methods: {
+    shareFb: function(event) {
+      FB.ui({
+        method: 'share',
+        href: 'http://www.3de3.gt'
+      }, function(response){});
+    },
+    copyError: function(event) {
+      alert(this.message.cpError);
+    }
   }
 }
 </script>
@@ -548,6 +576,23 @@ li.nav-item:hover a{
 .declaration-icon:focus,.declaration-icon:active {
    outline: none !important;
    box-shadow: none;
+}
+.ask-icon {
+  background-color:transparent;
+  border:none;
+  padding:0;
+}
+.ask-icon:focus,.ask-icon:active {
+   outline: none !important;
+   box-shadow: none;
+}
+.btn-fb {
+  background-color: #3b5998;
+}
+.btn-sm {
+  font-size: 0.7em;
+  padding: 2px 1px;
+  margin-left:10px;
 }
 </style>
 <style>
