@@ -29,7 +29,7 @@
           <b-button class="ask-icon" v-b-modal="'applicant'+index">
             <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo.png"/>
           </b-button>
-          <b-modal :id="'applicant'+index" size="lg" title="Instrucciones para compartir en Facebook">
+          <b-modal ok-title="Aceptar" ok-only :id="'applicant'+index" size="lg" title="Instrucciones para compartir en Facebook">
             <div class="declarant-data">
               <span class="modal-text">Presiona el siguiente botón para abrir el dialogo de compartir en Facebook</span><br/>
               <b-button class="btn btn-fb shareFb" v-on:click="shareFb()">Compartir en Facebook</b-button><br/>

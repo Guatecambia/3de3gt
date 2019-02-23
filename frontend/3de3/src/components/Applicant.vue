@@ -113,7 +113,7 @@
               <b-button class="declaration-icon" v-b-modal="'fiscal'+index">
                 <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
               </b-button>
-              <b-modal :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
+              <b-modal ok-title="Aceptar" ok-only :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
                 <h2>Modal {{ index }}</h2>
               </b-modal>
             </div>
@@ -122,7 +122,7 @@
               <b-button class="declaration-icon" v-b-modal="'interest'+index">
                 <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
               </b-button>
-              <b-modal :id="'interest'+ index" size="xl" title="Declaración de Intereses">
+              <b-modal ok-title="Aceptar" ok-only :id="'interest'+ index" size="xl" title="Declaración de Intereses">
                 <h6>Datos del declarante</h6>
                 <div class="declarant-data">
                   <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
@@ -141,7 +141,7 @@
               <b-button class="declaration-icon" v-b-modal="'patrimonial'+index">
                 <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
               </b-button>
-              <b-modal :id="'patrimonial'+ index" size="xl" title="Declaración Patrimonial">
+              <b-modal ok-title="Aceptar" ok-only :id="'patrimonial'+ index" size="xl" title="Declaración Patrimonial">
                 <h6>Datos del declarante</h6>
                 <div class="declarant-data">
                   <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
@@ -155,7 +155,7 @@
                 </div>
               </b-modal>
             </div>
-            <b-modal :id="'applicantya'+index" size="lg" title="Instrucciones para compartir en Facebook">
+            <b-modal ok-title="Aceptar" ok-only :id="'applicantya'+index" size="lg" title="Instrucciones para compartir en Facebook">
               <div class="declarant-data">
                 <span class="modal-text">Presiona el siguiente botón para abrir el dialogo de compartir en Facebook</span><br/>
                 <b-button class="btn btn-fb shareFb" v-on:click="shareFb()">Compartir en Facebook</b-button><br/>
