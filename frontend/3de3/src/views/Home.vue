@@ -61,7 +61,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .text {
   text-align: justify;
 }

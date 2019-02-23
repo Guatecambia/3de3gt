@@ -15,7 +15,7 @@
   </b-container>
 </template>
 
-<style>
+<style scoped>
 p {
   text-align: justify;
 }
