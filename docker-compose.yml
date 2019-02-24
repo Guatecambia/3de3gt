@@ -1,18 +1,19 @@
 version: "3"
 
 services:
-#    db:
-#        image: postgres
-#    backend:
-#        container_name: 3de3_api
-#        build: backend
-#        command: python manage.py runserver 0.0.0.0:80
-#        volumes:
-#            - ./backend:/code
-#        ports:
-#            - "80:80"
-#        depends_on:
-#            - db
+    db:
+        container_name: 3de3_db
+        image: postgres
+    backend:
+        container_name: 3de3_api
+        build: backend
+        command: python manage.py runserver 0.0.0.0:80
+        volumes:
+            - ./backend:/code
+        ports:
+            - "8000:80"
+        depends_on:
+            - db
     frontend:
         container_name: 3de3_page
         build: frontend
@@ -21,3 +22,6 @@ services:
             - ./frontend:/app
         ports:
             - "80:8080"
+        depends_on:
+            - backend
+
