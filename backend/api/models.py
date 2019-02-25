@@ -47,7 +47,7 @@ class Candidato(models.Model):
     )
     POSITION_TYPES = (
                         ('EX', 'Ejecutivo'),
-                        ('LEG', 'Legislativo'),
+                        ('LEG', 'Diputado'),
                         ('M', 'Alcalde')
     )
     EXECUTIVE_POSITIONS = (
@@ -66,6 +66,7 @@ class Candidato(models.Model):
     ethnicity = models.CharField("Grupo étnico", max_length=2, choices=ETHNICITIES)
     ethnicOther = models.CharField("Especifique grupo étnico", max_length=50)
     twitter = models.CharField("Cuenta de twitter @", max_length=50)
+    facebook = models.CharField("Página de Facebook", max_length=200)
     maritalStatus = models.CharField("Estado Civil (al momento de presentar la declaración)", max_length=2,
                                      choices=STATUS)
     webpage = models.CharField("Página Web", max_length=300)
@@ -79,6 +80,7 @@ class Candidato(models.Model):
     seat = models.PositiveSmallIntegerField(null=True)
     # MunicipalityFields
     municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, null=True)
+    inAskList = models.BooleanField("En lista de exige #3de3", default=True)
 
     def __str__(self):
         return self.name+' '+self.lastname

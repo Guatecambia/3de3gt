@@ -1,0 +1,44 @@
+[
+    {
+      "model": "api.candidato",
+      "pk": 1,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 2,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 3,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua"
+      }
+    }
+]

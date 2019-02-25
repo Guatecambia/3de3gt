@@ -1,4 +1,7 @@
 from django.test import TestCase
+from rest_framework.test import APITestCase
+from django.core.urlresolvers import reverse
+from rest_framework import status
 from ..models import Candidato, District, Municipality, Party
 
 
@@ -52,9 +55,7 @@ class MunicipalityTest(TestCase):
         )
 
 
-class CandidatoTest(TestCase):
-    """ Test module for Candidato """
-
+class CandidatoAPITest(APITestCase):
     def setUp(self):
         pan = Party.objects.create(name="Partido de Avanzada Nacional", shortName="PAN")
         nombre1 = Candidato.objects.create(
@@ -66,14 +67,16 @@ class CandidatoTest(TestCase):
         )
         nombre1.aspiredPosition = 'EX'
         nombre1.executivePosition = 'V'
+        nombre1.inAskList = False
         gt = Municipality.objects.create(name="Guatemala", department="Guatemala")
         nombre1.municipio = gt
         nombre1.save()
         parlacen = District.objects.create(name="PARLACEN")
-        solo.aspiredPosition = 'L'
+        solo.aspiredPosition = 'LEG'
         solo.district = parlacen
         solo.seat = 1
         solo.municipio = gt
+        solo.inAskList = True
         solo.save()
 
     def test_candidato(self):
@@ -112,3 +115,14 @@ class CandidatoTest(TestCase):
         self.assertEqual(
             str(solo), "Solo Obligatorios"
         )
+
+    def test_asklistGetAList(self):
+        # test that the api is responding 200 ok to the given method
+        response = self.client.get(reverse('candidato-ask'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        solo = Candidato.objects.get(name="Solo")
+        nombre1 = Candidato.objects.get(email="nombre@candidato.com")
+        response = self.client.get(reverse('candidato-ask'), format="json")
+        self.assertContains(response, str(solo.name))
+        self.assertContains(response, "Diputado")
+        self.assertNotContains(response, str(nombre1.name))

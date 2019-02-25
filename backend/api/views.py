@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from .models import Candidato
+from .serializers import CandidatoSerializer
 
-# Create your views here.
+from rest_framework import generics
+
+
+class CandidatoAsk(generics.ListAPIView):
+    """
+    View Candidatos that haven't presented 3de3
+    """
+    queryset = Candidato.objects.filter(inAskList=True)
+    serializer_class = CandidatoSerializer

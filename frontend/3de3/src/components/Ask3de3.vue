@@ -36,7 +36,7 @@
               <span class="modal-text">Copia el siguiente texto y pegalo en facebook</span><br/>
               <span class="modal-text">{{ message.fbCopy }}</span><b-button v-clipboard:copy="message.fbCopy" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
               <span class="modal-text">Copia y pega el siguiente usuario, en la lista desplegable selecciona al candidato</span><br/>
-              <span class="modal-text">@{{ applicant.twitter }}</span><b-button v-clipboard:copy="' @'+applicant.twitter" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
+              <span class="modal-text">@{{ applicant.facebook }}</span><b-button v-clipboard:copy="' @'+applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
               <span class="modal-text">Copia y pega el siguiente usuario, en la lista desplegable selecciona al partido del candidato</span><br/>
               <span class="modal-text">@{{ applicant.party }}</span><b-button v-clipboard:copy="' @'+applicant.party" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
               <span class="modal-text">Presiona el botón "Publicar en Facebook"</span><br/>              
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import {HTTP} from '../../http-constants'
 export default {
   name: 'Ask3de3',
   data: function() {
@@ -59,30 +60,6 @@ export default {
         cpError: "La versión de tu navegador no permite usar el botón de copiar, selecciona el texto y copialo manualmente"
       },
       aspirant: [
-        {
-          name: "Nombre 1",
-          lastname: "Apellido 1",
-          party: "TODOS",
-          twitter: "prueba",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-        },
-        {
-          name: "Nombre 1",
-          lastname: "Apellido 1",
-          party: "TODOS",
-          twitter: "prueba",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-        },
-        {
-          name: "Nombre 1",
-          lastname: "Apellido 1",
-          party: "TODOS",
-          twitter: "prueba",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-        },
       ]
     }
   },
@@ -98,7 +75,19 @@ export default {
     },
     copyError: function(event) {
       alert(this.message.cpError);
+    },
+    getAspirants: function() {
+      HTTP.get('/candidatos/exige?format=json')
+        .then(response => {
+          this.aspirant = response.data
+        })
+        .catch(e => {
+          this.errors = e
+        })
     }
+  },
+  beforeMount() {
+    this.getAspirants()
   }
 }
 </script>
