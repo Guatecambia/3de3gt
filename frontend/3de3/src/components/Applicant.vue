@@ -43,14 +43,14 @@
         <b-row>
           <div class="col-12">
             <ul class="nav nav-fill">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Ejecutivo</a>
+              <li class="nav-item" v-bind:class="{ active: applicantPositions.exActive }">
+                <a class="nav-link" href="#" v-on:click.prevent="activateMenu('EX')">Ejecutivo</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Legislativo</a>
+              <li class="nav-item"  v-bind:class="{ active: applicantPositions.legActive }">
+                <a class="nav-link" href="#" v-on:click.prevent="activateMenu('LEG')"">Legislativo</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Munis</a>
+              <li class="nav-item" v-bind:class="{ active: applicantPositions.muniActive }">
+                <a class="nav-link" href="#" v-on:click.prevent="activateMenu('M')"">Munis</a>
               </li>
             </ul>
           </div>
@@ -60,7 +60,7 @@
     <b-container id="filters">
       <b-row>
         <div class="col-4">
-          <div class="filter-title">Buscar por cargo</div>
+          <div class="filter-title">{{ applicantPositions.filterName }}</div>
           <select class="custom-select" id="select-position">
             <option selected>Todos</option>
             <option value="presidente">Presidente</option>
@@ -96,7 +96,7 @@
               </b-button>
             </div>
             <div class="aspirant-pic">
-              <img class="img-fluid" :src="applicant.aspirantPic" />
+              <img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" />
             </div>
           </div>
           <div class="party"> 
@@ -176,6 +176,7 @@
 </template>
 
 <script>
+import {HTTP} from '../../http-constants'
 export default {
   name: 'Applicant',
   data: function() {
@@ -184,6 +185,12 @@ export default {
         copySucceeded: null,
         fbCopy: "Digale a los otros candidatos de su partido que publiquen su #3de3",
         cpError: "La versión de tu navegador no permite usar el botón de copiar, selecciona el texto y copialo manualmente"
+      },
+      applicantPositions: {
+        exActive: true,
+        legActive: false,
+        muniActive: false,
+        filterName: "Buscar por cargo"
       },
       statistics: {
         president: "10",
@@ -433,6 +440,19 @@ export default {
     },
     copyError: function(event) {
       alert(this.message.cpError);
+    },
+    activateMenu: function(menu) {
+      this.applicantPositions.exActive = (menu == 'EX') ? true : false;
+      this.applicantPositions.legActive = (menu == 'LEG') ? true : false;
+      this.applicantPositions.muniActive = (menu == 'M') ? true : false;
+      this.applicantPositions.filterName = (menu == 'EX') ? "Buscar por cargo" : (menu == 'LEG') ? "Buscar por listado" : "Buscar por municipio"
+      HTTP.get('/candidatos/presentados/'+menu+'?format=json')
+        .then(response => {
+          this.aspirant = response.data
+        })
+        .catch(e => {
+          this.errors = e
+        })
     }
   }
 }
@@ -477,11 +497,11 @@ li.nav-item {
   color: #FFF;
   border-right:none;
 }
-li.nav-item:hover {
+li.nav-item:hover, li.nav-item.active {
   background: #fff;
   color: #EF2466;
 }
-li.nav-item:hover a{
+li.nav-item:hover a, li.nav-item.active a{
   color: #EF2466;
 }
 #filters {

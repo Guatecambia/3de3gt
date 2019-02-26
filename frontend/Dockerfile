@@ -13,7 +13,7 @@ RUN npm install -g @vue/cli
 
 # install bootstrap dependencies
 #RUN npm install -g bootstrap jquery popper.js
-RUN npm install -g boostrap-vue
+RUN npm install -g bootstrap-vue
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./

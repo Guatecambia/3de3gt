@@ -38,7 +38,9 @@
         "aspiredPosition": "EX",
         "executivePosition": "P",
         "twitter": "SandraTorresGUA",
-        "facebook": "SandraTorresGua"
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false
       }
     }
 ]

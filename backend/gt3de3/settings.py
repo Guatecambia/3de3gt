@@ -131,5 +131,3 @@ CORS_EXPOSE_HEADERS = (
     'authorization',
     'Access-Control-Allow-Origin: *',
 )
-
-

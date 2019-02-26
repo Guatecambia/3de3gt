@@ -81,15 +81,12 @@ export default {
 .tooltip.bs-tooltip-top .arrow::before {
   border-top-color: #EF2466 !important;
 }
-
 .tooltip.bs-tooltip-right .arrow::before {
   border-right-color: #EF2466 !important;
 }
-
 .tooltip.bs-tooltip-bottom .arrow::before {
   border-bottom-color: #EF2466 !important;
 }
-
 .tooltip.bs-tooltip-left .arrow::before {
   border-left-color: #EF2466 !important;
 }

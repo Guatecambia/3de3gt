@@ -70,6 +70,7 @@ class CandidatoAPITest(APITestCase):
         nombre1.inAskList = False
         gt = Municipality.objects.create(name="Guatemala", department="Guatemala")
         nombre1.municipio = gt
+        nombre1.published = True
         nombre1.save()
         parlacen = District.objects.create(name="PARLACEN")
         solo.aspiredPosition = 'LEG'
@@ -77,6 +78,7 @@ class CandidatoAPITest(APITestCase):
         solo.seat = 1
         solo.municipio = gt
         solo.inAskList = True
+        solo.published = False
         solo.save()
 
     def test_candidato(self):
@@ -125,4 +127,43 @@ class CandidatoAPITest(APITestCase):
         response = self.client.get(reverse('candidato-ask'), format="json")
         self.assertContains(response, str(solo.name))
         self.assertContains(response, "Diputado")
+        self.assertNotContains(response, str(nombre1.name))
+
+    def test_askPresentedList(self):
+        response = self.client.get(reverse('presented-ask'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        solo = Candidato.objects.get(name="Solo")
+        nombre1 = Candidato.objects.get(email="nombre@candidato.com")
+        response = self.client.get(reverse('presented-ask'), format="json")
+        self.assertContains(response, str(nombre1.name))
+        self.assertNotContains(response, str(solo.name))
+
+    def test_askPresentedListWithTypeFilter(self):
+        nombre1 = Candidato.objects.get(email="nombre@candidato.com")
+        # test to put nombre1 as ex, should appear only on ex
+        nombre1.aspiredPosition = 'EX'
+        nombre1.save()
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'EX'}), format="json")
+        self.assertContains(response, str(nombre1.name))
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'LEG'}), format="json")
+        self.assertNotContains(response, str(nombre1.name))
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'M'}), format="json")
+        self.assertNotContains(response, str(nombre1.name))
+        # test to put nombre1 as LEG, should appear only on LEG
+        nombre1.aspiredPosition = 'LEG'
+        nombre1.save()
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'LEG'}), format="json")
+        self.assertContains(response, str(nombre1.name))
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'EX'}), format="json")
+        self.assertNotContains(response, str(nombre1.name))
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'M'}), format="json")
+        self.assertNotContains(response, str(nombre1.name))
+        # test to put nombre1 as M, should appear only on M
+        nombre1.aspiredPosition = 'M'
+        nombre1.save()
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'M'}), format="json")
+        self.assertContains(response, str(nombre1.name))
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'EX'}), format="json")
+        self.assertNotContains(response, str(nombre1.name))
+        response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'LEG'}), format="json")
         self.assertNotContains(response, str(nombre1.name))

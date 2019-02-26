@@ -81,6 +81,7 @@ class Candidato(models.Model):
     # MunicipalityFields
     municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, null=True)
     inAskList = models.BooleanField("En lista de exige #3de3", default=True)
+    published = models.BooleanField("En lista de los que publicaron", default=False)
 
     def __str__(self):
         return self.name+' '+self.lastname
