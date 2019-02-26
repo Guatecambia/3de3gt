@@ -199,123 +199,6 @@ export default {
         congress: "458"
       },
       aspirant: [
-        {
-          name: "Nombre 1",
-          lastname: "Apellido 1",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 2",
-          lastname: "Apellido 2",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 3",
-          lastname: "Apellido 3",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 3",
-          lastname: "Apellido 3",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 3",
-          lastname: "Apellido 3",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 3",
-          lastname: "Apellido 3",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 3",
-          lastname: "Apellido 3",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 3",
-          lastname: "Apellido 3",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
-        {
-          name: "Nombre 3",
-          lastname: "Apellido 3",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-        },
       ],
       aspirantData: {
           name: "Declarante para",
@@ -445,6 +328,10 @@ export default {
       this.applicantPositions.exActive = (menu == 'EX') ? true : false;
       this.applicantPositions.legActive = (menu == 'LEG') ? true : false;
       this.applicantPositions.muniActive = (menu == 'M') ? true : false;
+      if (!(this.applicantPositions.exActive || this.applicantPositions.legActive || this.applicantPositions.muniActive)) {
+        this.applicantPositions.exActive = true;
+        menu = 'EX';
+      }
       this.applicantPositions.filterName = (menu == 'EX') ? "Buscar por cargo" : (menu == 'LEG') ? "Buscar por listado" : "Buscar por municipio"
       HTTP.get('/candidatos/presentados/'+menu+'?format=json')
         .then(response => {
@@ -454,6 +341,9 @@ export default {
           this.errors = e
         })
     }
+  },
+  beforeMount() {
+    this.activateMenu()
   }
 }
 </script>
