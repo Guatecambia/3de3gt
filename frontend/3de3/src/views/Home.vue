@@ -17,17 +17,17 @@
       <b-row class="icons">
         <div class="col-3"></div>
         <div class="col-1">
-          <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg" v-b-tooltip.hover title="La solvencia fiscal es ...">
+          <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.png" v-b-tooltip.hover title="La solvencia fiscal es ...">
           <span>Solvencia Fiscal</span>
         </div>
         <div class="col-1"></div>
         <div class="col-1">
-          <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg" v-b-tooltip.hover title="La Declaración de intereses es ...">
+          <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.png" v-b-tooltip.hover title="La Declaración de intereses es ...">
           <span>Declaración de Intereses</span>
         </div>
         <div class="col-1"></div>
         <div class="col-1">
-          <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg" v-b-tooltip.hover title="La Declaración Patrimonial es ...">
+          <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.png" v-b-tooltip.hover title="La Declaración Patrimonial es ...">
           <span>Declaración Patrimonial</span>
         </div>
         <div class="col-1"></div>

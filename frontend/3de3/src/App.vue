@@ -12,7 +12,7 @@
                 <li class="nav-item"><router-link to="/#aspirantes" class="nav-link">Aspirantes</router-link></li>
                 <li class="nav-item"><router-link to="/#exige" class="nav-link">Exige 3de3</router-link></li>
                 <li class="nav-item"><router-link to="#estadisticas" class="nav-link">Estadisitcas</router-link></li>
-                <li class="nav-item"><router-link to="#publica" class="nav-link">Publica tu 3de3</router-link></li>
+                <li class="nav-item"><router-link to="/presenta" class="nav-link">Publica tu 3de3</router-link></li>
               </ul>
             </nav>
           </div>

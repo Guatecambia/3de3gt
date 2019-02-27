@@ -20,18 +20,23 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import('./views/About.vue')
     },
     {
       path: '/faq',
       name: 'faq',
-      component: () => import(/* webpackChunkName: "Faq" */ './views/Faq.vue')
+      component: () => import('./views/Faq.vue')
     },
     {
       path: '/privacidad',
       name: 'privacy',
-      component: () => import(/* webpackChunkName: "privacy" */ './views/Privacy.vue')
+      component: () => import('./views/Privacy.vue')
     },
+    {
+      path: '/presenta',
+      name: 'addyours',
+      component: () => import('./views/AddYours.vue')
+    }
   ],
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
