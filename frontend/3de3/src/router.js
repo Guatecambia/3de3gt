@@ -38,14 +38,54 @@ export default new Router({
       component: () => import('./views/AddYours.vue')
     },
     {
+      path: '/3de3-login',
+      name: 'login',
+      component: () => import('./views/login.vue')
+    },
+    {
       path: '/3de3-admin',
       name: 'admin',
       component: () => import('./views/admin.vue')
     },
     {
-      path: '/3de3-login',
-      name: 'login',
-      component: () => import('./views/login.vue')
+      path: '/3de3-admin/partidos',
+      name: 'partidos',
+      component: () => import('./views/partidos.vue')
+    },
+    {
+      path: '/3de3-admin/distritos',
+      name: 'distritos',
+      component: () => import('./views/distritos.vue')
+    },
+    {
+      path: '/3de3-admin/distrito/:id',
+      name: 'distrito-single',
+      component: () => import('./views/distritoSingle.vue')
+    },
+    {
+      path: '/3de3-admin/distrito',
+      name: 'distrito-single-new',
+      component: () => import('./views/distritoSingle.vue')
+    },    
+    {
+      path: '/3de3-admin/municipios',
+      name: 'municipios',
+      component: () => import('./views/municipios.vue')
+    },
+    {
+      path: '/3de3-admin/ingresos',
+      name: 'ingresos',
+      component: () => import('./views/ingresos.vue')
+    },
+    {
+      path: '/3de3-admin/candidatos',
+      name: 'candidatos',
+      component: () => import('./views/candidatos.vue')
+    },
+    {
+      path: '/3de3-admin/estadisticas',
+      name: 'estadisticas-backend',
+      component: () => import('./views/estadisticasBackend.vue')
     }
   ],
   scrollBehavior (to, from, savedPosition) {

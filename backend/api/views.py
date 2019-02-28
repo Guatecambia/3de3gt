@@ -1,7 +1,23 @@
-from .models import Candidato
-from .serializers import CandidatoSerializer, PresentadoSerializer
+from .models import Candidato, District
+from .serializers import CandidatoSerializer, PresentadoSerializer, DistrictSerializer
 
 from rest_framework import generics
+
+
+class DistrictEdit(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve and edit specific districts
+    """
+    queryset = District.objects.all()
+    serializer_class = DistrictSerializer
+
+
+class DistrictList(generics.ListCreateAPIView):
+    """
+    List and create districts
+    """
+    queryset = District.objects.all().order_by('id')
+    serializer_class = DistrictSerializer
 
 
 class CandidatoAsk(generics.ListAPIView):

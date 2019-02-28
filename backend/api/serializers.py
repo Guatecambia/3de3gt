@@ -1,5 +1,14 @@
 from rest_framework import serializers
-from .models import Candidato, Party, Presentado
+from .models import Candidato, District, Party, Presentado
+
+
+class DistrictSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = District
+        fields = (
+            'id',
+            'name',
+        )
 
 
 class PartySerializer(serializers.ModelSerializer):

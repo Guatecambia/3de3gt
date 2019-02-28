@@ -1,25 +1,63 @@
 <template>
-  <b-container class="privacy">
-    <b-row>
-      <div class="col-3"></div>
-      <div class="col-9">
-        <h1>Privacidad</h1>
+  <div class="home">
+    <b-container>
+      <b-row>
+        <div class="col-5"></div>
+        <div class="col-2">
+          <img class="img-fluid" src="../assets/3de3.png" alt="3de3 Guatemala" />
+        </div>
+        <div class="col-5"></div>
+      </b-row>
+      <b-row id="login-row" class="justify-content-center align-items-center">
+        <div id="login-column" class="col-md-6">
+          <div id="login-box" class="col-md-12">
+            <b-form id="login-form" class="form" action="" method="post">
+              <h3 class="text-center text-info">Ingreso administrativo</h3>
+              <div class="form-group">
+                <label for="username" class="text-info">Usuario:</label><br>
+                <b-form-input type="text" name="username" id="username" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="password" class="text-info">Contraseña:</label><br>
+                <b-form-input type="text" name="password" id="password" class="form-control" />
+              </div>
+              <div class="form-group">
+                <b-button type="submit" class="btn-submit btn-lg">Enviar</b-button>
+              </div>
+            </b-form>
+          </div>
       </div>
-    </b-row>
-    <b-row>
-      <div class="col-3"></div>
-      <div class="col-9">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat scelerisque laoreet. Nunc ut mattis magna. Sed gravida nisi lacinia bibendum aliquet. Fusce feugiat felis ut sem porta luctus. In et leo a dui pretium sollicitudin nec vitae nunc. Praesent interdum ipsum ac luctus egestas. Aenean nec neque vitae mauris maximus posuere. Quisque scelerisque quam eu mi ornare, ac semper tellus vestibulum. Proin dapibus vehicula dui. In ornare quam mauris, id tristique arcu semper a. Nunc eget lacus quis orci cursus rhoncus vitae at elit. Aliquam pharetra massa eu orci volutpat, quis iaculis tellus tempus. Integer eu neque massa. Suspendisse arcu libero, pharetra vel dolor nec, sollicitudin accumsan nisl. Ut risus ligula, iaculis sit amet leo quis, placerat interdum augue. Cras iaculis ante sed suscipit posuere.</p>
-      </div>
-    </b-row>
-  </b-container>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <style scoped>
-p {
-  text-align: justify;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
+  color: #0096DB;
 }
-h1 {
-  text-align:left;
+.text-info {
+  color: #0096DB !important;
+}
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login-row {
+  margin-top:45px;
+}
+.btn-submit {
+  background-color: #EF2466;
+  border-color: #EF2466;
 }
 </style>

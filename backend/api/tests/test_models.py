@@ -59,7 +59,7 @@ class CandidatoAPITest(APITestCase):
     def setUp(self):
         pan = Party.objects.create(name="Partido de Avanzada Nacional", shortName="PAN")
         nombre1 = Candidato.objects.create(
-            name="Nombre1 Nombre2", lastname="Apellido1 Apellido2", gender="M", ethnicity="ML", twitter="candidato",
+            name="Nombre1 Nombre2", lastname="Apellido1 Apellido2", gender="M", ethnicGroup="ML", twitter="candidato",
             maritalStatus="S", webpage="www.candidato.com", email="nombre@candidato.com", party=pan
         )
         solo = Candidato.objects.create(
@@ -167,3 +167,40 @@ class CandidatoAPITest(APITestCase):
         self.assertNotContains(response, str(nombre1.name))
         response = self.client.get(reverse('presented-ask', kwargs={'aspirantType': 'LEG'}), format="json")
         self.assertNotContains(response, str(nombre1.name))
+
+
+class DistrictLisCreateAPITest(APITestCase):
+    def testList(self):
+        response = self.client.get(reverse('district-admin', kwargs={}), format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def testCreate(self):
+        data = {"name": "prueba"}
+        response = self.client.post(reverse("district-admin"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
+class DistrictEdit(APITestCase):
+    def setUp(self):
+        district = District.objects.create(name="Distrito Central")
+        district.save()
+
+    def testGetInstance(self):
+        district = District.objects.get(name="Distrito Central")
+        response = self.client.get(reverse('district-admin-edit', kwargs={"pk": str(district.id)}), format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def testEditInstance(self):
+        district = District.objects.get(name="Distrito Central")
+        response = self.client.put(reverse('district-admin-edit', kwargs={"pk": str(district.id)}),
+                                   {"name": "pruebatest"}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        district = District.objects.get(name="pruebatest")
+        self.assertEqual(
+            str(district), "pruebatest"
+        )
+
+    def testDeleteInstance(self):
+        district = District.objects.get(name="Distrito Central")
+        response = self.client.delete(reverse('district-admin-edit', kwargs={"pk": str(district.id)}), format="json")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
