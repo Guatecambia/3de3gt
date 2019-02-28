@@ -10,7 +10,9 @@
         "aspiredPosition": "EX",
         "executivePosition": "P",
         "twitter": "DrGiammattei",
-        "facebook": "AlejandroGiammattei"
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
       }
     },
     {
@@ -24,7 +26,9 @@
         "aspiredPosition": "EX",
         "executivePosition": "P",
         "twitter": "ZuryxGuate",
-        "facebook": "zury.rios"
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
       }
     },
     {
@@ -40,7 +44,9 @@
         "twitter": "SandraTorresGUA",
         "facebook": "SandraTorresGua",
         "published": true,
-        "inAskList": false
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
       }
     }
 ]

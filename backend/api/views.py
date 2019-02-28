@@ -1,5 +1,5 @@
 from .models import Candidato
-from .serializers import CandidatoSerializer
+from .serializers import CandidatoSerializer, PresentadoSerializer
 
 from rest_framework import generics
 
@@ -24,3 +24,10 @@ class PresentedAsk(generics.ListAPIView):
             return Candidato.objects.filter(published=True, aspiredPosition=aspirantType)
         else:
             return Candidato.objects.filter(published=True)
+
+
+class PresentedForm(generics.CreateAPIView):
+    """
+    View for Presentado model
+    """
+    serializer_class = PresentadoSerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Candidato, Party
+from .models import Candidato, Party, Presentado
 
 
 class PartySerializer(serializers.ModelSerializer):
@@ -41,3 +41,35 @@ class CandidatoSerializer(serializers.ModelSerializer):
             return obj.get_executivePosition_display()
         else:
             return obj.get_aspiredPosition_display()
+
+
+class PresentadoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Presentado
+        fields = (
+            'name',
+            'lastname',
+            'gender',
+            'genderOther',
+            'ethnicGroup',
+            'ethnicOther',
+            'twitter',
+            'facebook',
+            'maritalStatus',
+            'aspiredPosition',
+            'executivePosition',
+            'district',
+            'seat',
+            'municipality',
+            'party',
+            'email',
+            'celphone',
+            'phone',
+            'webpage',
+            'helpName',
+            'helpLastname',
+            'helpEmail',
+            'helpCelphone',
+            'authLetter',
+            'solvencia'
+        )

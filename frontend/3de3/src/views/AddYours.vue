@@ -109,10 +109,10 @@
         <b-row>
           <div class="col-12 col-lg-6">
             <b-form-select 
-              v-model="form.civilStatus" 
-              :options="civilStatusList"
-              :class="{ error: $v.form['civilStatus'].$error }" 
-              @input="$v.form['civilStatus'].$touch()"
+              v-model="form.maritalStatus" 
+              :options="maritalStatusList"
+              :class="{ error: $v.form['maritalStatus'].$error }" 
+              @input="$v.form['maritalStatus'].$touch()"
             />
           </div>
         </b-row>
@@ -192,9 +192,9 @@
         <b-row v-show="form.partyType == 'CC'">
           <div class="col-12 col-lg-6">
             <b-form-select 
-              v-model="form.committee" 
-              :class="{ error: $v.form['committee'].$error }" 
-              @input="$v.form['committee'].$touch()"
+              v-model="form.party" 
+              :class="{ error: $v.form['party'].$error }" 
+              @input="$v.form['party'].$touch()"
               :options="civicCommittees"
             />
           </div>
@@ -241,14 +241,14 @@
         <b-row>
           <div class="col-12 col-lg-6">
             <b-form-input 
-              v-model="form.otherName" 
+              v-model="form.helpName" 
               type="text" 
               placeholder="Nombres" 
             />
           </div>
           <div class="col-12 col-lg-6">
             <b-form-input 
-              v-model="form.otherLastname" 
+              v-model="form.helpLastname" 
               type="text" 
               placeholder="Apellidos"
             />
@@ -257,17 +257,20 @@
         <b-row>
           <div class="col-12 col-lg-6">
             <b-form-input 
-              v-model="form.otherPhone" 
+              v-model="form.helpCelphone" 
               type="text" 
               placeholder="Teléfono" 
             />
           </div>
           <div class="col-12 col-lg-6">
             <b-form-input 
-              v-model="form.otherEmail" 
+              v-model="form.helpEmail" 
+              @input="$v.form['helpEmail'].$touch()"
+              :class="{ error: $v.form['helpEmail'].$error }"
               type="text" 
               placeholder="Correo electrónico"
             />
+            <p class="error-message" v-if="!$v.form['email'].email">Ingrese una dirección de correo electrónico válida</p>
           </div>
         </b-row>
         <b-row class="justify-content-center buttonholder">
@@ -300,7 +303,8 @@
 </template>
 
 <script>
-import { required, requiredIf, email } from 'vuelidate/lib/validators';
+import {HTTP} from '../../http-constants'
+import { required, requiredIf, email, minValue } from 'vuelidate/lib/validators';
 export default {
   name: 'AddYours',
   data: function() {
@@ -314,25 +318,23 @@ export default {
         otherEthnic: '',
         twitter: '',
         facebook: '',
-        civilStatus: null,
+        maritalStatus: null,
         aspiredPosition: '',
         executivePosition: null,
         district: null,
-        seat: '',
+        seat: null,
         municipality: null,
         partyType: '',
         party: null,
-        committee: null,
         celphone: '',
         phone: '',
         email: '',
-        otherName: '',
-        otherLastname: '',
-        otherPhone: '',
-        otherEmail: '',
+        helpName: null,
+        helpLastname: null,
+        helpCelphone: null,
+        helpEmail: null,
         authLetter: '',
         solvencia: '',
-        
       },
       genders: [
         {value: null, text: "Género"},
@@ -346,7 +348,7 @@ export default {
         {value: "ML", text: "Ladino/Mestizo"},
         {value: "O", text: "Otro"}
       ],
-      civilStatusList: [
+      maritalStatusList: [
         {value: null, text: "Estado civil (al presentar la declaración)"},
         {value: "S", text: "Soltero"},
         {value: "C", text: "Casado"},
@@ -360,19 +362,19 @@ export default {
       ],
       districts: [
         {value: null, text: "Distrito"},
-        {value: "GT", text: "Guatemala"},
-        {value: "DC", text: "Distrito central"},
+        {value: 1, text: "Guatemala"},
+        {value: 2, text: "Distrito central"},
       ],
       munis: [
         {value: null, text: "Municipio"},
       ],
       parties: [
         {value: null, text: "Seleccione partido"},
-        {value: "PAN", text: "PAN" }
+        {value: 1, text: "PAN" }
       ],
       civicCommittees: [
         {value: null, text: "Seleccione comité civico"},
-        {value: "CCC", text: "comité civico C"}
+        {value: 2, text: "comité civico C"}
       ],
       isSubmitted: false,
       isError: false,
@@ -384,9 +386,56 @@ export default {
   methods: {
     processForm: function() {
       this.$v.$touch()
-      if (this.$v.$invalid) 
-        console.log("FORM IS INVALID");
-      console.log({ name: this.form.name, email: this.form.email });
+      if (this.$v.$invalid) {
+        alert("Por favor ingrese todos los campos obligatorios para continuar");
+      }
+      else {
+        let formData = new FormData();
+        formData.append("name", this.form.name);
+        formData.append("lastname", this.form.lastname);
+        formData.append("gender", this.form.gender);
+        formData.append("otherGender", this.form.otherGender);
+        formData.append("ethnicGroup", this.form.ethnicGroup);
+        formData.append("otherEthnic", this.form.otherEthnic);
+        formData.append("twitter", this.form.twitter);
+        formData.append("facebook", this.form.facebook);
+        formData.append("maritalStatus", this.form.maritalStatus);
+        formData.append("aspiredPosition", this.form.aspiredPosition);
+        if ((this.form.executivePosition != null) && (this.form.aspiredPosition == "EX"))
+          formData.append("executivePosition", this.form.executivePosition);
+        if ((this.form.district != null) && (this.form.aspiredPosition == "LEG"))
+          formData.append("district", this.form.district);
+        if ((this.form.seat != null) && (this.form.aspiredPosition == "LEG"))
+          formData.append("seat", this.form.seat);
+        if ((this.form.municipality != null) && (this.form.aspiredPosition == "M"))
+          formData.append("municipality", this.form.municipality);
+        formData.append("party", this.form.party);
+        formData.append("celphone", this.form.celphone);
+        formData.append("phone", this.form.phone);
+        formData.append("email", this.form.email);
+        formData.append("helpName", this.form.helpName);
+        formData.append("helpLastname", this.form.helpLastname);
+        formData.append("helpCelphone", this.form.helpCelphone);
+        formData.append("helpEmail", this.form.helpEmail);
+        formData.append("authLetter", this.form.authLetter);
+        formData.append("solvencia", this.form.solvencia);
+        HTTP.post(
+          '/candidatos/presentar/', 
+          formData, 
+          {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          }
+        )
+        .then(function (response) {
+          alert("Información enviada correctamente. Por favor ingrese sus declaraciones de interés y patrimonial. \
+                  \nAlguien del equipo se comunicará con usted para corroborar los datos.");
+        })
+        .catch(function (error) {
+          alert("No se pudo enviar su información, por favor intente mas tarde");
+        });
+      }
     }
   },
   validations: {
@@ -405,7 +454,7 @@ export default {
       },
       twitter: { required },
       facebook: { required },
-      civilStatus: { required },
+      maritalStatus: { required },
       aspiredPosition: { required },
       executivePosition: { required: requiredIf(function() {
                                                   return (this.form.aspiredPosition == "EX") ? true : false;
@@ -417,7 +466,8 @@ export default {
       },
       seat: { required: requiredIf(function() {
                                             return (this.form.aspiredPosition == "LEG") ? true : false;
-                                            })
+                                            }),
+              minValue: minValue(0)
       },
       municipality: { required: requiredIf(function() {
                                             return (this.form.aspiredPosition == "M") ? true : false;
@@ -437,6 +487,7 @@ export default {
       email: { required, email },
       authLetter: { required },
       solvencia: { required },
+      helpEmail: { email },
     }
   }
 }

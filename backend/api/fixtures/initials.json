@@ -1,0 +1,65 @@
+[
+    {
+      "model": "api.party",
+      "pk": 1,
+      "fields": {
+        "name": "VAMOS",
+        "tType": "PP",
+        "shortName": "VAMOS",
+        "phone": "51518444",
+        "facebook": "Partido VAMOS",
+        "twitter": "partidoVAMOS",
+        "secretary": "",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.party",
+      "pk": 2,
+      "fields": {
+        "name": "VALOR",
+        "tType": "PP",
+        "shortName": "VALOR",
+        "phone": "2361-66",
+        "facebook": "Partido Valor",
+        "twitter": "partidoValor",
+        "secretary": "",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.party",
+      "pk": 3,
+      "fields": {
+        "name": "Unidad Nacional de la Esperanza",
+        "tType": "PP",
+        "shortName": "UNE",
+        "phone": "2363-2573/2368-0480",
+        "facebook": "UNEGuatemala",
+        "twitter": "partidoune",
+        "secretary": "",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.district",
+      "pk": 1,
+      "fields": {
+        "name": "Distrito Central",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.district",
+      "pk": 2,
+      "fields": {
+        "name": "Distrito Guatemala",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    }
+]
