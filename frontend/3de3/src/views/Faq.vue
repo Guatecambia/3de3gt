@@ -1,27 +1,37 @@
 <template>
-  <b-container class="faq">
-    <b-row>
-      <div class="col-12">
-        <h1>Pr<span class="pink-font">e</span>guntas Fr<span class="blue-font">e</span>cu<span class="green-font">e</span>nt<span class="pink-font">e</span>s</h1>
-      </div>
-    </b-row>
-    <b-row>
-      <div v-for="(question, index) in interrogation" class="col-12">
-        <div class="faq-question">
-          <b-button class="question-btn" v-b-toggle="'quest'+index">
-            {{ question.question }}
-          </b-button>
-          <b-collapse :id="'quest'+index" class="question-body">
-            {{ question.answer }}
-          </b-collapse>
+  <div class="home">
+    <Header />
+    <b-container class="faq">
+      <b-row>
+        <div class="col-12">
+          <h1>Pr<span class="pink-font">e</span>guntas Fr<span class="blue-font">e</span>cu<span class="green-font">e</span>nt<span class="pink-font">e</span>s</h1>
         </div>
-      </div>
-    </b-row>
-  </b-container>
+      </b-row>
+      <b-row>
+        <div v-for="(question, index) in interrogation" class="col-12">
+          <div class="faq-question">
+            <b-button class="question-btn" v-b-toggle="'quest'+index">
+              {{ question.question }}
+            </b-button>
+            <b-collapse :id="'quest'+index" class="question-body">
+              {{ question.answer }}
+            </b-collapse>
+          </div>
+        </div>
+      </b-row>
+    </b-container>
+    <Footer />
+  </div>
 </template>
 <script>
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 export default {
   name: 'Applicant',
+  components: {
+    Header,
+    Footer
+  },
   data() {
     return {
       interrogation: [

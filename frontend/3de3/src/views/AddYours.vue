@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Header />
     <b-container>
       <b-row>
         <div class="col-2"></div>
@@ -299,14 +300,21 @@
         </b-row>
       </b-form>
     </b-container>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 import {HTTP} from '../../http-constants'
 import { required, requiredIf, email, minValue } from 'vuelidate/lib/validators';
 export default {
   name: 'AddYours',
+  components: {
+    Header,
+    Footer
+  },
   data: function() {
     return {
       form: {

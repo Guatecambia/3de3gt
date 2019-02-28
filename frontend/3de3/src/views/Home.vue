@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Header />
     <b-container>
       <b-row>
         <div class="col-2"></div>
@@ -36,19 +37,22 @@
     </b-container>
     <Applicant />
     <Ask3de3 />
-    
+    <Footer />
   </div>
 </template>
 
 <script>
 import Applicant from '@/components/Applicant.vue'
 import Ask3de3 from '@/components/Ask3de3.vue'
-
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 export default {
   name: 'home',
   components: {
     Applicant,
-    Ask3de3
+    Ask3de3,
+    Header,
+    Footer
   },
   async mounted() {
     let twitterScript = document.createElement('script')
@@ -57,8 +61,6 @@ export default {
     document.head.appendChild(twitterScript)
   },
 }
-
-
 </script>
 
 <style scoped>

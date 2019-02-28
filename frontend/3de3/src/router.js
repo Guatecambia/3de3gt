@@ -36,6 +36,16 @@ export default new Router({
       path: '/presenta',
       name: 'addyours',
       component: () => import('./views/AddYours.vue')
+    },
+    {
+      path: '/3de3-admin',
+      name: 'admin',
+      component: () => import('./views/admin.vue')
+    },
+    {
+      path: '/3de3-login',
+      name: 'login',
+      component: () => import('./views/login.vue')
     }
   ],
   scrollBehavior (to, from, savedPosition) {
