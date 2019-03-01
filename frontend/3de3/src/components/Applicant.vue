@@ -100,7 +100,8 @@
             </div>
           </div>
           <div class="party"> 
-            <img class="party-icon" :src="applicant.partyPic" />
+            <img class="party-icon" v-if="applicant.partyIcon != ''" :src="'http://avatars.io/twitter/'+applicant.partyIcon" />
+            <img class="party-icon" v-if="applicant.partyIcon == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
           </div>
           <div class="aspirant-name">
             {{ applicant.name }} {{ applicant.lastname }}
@@ -366,6 +367,8 @@ a {
   background: #333;
   margin-top:50px;
   margin-bottom: 50px;
+  padding-top:50px;
+  padding-bottom:60px;
 }
 .statInfo h3 {
   color: #fff;

@@ -25,6 +25,7 @@ class PartySerializer(serializers.ModelSerializer):
 class CandidatoSerializer(serializers.ModelSerializer):
     gender = serializers.SerializerMethodField()
     party_name = serializers.CharField(source='party.name', read_only=True)
+    partyIcon = serializers.CharField(source='party.twitter', read_only=True)
     aspiredPosition = serializers.SerializerMethodField()
 
     class Meta:
@@ -36,6 +37,7 @@ class CandidatoSerializer(serializers.ModelSerializer):
             'twitter',
             'facebook',
             'party_name',
+            'partyIcon',
             'aspiredPosition',
             'district',
             'seat',
