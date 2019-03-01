@@ -22,7 +22,7 @@
       </b-row>
       <b-row v-for="(applicant, index) in aspirant" class="ask">
         <div class="col-4">{{ applicant.name }} {{ applicant.lastname }}</div>
-        <div class="col-4">{{ applicant.party }}</div>
+        <div class="col-4">{{ applicant.party_name }}</div>
         <div class="col-3">{{ applicant.aspiredPosition }}</div>
         <div class="col-1">
           <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo.png"/></a>
