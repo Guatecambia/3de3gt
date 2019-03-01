@@ -11,7 +11,8 @@
       <b-row>
         <div class="col-3"></div>
         <div class="col-9">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat scelerisque laoreet. Nunc ut mattis magna. Sed gravida nisi lacinia bibendum aliquet. Fusce feugiat felis ut sem porta luctus. In et leo a dui pretium sollicitudin nec vitae nunc. Praesent interdum ipsum ac luctus egestas. Aenean nec neque vitae mauris maximus posuere. Quisque scelerisque quam eu mi ornare, ac semper tellus vestibulum. Proin dapibus vehicula dui. In ornare quam mauris, id tristique arcu semper a. Nunc eget lacus quis orci cursus rhoncus vitae at elit. Aliquam pharetra massa eu orci volutpat, quis iaculis tellus tempus. Integer eu neque massa. Suspendisse arcu libero, pharetra vel dolor nec, sollicitudin accumsan nisl. Ut risus ligula, iaculis sit amet leo quis, placerat interdum augue. Cras iaculis ante sed suscipit posuere.</p>
+          <p>La iniciativa es impulsada en el marco del consorcio de organizaciones de sociedad civil, denominado Mirador Electoral, que desde el 2003 ha contribuído para velar por la legalidad, legitimidad, participación, representación e inclusión de la ciudadanía en general, en los procesos electorales en el país.</p>
+          <p>3de3 busca que los candidatos y candidatas a puestos de elección popular en las Elecciones Generales 2019, de manera voluntaria hagan públicas sus tres declaraciones: Declaración Patrimonial, Declaración de Intereses y Declaración Fiscal.</p>
         </div>
       </b-row>
     </b-container>

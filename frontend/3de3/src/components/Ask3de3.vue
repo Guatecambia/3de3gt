@@ -6,7 +6,7 @@
           <hr class="line col-12">
         </div>
         <div class="col-4">
-          <h2><span class="pink-font">E</span>xig<span class="blue-font">e</span> #3de3</h2>
+          <h2><span class="pink-font">E</span>xig<span class="blue-font">e</span> #3de3Guate</h2>
         </div>
         <div class="col-4">
           <hr class="line col-12">
@@ -98,6 +98,7 @@ export default {
   font-weight:bolder;
   font-size: 1.1em;
   text-align:left;
+  margin-top:50px;
 }
 .ask div {
   text-align:left;

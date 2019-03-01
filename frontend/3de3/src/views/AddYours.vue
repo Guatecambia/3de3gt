@@ -9,9 +9,140 @@
         </div>
       </b-row>
       <b-row class="text">
-        <div class="col-2"></div>
-        <div class="col-10">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat scelerisque laoreet. Nunc ut mattis magna. Sed gravida nisi lacinia bibendum aliquet. Fusce feugiat felis ut sem porta luctus. In et leo a dui pretium sollicitudin nec vitae nunc. Praesent interdum ipsum ac luctus egestas. Aenean nec neque vitae mauris maximus posuere. Quisque scelerisque quam eu mi ornare, ac semper tellus vestibulum. Proin dapibus vehicula dui. In ornare quam mauris, id tristique arcu semper a. Nunc eget lacus quis orci cursus rhoncus vitae at elit. Aliquam pharetra massa eu orci volutpat, quis iaculis tellus tempus. Integer eu neque massa. Suspendisse arcu libero, pharetra vel dolor nec, sollicitudin accumsan nisl. Ut risus ligula, iaculis sit amet leo quis, placerat interdum augue. Cras iaculis ante sed suscipit posuere.</p>
+        <div class="col-12">
+          <div class="instrucciones-block">
+            <b-button class="instrucciones-btn" variant="info" v-b-toggle="'instrucciones'">
+              Instrucciones
+            </b-button>
+            <b-collapse :id="'instrucciones'" class="instrucciones-body">
+
+              <h3>Manual para presentación de declaraciones</h3>
+              <p>El presente instructivo está dirigido para todas y todos aquellos políticos comprometidos con la transformación política  de Guatemala, que reconocen la necesidad de reconstruir la confianza ciudadana en los políticos, y han decidido publicar de forma voluntaria sus tres declaraciones. </p>
+              <p>El documento señala el proceso de revisión y validación de las declaraciones, así como indicaciones sobre el llenado de las declaraciones. </p>
+              
+              <h3>Proceso de revisión y validación de las declaraciones</h3>
+              <p>La revisión consiste en verificar que los campos se llenaron de forma acertada y completa por parte del declarante. Una vez que un funcionario o candidato envía su información, se procurará atenderla a la brevedad posible e iniciar así el proceso de revisión. El orden de revisión se realizará conforme lleguen las declaraciones al sistema.</p>
+              <p>La plataforma 3de3 cuenta con una sección donde el candidato o candidata declarante, ingresará su información de contacto, y también la información de un responsable designado, con quien se hará la validación y verificación de las declaraciones.</p>
+              <p>Una vez recibidas las tres declaraciones y la carta de consentimiento de publicación firmada por el declarante, el equipo 3de3 llamará personalmente al candidato o persona designada como responsable por parte del partido o por el mismo candidato, para verificar que la información recibida haya sido enviada de manera consciente y voluntaria para su publicación en la plataforma electrónica 3de3.gt.</p>
+              <p>Con la confirmación de la información se realizará una primera revisión de las declaraciones y de haber observaciones con respecto a información omitida en el formulario, se enviarán por correo electrónico y se contactará vía telefónica al candidato y contacto designado, para que se pueda completar.  Una vez que las observaciones han sido subsanadas -o en caso de no haber inconsistencias- se les notificará que sus declaraciones están listas para ser publicadas. Si el funcionario no atiende las observaciones señaladas, no se procederá a su publicación.</p>
+              <p>Nota: No toda omisión genera observación. </p>
+              
+              <h3>Declaración Patrimonial</h3>
+              <p>Sección I. Datos del declarante.</p>
+              <ul>
+                <li>Asegurar que los datos corresponden al declarante. </li>
+                <li>Confirmar que se indique correctamente estado civil, pues ello permitirá saber si es necesario declarar información de cónyuge/concubinario o no.</li>
+              </ul>
+              <p>Sección II. Datos de identificación personal del cónyuge </p>
+              <ul>
+                <li>Llenar esta sección solo en caso de que el declarante sea casado/a</li>
+                <li>Por favor llenar cada uno de los campos que aplique</li>
+              </ul>
+              <p>Sección IV. Nombres y apellidos de hijos dependientes. </p>
+              <ul>
+                <li>Llenar esta sección solo en caso de que el declarante tenga hijos</li>
+                <li>Por favor llenar cada uno de los campos que aplique</li>
+              </ul>
+              <p>Sección V. Información Patrimonial</p>
+              <p>5.1. Activos</p>
+              <ul>
+                <li>A) Bienes –Activo-, el mismo se integra por los siguientes rubros:</li>
+                  <ul>
+                    <li>a. Bienes Muebles:</li>
+                      <ul>
+                        <li>1. Acreencias: Detallar el nombre completo de las instituciones, y/o personas, de quienes se es acreedor.</li>
+                        <li>2. Alhajas: Se debe individualizar separadamente las de oro, plata, platino y/o piedras preciosas, consignando el valor a que ascienden en conjunto.</li>
+                        <li>3. Bancos: Especificar las diferentes cuentas de ahorro, depósitos monetarios. Debe especificar el banco en el que tiene la cuenta. No es necesario agregar números de cuentas.</li>
+                        <li>4. Biblioteca: Sólo se debe consignar el valor a que ascienden en conjunto.</li>
+                        <li>5. Diversos: Detalle de todos aquellos bienes que posea, tales como:</li>
+                          <ul>
+                            <li>5.1 Contratos funerarios, mausoleos;</li>
+                            <li>5.2 Establecimientos comerciales;</li>
+                            <li>5.3 Inversiones nacionales o internacionales;</li>
+                            <li>5.4 Maquinaria, talleres;</li>
+                            <li>5.5 Mobiliario y equipo de oficina profesional;</li>
+                            <li>5.6 Acciones nominativas de Sociedades Mercantiles, así como cualquier otro ingreso de beneficio personal que se hayan obtenido.</li>
+                            <li>5.7 Títulos de agua, y derechos telefónicos; y,</li>
+                            <li>5.8 Títulos de Crédito.</li>
+                          </ul>
+                        <li>6. Menaje de casa: Indicar los muebles de su residencia consignando el valor a que ascienden en conjunto. Si se encuentran fuera del país por razón de su función pública, consignar su valor en conjunto, deberá indicar el país en donde se encuentran.</li>
+                        <li>7. Semovientes: Si se trata de lotes formados por varios semovientes, indique la cantidad en que están compuestos cada lote, la clase de estos, (bovino, equino, porcino, caballar u otros) así como el valor  en conjunto de los mismos.</li>
+                        <li>8. Vehículos: Se debe indicar tipo, marca, línea, serie, modelo, y color, consignando el valor estimado de cada uno.</li>
+                        <li>Si tiene bienes muebles en el exterior del país, deberá indicar el país. </li>
+                      </ul>
+                    <li>b. Bienes Inmuebles Urbanos o Rústicos:</li>
+                      <ul>
+                        <li>1. Su ubicación (municipio y departamento), con el valor declarado o el estimado.</li>
+                        <li>3. Detallar los bienes inmuebles que esté amortizando por medio de cuotas niveladas o abonos, indicando el valor nominal y el saldo deudor que a la fecha tenga.</li>
+                        <li>4. Si tiene bienes inmuebles en el exterior del país, deberá indicar su ubicación geográfica, consignando el valor del inmueble, aclarando si ya canceló dicha propiedad o se encuentra amortizando el valor de la misma, indicando el saldo deudor que a la fecha tenga, si fuera el caso.</li>
+                      </ul>
+                  </ul>
+                <li>B) Acreedores -Pasivo-, el mismo se integra de la siguiente forma:</li>
+                  <ul>
+                    <li>a. Bancos;</li>
+                    <li>b. Casas Comerciales;</li>
+                    <li>c. Personas Individuales; y</li>
+                    <li>d. Personas Jurídicas.</li>
+                  </ul>
+              </ul>
+              <p>Sección VI. Declaración Jurada</p>
+              <ul>
+                <li>Agregar nombre completo del declarante</li>
+                <li>Agregar fecha en la que presenta la declaración</li>
+              </ul>
+              <h3>Declaración de Intereses</h3>
+              <p>Sección I. Datos del declarante.</p>
+              <ul>
+                <li>Por favor llenar cada uno de los campos que aplique</li>
+                <li>En el campo: “Cargo público de elección popular que ocupa actualmente” aplica para aquellos funcionarios que estén buscando una reelección.</li>
+                <li>En el campo: “Cargo público por nombramiento que ocupa actualmente” se refiere a aquellos funcionarios públicos que son nombrados por autoridades competentes para ejercer el cargo (ministros, viceministros, secretarios, etc.).</li>
+                <li>En el campo: “partido político” indicar el partido por el que postula en las Elecciones Generales 2019.</li>
+                <li>En el campo: “Cargo público al que aspira” por favor llenarlo según corresponda:</li>
+                <ul>
+                  <li>En caso de ser al poder ejecutivo, solamente debe de indicar si es aspirante a Presidencia o Vicepresidencia, los otros campos de la sección debe dejarlos en blanco. </li>
+                  <li>Si aspira al Legislativo, por el listado nacional, únicamente debe dejarlo indicado con el número de casilla que ocupa, ejemplo: Diputado por el Listado Nacional, primera casilla. Los otros campos de la sección debe dejarlos en blanco.</li>
+                  <li>Si aspira al Legislativo, por listado distrital, debe de llenar los campos correspondientes. Cargo al que aspira, casilla que ocupa en el listado y distrito por el que se postula. Ejemplo: Diputado Distrital, primera casilla/Sacatepéquez.</li>
+                  <li>Si aspira a una alcaldía, debe de llenar los campos de la sección que correspondan. Cargo al que aspira, departamento y municipio. Ejemplo: Alcalde municipal/Progreso/Guastatoya.</li>
+                </ul>
+              </ul>
+              <p>Sección II. Grupo Familiar. </p>
+              <ul>
+                <li>Por favor declarar los datos solicitados en la sección, sobre su grupo familiar. En las instrucciones de la sección II, está detallado quienes son considerados grupo familiar en esta sección. Por familiares se considera: cónyuge, conviviente, hijos mayores de edad, hermanos, padres, cuñados, yernos, nueras.</li>
+              </ul>
+              <p>Sección III. Intereses económicos y Financieros. </p>
+              <ul>
+                <li>Por favor llenar todos los campos que corresponda. </li>
+                <li>En esta sección se reporta la información sobre intereses de carácter económico y financiero que podría influir en las decisiones tomadas por el declarante en razón del cargo que ostentará en caso de ser electo.</li>
+                <li>La parte No. 1 de esta sección, “Participación del declarante en direcciones y consejos administrativos”, corresponde a cargos o funciones que el declarante desempeña o ha desempeñado en los últimos 2 años  en órganos directivos de organizaciones con fines de lucro, es decir, empresas o sociedades mercantiles y organizaciones no lucrativas, pudiendo  recibir o no remuneración por esta participación.</li>
+                <li>La parte No. 2 de esta sección, “Participación en consejos de administración DE FAMILIARES Y DEPENDIENTES ECONÓMICOS”. Se refiere a cargos o funciones que al momento de la presentación de la declaración desempeña algún familiar (Cónyuge, conviviente, hijos, hermanos padres, yernos, nueras, suegros) del declarante o personas bajo su dependencia en órganos directivos de organizaciones con fines de lucro, es decir, empresas, pudiendo recibir o no una remuneración por esta participación. </li>
+              </ul>
+              <p>Sección IV. Actividades Profesionales y Empresariales. </p>
+              <ul>
+                <li>Por favor llenar todos los campos que apliquen.</li>
+                <li>Esta sección aporta información sobre actividades profesionales y empresariales, así como cargos y funciones que podrían ser percibidos o susceptibles de influir en decisiones tomadas por el declarante en el ejercicio de sus funciones, esto incluye aquellas empresas de las que declarante es propietario, si fueron o no remuneradas. La sección contiene tres componentes: Posición y cargos desempeñados por el declarante en entidades durante los últimos cinco años; actividades profesionales y/o empresariales desempeñadas como persona fiscal por el declarante en los últimos cinco años; y actividades profesionales/empresariales, cargos y funciones de familiares y dependientes económicos. </li>
+              </ul>
+              <p>Sección V. Financiamiento Electoral.</p>
+              <ul>
+                <li>En esta sección se declara la información correspondiente al financiamiento de la campaña electoral del declarante. Enlista los montos recibidos, las organizaciones y financistas que aportaron a la campaña , los límites y presupuesto de la campaña electoral. </li>
+              </ul>
+              <h3>Declaración Fiscal (solvencia)</h3>
+              <ul>
+                <li>Es el documento extendido por la Superintendencia de Administración Tributaria (SAT) en el que se indica que el declarante está solvente en sus obligaciones fiscales. </li>
+              </ul>
+
+              
+              
+                        
+
+
+
+
+
+
+
+
+            </b-collapse>
+          </div>
         </div>
       </b-row>
       <b-row>
@@ -585,5 +716,18 @@ select option[value!=""] > select, select option[value!=null] > select {
 ::-moz-selection {
   background: #EF2466; 
   color: white;
+}
+.instrucciones-block {
+  text-align:justify;
+  margin-top:20px;
+}
+.instrucciones-btn,{
+  background:none;
+  color: #333;
+  border:none;
+}
+.instrucciones-body {
+  padding-left: 30px;
+  margin-top:35px;
 }
 </style>

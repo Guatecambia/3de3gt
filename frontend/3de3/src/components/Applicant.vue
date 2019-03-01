@@ -6,7 +6,7 @@
           <hr class="line col-12">
         </div>
         <div class="col-4">
-          <h2>Aspirant<span class="blue-font">e</span>s</h2>
+          <h2>Candidatos/as</h2>
         </div>
         <div class="col-4">
           <hr class="line col-12">
@@ -16,23 +16,23 @@
     <b-container>
       <div class="row statistics">
         <div class="col-12 statInfo">
-          <h3>Aspirantes que ya publicaron su 3de3</h3>
+          <h3>Candidatos/as que ya publicaron su 3de3</h3>
           <div class="row">
             <div class="col-3">
               <div class="big-num blue-font">{{ statistics.president }}</div>
-              <div class="desc">Aspirantes a la Presidencia</div>
+              <div class="desc">Candidatos/as a la Presidencia</div>
             </div>
             <div class="col-3">
               <div class="big-num pink-font">{{ statistics.civicComitee }}</div>
-              <div class="desc">Aspirantes a Alcaldías por Comités Cívicos</div>
+              <div class="desc">Candidatos/as a Alcaldías por Comités Cívicos</div>
             </div>
             <div class="col-3">
               <div class="big-num pink-font">{{ statistics.muniByParty }}</div>
-              <div class="desc">Aspirantes a Alcaldías por Partidos Políticos</div>
+              <div class="desc">Candidatos/as a Alcaldías por Partidos Políticos</div>
             </div>
             <div class="col-3">
               <div class="big-num green-font">{{ statistics.congress }}</div>
-              <div class="desc">Aspirantes al Congreso</div>
+              <div class="desc">Candidatos/as al Congreso</div>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
                 <a class="nav-link" href="#" v-on:click.prevent="activateMenu('LEG')"">Legislativo</a>
               </li>
               <li class="nav-item" v-bind:class="{ active: applicantPositions.muniActive }">
-                <a class="nav-link" href="#" v-on:click.prevent="activateMenu('M')"">Munis</a>
+                <a class="nav-link" href="#" v-on:click.prevent="activateMenu('M')"">Municipal</a>
               </li>
             </ul>
           </div>
@@ -364,6 +364,8 @@ a {
 }
 .statInfo {
   background: #333;
+  margin-top:50px;
+  margin-bottom: 50px;
 }
 .statInfo h3 {
   color: #fff;
@@ -395,7 +397,7 @@ li.nav-item:hover a, li.nav-item.active a{
   color: #EF2466;
 }
 #filters {
-  margin-top:45px;
+  margin-top:75px;
 }
 .filter-title {
   background:#333;
@@ -422,6 +424,7 @@ li.nav-item:hover a, li.nav-item.active a{
 }
 #with-3de3 {
   margin-top:50px;
+  margin-bottom: 50px;
 }
 .aspirant-box {
   margin: 15px 0 25px 0;

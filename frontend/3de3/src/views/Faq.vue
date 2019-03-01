@@ -36,13 +36,33 @@ export default {
     return {
       interrogation: [
         {
-          question: "¿Qué es una declaración patrimonial y por qué consideramos que es importante hacerla pública?",
-          answer: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+          question: "¿Qué es 3de3?",
+          answer: "Es una iniciativa ciudadana que busca fortalecer el vínculo entre la ciudadanía y los políticos a través de la implementación de prácticas de transparencia y rendición de cuentas. En la plataforma electrónica www.3de3.gt los candidatos y candidatas a cargos públicos harán públicas sus declaraciones de: intereses, patrimonial y fiscal."
         },
         {
-          question: "¿Qué es una declaración patrimonial y por qué consideramos que es importante hacerla pública?",
-          answer: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
-        }
+          question: "¿Quién promueve 3de3?",
+          answer: "Todas y todos los ciudadanos comprometidos con la democracia. Tú y yo somos los protagonistas de esta iniciativa."
+        },
+        {
+          question: "¿Qué candidatos deben presentar su 3de3?",
+          answer: "Todos los candidatos a un puesto de elección popular, como por ejemplo, los binomios presidenciales, diputados, alcaldes y diputados al PARLACEN."
+        },
+        {
+          question: "¿Para qué sirve que los candidatos presenten su 3de3?",
+          answer: "Para que los ciudadanos recuperemos la confianza en los candidatos y que a través de un acción concreta, den muestra de su compromiso con la construcción de una democracia firme, bajo principios de honestidad y transparencia."
+        },
+        {
+          question: " ¿Por qué debo solicitar a los candidatos que se comprometan con la transparencia y rendición de cuentas?",
+          answer: "Porque como ciudadanos tenemos derecho a conocer a nuestros candidatos."
+        },
+        {
+          question: "¿Cómo puedo pedir a mi candidato que presente su 3de3?",
+          answer: "Desde la plataforma www.3de3.gt puedes enviar un post o tuit directamente a las redes sociales del candidato. Comparte y divulga la información de nuestras plataformas en redes sociales y usa los hashtag #3de3guate #candidato3de3 #exijo3de3 ¡Juntos podemos lograr grandes cambios!"
+        },
+        {
+          question: "¿Por qué es importante un gobierno transparente?",
+          answer: "En una democracia sana, los candidatos electos deben representar los intereses de toda la población y velar por el bien común, para garantizar el desarrollo pleno en igualdad de condiciones y oportunidades para todos."
+        },
       ]
     }
   }

@@ -66,7 +66,10 @@ hr.line {
   border-top: 1px solid;
   border-color: #000;
 }
-
+h1{
+  font-size:4em;
+  text-align:left !important;
+}
 h2,h1 {
   text-align:center;
   text-transform:uppercase;
