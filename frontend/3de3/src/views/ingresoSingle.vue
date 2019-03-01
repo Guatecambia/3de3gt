@@ -1,22 +1,9 @@
 <template>
   <div class="home">
-    <Header />
+    <AdminHeader />
     <b-container>
       <b-row>
-        <div class="col-2"></div>
-        <div class="col-10">
-          <h2>Publica tu #3d<span class="blue-font">e</span>3</h2>
-        </div>
-      </b-row>
-      <b-row class="text">
-        <div class="col-2"></div>
-        <div class="col-10">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat scelerisque laoreet. Nunc ut mattis magna. Sed gravida nisi lacinia bibendum aliquet. Fusce feugiat felis ut sem porta luctus. In et leo a dui pretium sollicitudin nec vitae nunc. Praesent interdum ipsum ac luctus egestas. Aenean nec neque vitae mauris maximus posuere. Quisque scelerisque quam eu mi ornare, ac semper tellus vestibulum. Proin dapibus vehicula dui. In ornare quam mauris, id tristique arcu semper a. Nunc eget lacus quis orci cursus rhoncus vitae at elit. Aliquam pharetra massa eu orci volutpat, quis iaculis tellus tempus. Integer eu neque massa. Suspendisse arcu libero, pharetra vel dolor nec, sollicitudin accumsan nisl. Ut risus ligula, iaculis sit amet leo quis, placerat interdum augue. Cras iaculis ante sed suscipit posuere.</p>
-        </div>
-      </b-row>
-      <b-row>
-        <div class="col-12"><h4>Formulario 3de3 Guatemala</h4></div>
-        <div class="col-12"><h5>Datos del declarante</h5></div>
+        <div class="col-12 justify-content-center"><h2>Revisión de Ingreso</h2></div>
       </b-row>
       <b-form @submit.prevent="processForm">
         <b-row>
@@ -275,23 +262,22 @@
           </div>
         </b-row>
         <b-row class="justify-content-center buttonholder">
-          <b-button variant="dark" size="lg">Carta de autorización<img class="form-input-img" src="../assets/download.png"/></b-button>
+          <div class="col-lg-4"></div>
+          <div class="col-lg-2">
+            <a :href="fileURL+'/'+form.authLetter"><label class="btn-dark btn-lg upload"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span></label></a>
+          </div>
+          <div class="col-lg-2">
+            <a :href="fileURL+'/'+form.solvencia"><label class="btn-dark btn-lg upload"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span></label></a>
+          </div>
+          <div class="col-lg-4"></div>
         </b-row>
-        <b-row class="justify-content-center buttonholder">
-          <div class="col-lg-2"></div>
-          <div class="col-lg-2">
-            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['authLetter'].$error }" @input="$v.form['authLetter'].$touch()"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span><b-form-file v-model="form.authLetter" hidden /></label>
+        <b-row>
+          <div class="col-12">
+            <b-button @click="chStatus('N')" :pressed="(form.status == 'N')" variant="outline-dark" class="btn-lg statusBtn">Nuevo</b-button>
+            <b-button @click="chStatus('BV')" :pressed="(form.status == 'BV')" variant="outline-warning" class="btn-lg statusBtn">Verificando</b-button>
+            <b-button @click="chStatus('C')" :pressed="(form.status == 'C')" variant="outline-success" class="btn-lg statusBtn">Convertido</b-button>
+            <b-button @click="chStatus('D')" :pressed="(form.status == 'D')" variant="outline-danger" class="btn-lg statusBtn">Descartado</b-button>
           </div>
-          <div class="col-lg-2">
-            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['solvencia'].$error }" @input="$v.form['solvencia'].$touch()"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span><b-form-file v-model="form.solvencia" hidden /></label>
-          </div>
-          <div class="col-lg-2">
-            <b-button class="upload" variant="dark" size="lg"><img class="form-input-img-big" alt="Declaración de intereses" src="../assets/di.png"><span class="inner-button">Declaración de intereses</span></b-button>
-          </div>
-          <div class="col-lg-2">
-            <b-button class="upload" variant="dark" size="lg"><img class="form-input-img-big" alt="Declaración patrimonial" src="../assets/dp.png"><span class="inner-button">Declaración patrimonial</span></b-button>
-          </div>
-          <div class="col-lg-2"></div>
         </b-row>
         <b-row>
           <div class="col-12 justify-content-center" >
@@ -300,24 +286,23 @@
         </b-row>
       </b-form>
     </b-container>
-    <Footer />
   </div>
 </template>
-
 <script>
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
+import AdminHeader from '@/components/AdminHeader.vue'
 import {HTTP} from '../../http-constants'
+import {baseURL} from '../../http-constants'
 import { required, requiredIf, email, minValue } from 'vuelidate/lib/validators';
+
 export default {
-  name: 'AddYours',
+  name: 'ingresoSingle',
   components: {
-    Header,
-    Footer
+    AdminHeader,
   },
   data: function() {
     return {
       form: {
+        id: null,
         name: '',
         lastname: '',
         gender: null,
@@ -343,7 +328,9 @@ export default {
         helpEmail: null,
         authLetter: '',
         solvencia: '',
+        status: ''
       },
+      fileURL: baseURL,
       genders: [
         {value: null, text: "Género"},
         {value: "M", text: "Masculino"},
@@ -384,14 +371,21 @@ export default {
         {value: null, text: "Seleccione comité civico"},
         {value: 2, text: "comité civico C"}
       ],
-      isSubmitted: false,
-      isError: false,
-      errorHeader: 'error.invalidFields',
-      errors: [],
-      submitting: false
     }
   },
   methods: {
+    chStatus: function(newStatus) {
+      this.form.status = newStatus;
+    },
+    getIngreso: function() {
+      HTTP.get('/3de3-admin/presentado/'+this.$route.params.id)
+        .then(response => {
+          this.form = response.data
+        })
+        .catch(e => {
+          this.errors = e
+        })
+    },
     processForm: function() {
       this.$v.$touch()
       if (this.$v.$invalid) {
@@ -431,26 +425,28 @@ export default {
           formData.append("helpCelphone", this.form.helpCelphone);
         if (this.form.helpEmail != null)
           formData.append("helpEmail", this.form.helpEmail);
-        formData.append("authLetter", this.form.authLetter);
-        formData.append("solvencia", this.form.solvencia);
-        HTTP.post(
-          '/candidatos/presentar/', 
+        formData.append("status", this.form.status);
+        var self = this;
+        HTTP.put(
+          '/3de3-admin/presentado/'+this.$route.params.id, 
           formData, 
           {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'text/plain'
             }
           }
         )
         .then(function (response) {
-          alert("Información enviada correctamente. Por favor ingrese sus declaraciones de interés y patrimonial. \
-                  \nAlguien del equipo se comunicará con usted para corroborar los datos.");
+          self.$router.push('/3de3-admin/ingresos');
         })
         .catch(function (error) {
-          alert("No se pudo enviar su información, por favor intente mas tarde");
+          alert("No se pudo enviar su información"+error);
         });
       }
     }
+  },
+  beforeMount() {
+    this.getIngreso()
   },
   validations: {
     form: {
@@ -499,14 +495,11 @@ export default {
       celphone: { required },
       phone: { required },
       email: { required, email },
-      authLetter: { required },
-      solvencia: { required },
       helpEmail: { email },
     }
   }
 }
 </script>
-
 <style scoped>
 .text {
   text-align:justify;
@@ -557,6 +550,10 @@ input::placeholder {
 .error {
   border: 1px solid red;
   background-color: #e69fa6;
+}
+.statusBtn {
+  margin-left:10px;
+  margin-right:10px;
 }
 </style>
 <style>

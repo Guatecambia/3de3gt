@@ -78,6 +78,11 @@ export default new Router({
       component: () => import('./views/ingresos.vue')
     },
     {
+      path: '/3de3-admin/ingreso/:id',
+      name: 'ingreso-single-edit',
+      component: () => import('./views/ingresoSingle.vue')
+    },
+    {
       path: '/3de3-admin/candidatos',
       name: 'candidatos',
       component: () => import('./views/candidatos.vue')

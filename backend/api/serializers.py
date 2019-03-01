@@ -82,3 +82,42 @@ class PresentadoSerializer(serializers.ModelSerializer):
             'authLetter',
             'solvencia'
         )
+
+
+class PresentadoAdminSerializer(serializers.ModelSerializer):
+    partyType = serializers.CharField(source='party.tType', read_only=True)
+    authLetter = serializers.URLField(read_only=True)
+    solvencia = serializers.URLField(read_only=True)
+
+    class Meta:
+        model = Presentado
+        fields = (
+            'id',
+            'name',
+            'lastname',
+            'gender',
+            'genderOther',
+            'ethnicGroup',
+            'ethnicOther',
+            'twitter',
+            'facebook',
+            'maritalStatus',
+            'aspiredPosition',
+            'executivePosition',
+            'district',
+            'seat',
+            'municipality',
+            'partyType',
+            'party',
+            'email',
+            'celphone',
+            'phone',
+            'webpage',
+            'helpName',
+            'helpLastname',
+            'helpEmail',
+            'helpCelphone',
+            'authLetter',
+            'solvencia',
+            'status'
+        )

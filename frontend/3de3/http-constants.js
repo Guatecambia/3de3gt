@@ -8,7 +8,11 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   baseURL = 'http://api.3de3.gt'
 }
 
-export const HTTP = axios.create( {
-  baseURL: baseURL, 
-  withCredentials: true
-})
+const HTTP = axios.create( {
+          baseURL: baseURL, 
+          withCredentials: true
+        })
+export {
+  HTTP,
+  baseURL
+}

@@ -1,12 +1,12 @@
-from .models import Candidato, District
-from .serializers import CandidatoSerializer, PresentadoSerializer, DistrictSerializer
+from .models import Candidato, District, Presentado
+from .serializers import CandidatoSerializer, PresentadoAdminSerializer, PresentadoSerializer, DistrictSerializer
 
 from rest_framework import generics
 
 
 class DistrictEdit(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve and edit specific districts
+    Retrieve, edit and delete specific districts
     """
     queryset = District.objects.all()
     serializer_class = DistrictSerializer
@@ -47,3 +47,25 @@ class PresentedForm(generics.CreateAPIView):
     View for Presentado model
     """
     serializer_class = PresentadoSerializer
+
+
+class PresentadoEdit(generics.RetrieveUpdateAPIView):
+    """
+    Retrieve and edit specific form answers
+    """
+    queryset = Presentado.objects.all()
+    serializer_class = PresentadoAdminSerializer
+
+
+class PresentadoList(generics.ListAPIView):
+    """
+    List form answers
+    """
+    serializer_class = PresentadoAdminSerializer
+    
+    def get_queryset(self):
+        if 'status' in self.kwargs:
+            status = self.kwargs['status']
+            return Presentado.objects.filter(status=status).order_by('-created_at')
+        else:
+            return Presentado.objects.all().order_by('-created_at')
