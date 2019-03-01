@@ -11,4 +11,7 @@ urlpatterns = [
     url(r'^3de3-admin/presentados/$', views.PresentadoList.as_view(), name='presentado-admin'),
     url(r'^3de3-admin/presentados/(?P<status>[A-Z]+)', views.PresentadoList.as_view(), name='presentado-admin'),
     url(r'^3de3-admin/presentado/(?P<pk>[0-9]+)', views.PresentadoEdit.as_view(), name='presentado-admin-edit'),
+    url(r'^3de3-admin/candidatos/$', views.CandidatoAdminList.as_view(), name='candidato-admin'),
+    url(r'^3de3-admin/candidatos/(?P<status>[A-Z]+)', views.CandidatoAdminList.as_view(), name='candidato-admin'),
+    url(r'^3de3-admin/candidato/(?P<pk>[0-9]+)', views.CandidatoAdminEdit.as_view(), name='candidato-admin-edit'),
 ]

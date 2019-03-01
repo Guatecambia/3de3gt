@@ -1,5 +1,5 @@
 from .models import Candidato, District, Presentado
-from .serializers import CandidatoSerializer, PresentadoAdminSerializer, PresentadoSerializer, DistrictSerializer
+from .serializers import CandidatoAdminSerializer, CandidatoSerializer, PresentadoAdminSerializer, PresentadoSerializer, DistrictSerializer
 
 from rest_framework import generics
 
@@ -62,10 +62,34 @@ class PresentadoList(generics.ListAPIView):
     List form answers
     """
     serializer_class = PresentadoAdminSerializer
-    
+
     def get_queryset(self):
         if 'status' in self.kwargs:
             status = self.kwargs['status']
             return Presentado.objects.filter(status=status).order_by('-created_at')
         else:
             return Presentado.objects.all().order_by('-created_at')
+            
+class CandidatoAdminList(generics.ListCreateAPIView):
+    """
+    List and create Candidatos
+    """
+    serializer_class = CandidatoAdminSerializer
+
+    def get_queryset(self):
+        if 'status' in self.kwargs:
+            status = self.kwargs['status']
+            if (status == 'PUB'):
+              return Candidato.objects.filter(published=True).order_by('lastname')
+            elif (status == 'ASK'):
+              return Candidato.objects.filter(inAskList=True).order_by('lastname')
+        else:
+            return Candidato.objects.all().order_by('lastname')
+
+
+class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve, edit and delete specific Candidatos
+    """
+    queryset = Candidato.objects.all()
+    serializer_class = CandidatoAdminSerializer

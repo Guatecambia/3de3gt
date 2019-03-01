@@ -23,6 +23,9 @@ class PartySerializer(serializers.ModelSerializer):
 
 
 class CandidatoSerializer(serializers.ModelSerializer):
+    """
+    Used to display data on the frontend
+    """
     gender = serializers.SerializerMethodField()
     party_name = serializers.CharField(source='party.name', read_only=True)
     partyIcon = serializers.CharField(source='party.twitter', read_only=True)
@@ -54,7 +57,51 @@ class CandidatoSerializer(serializers.ModelSerializer):
             return obj.get_aspiredPosition_display()
 
 
+class CandidatoAdminSerializer(serializers.ModelSerializer):
+    """
+    used to manage Candidato model, on the admin section
+    """
+    partyType = serializers.CharField(source='party.tType', read_only=True)
+    
+    class Meta:
+        model = Candidato
+        fields = (
+            'id',
+            'name',
+            'lastname',
+            'gender',
+            'genderOther',
+            'ethnicGroup',
+            'ethnicOther',
+            'twitter',
+            'facebook',
+            'maritalStatus',
+            'aspiredPosition',
+            'executivePosition',
+            'district',
+            'seat',
+            'municipality',
+            'partyType',
+            'party',
+            'email',
+            'celphone',
+            'phone',
+            'webpage',
+            'helpName',
+            'helpLastname',
+            'helpEmail',
+            'helpCelphone',
+            'authLetter',
+            'solvencia',
+            'inAskList',
+            'published'
+        )
+
+
 class PresentadoSerializer(serializers.ModelSerializer):
+    """
+    used to insert data in Presentado model, from the form on the frontend
+    """
     class Meta:
         model = Presentado
         fields = (

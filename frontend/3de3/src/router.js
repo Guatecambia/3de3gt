@@ -88,6 +88,16 @@ export default new Router({
       component: () => import('./views/candidatos.vue')
     },
     {
+      path: '/3de3-admin/candidato/:id',
+      name: 'candidato-single-edit',
+      component: () => import('./views/candidatoSingle.vue')
+    },
+    {
+      path: '/3de3-admin/candidato',
+      name: 'candidato-single-new',
+      component: () => import('./views/candidatoSingle.vue')
+    },
+    {
       path: '/3de3-admin/estadisticas',
       name: 'estadisticas-backend',
       component: () => import('./views/estadisticasBackend.vue')
