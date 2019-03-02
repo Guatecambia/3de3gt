@@ -411,10 +411,10 @@
         <b-row class="justify-content-center buttonholder">
           <div class="col-lg-2"></div>
           <div class="col-lg-2">
-            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['authLetter'].$error }" @input="$v.form['authLetter'].$touch()"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span><b-form-file v-model="form.authLetter" hidden /></label>
+            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['authLetter'].$error }" @input="$v.form['authLetter'].$touch()"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span><b-form-file v-model="form.authLetter" accept="application/pdf" hidden /></label>
           </div>
           <div class="col-lg-2">
-            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['solvencia'].$error }" @input="$v.form['solvencia'].$touch()"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span><b-form-file v-model="form.solvencia" hidden /></label>
+            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['solvencia'].$error }" @input="$v.form['solvencia'].$touch()"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span><b-form-file v-model="form.solvencia" accept="application/pdf" hidden /></label>
           </div>
           <div class="col-lg-2">
             <b-button class="upload" variant="dark" size="lg"><img class="form-input-img-big" alt="Declaración de intereses" src="../assets/di.png"><span class="inner-button">Declaración de intereses</span></b-button>
@@ -578,7 +578,7 @@ export default {
                   \nAlguien del equipo se comunicará con usted para corroborar los datos.");
         })
         .catch(function (error) {
-          alert("No se pudo enviar su información, por favor intente mas tarde");
+          alert("No se pudo enviar su información, por favor revise que sus datos esten completos en el formulario y que haya adjuntado dos archivos PDF");
         });
       }
     }
