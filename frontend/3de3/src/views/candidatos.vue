@@ -13,7 +13,7 @@
         </div>
       </b-row>
       <b-row>
-        <div v-for="(applicant, index) in candidatos" class="col-3 aspirant-box">
+        <div v-for="(applicant, index) in candidatos" class="col-3 aspirant-box" :class="{ASK: applicant.inAskList, PUB: applicant.published}">
           <div class="picture-frame">
             <div class="aspirant-pic">
               <router-link :to="'/3de3-admin/candidato/'+applicant.id"><img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" /></router-link>
