@@ -30,17 +30,10 @@
             <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo.png"/>
           </b-button>
           <b-modal ok-title="Aceptar" ok-only :id="'applicant'+index" size="lg" title="Instrucciones para compartir en Facebook">
-            <div class="declarant-data">
-              <span class="modal-text">Presiona el siguiente botón para abrir el dialogo de compartir en Facebook</span><br/>
-              <b-button class="btn btn-fb shareFb" v-on:click="shareFb()">Compartir en Facebook</b-button><br/>
-              <span class="modal-text">Copia el siguiente texto y pegalo en facebook</span><br/>
-              <span class="modal-text">{{ message.fbCopy }}</span><b-button v-clipboard:copy="message.fbCopy" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
-              <span class="modal-text">Copia y pega el siguiente usuario, en la lista desplegable selecciona al candidato</span><br/>
-              <span class="modal-text">@{{ applicant.facebook }}</span><b-button v-clipboard:copy="' @'+applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
-              <span class="modal-text">Copia y pega el siguiente usuario, en la lista desplegable selecciona al partido del candidato</span><br/>
-              <span class="modal-text">@{{ applicant.party }}</span><b-button v-clipboard:copy="' @'+applicant.party" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
-              <span class="modal-text">Presiona el botón "Publicar en Facebook"</span><br/>              
-            </div>
+              <div class="declarant-data">
+                <span class="modal-text">{{ message.fbCopy }} @{{ applicant.facebook }}</span><b-button v-clipboard:copy="message.fbCopy + '@' + applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
+                <b-button class="btn btn-fb shareFb" @click="shareFb()">Escribe tu publicación</b-button><br/>
+              </div>
           </b-modal>
         </div>
       </b-row>
@@ -56,7 +49,7 @@ export default {
     return {
       message: {
         copySucceeded: null,
-        fbCopy: "Publica tu #3de3 para que todos podamos conocer tus intereses",
+        fbCopy: "Publica tu #3de3 para que todos podamos conocer tus intereses ",
         cpError: "La versión de tu navegador no permite usar el botón de copiar, selecciona el texto y copialo manualmente"
       },
       aspirant: [
