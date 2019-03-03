@@ -101,6 +101,13 @@ export default {
 }
 .aspirant-pic {
   z-index:9;
+  position:relative;
+  overflow:hidden;
+  padding-bottom:100%;
+}
+.aspirant-pic a img {
+  position:absolute;
+  left:0;
 }
 .aspirant-pic:hover, .pic-buttons:hover + .aspirant-pic {
   background-color: #EF2466;

@@ -452,6 +452,13 @@ li.nav-item:hover a, li.nav-item.active a{
 }
 .aspirant-pic {
   z-index:9;
+  position:relative;
+  overflow:hidden;
+  padding-bottom:100%;
+}
+.aspirant-pic img {
+  position:absolute;
+  left:0;
 }
 .aspirant-pic:hover, .pic-buttons:hover + .aspirant-pic {
   background-color: #EF2466;
