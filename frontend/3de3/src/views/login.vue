@@ -11,15 +11,15 @@
       <b-row id="login-row" class="justify-content-center align-items-center">
         <div id="login-column" class="col-md-6">
           <div id="login-box" class="col-md-12">
-            <b-form id="login-form" class="form" action="" method="post">
+            <b-form id="login-form" class="form" @submit.prevent="login">
               <h3 class="text-center text-info">Ingreso administrativo</h3>
               <div class="form-group">
                 <label for="username" class="text-info">Usuario:</label><br>
-                <b-form-input type="text" name="username" id="username" class="form-control" />
+                <b-form-input type="text" v-model="username" name="username" id="username" class="form-control" />
               </div>
               <div class="form-group">
                 <label for="password" class="text-info">Contraseña:</label><br>
-                <b-form-input type="text" name="password" id="password" class="form-control" />
+                <b-form-input type="password" v-model="password" name="password" id="password" class="form-control" />
               </div>
               <div class="form-group">
                 <b-button type="submit" class="btn-submit btn-lg">Enviar</b-button>
@@ -31,7 +31,23 @@
     </b-container>
   </div>
 </template>
-
+<script>
+import {HTTP} from '../../http-constants'
+export default {
+  name: 'login',
+  methods: {
+    login: function () {
+      this.$store.dispatch('obtainToken', { username: this.username, password: this.password });
+    }
+  },
+  data: function() {
+    return {
+      username: '',
+      password: ''
+    }
+  }
+}
+</script>
 <style scoped>
 body {
   margin: 0;

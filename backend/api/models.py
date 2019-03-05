@@ -176,8 +176,14 @@ class Presentado(models.Model):
     helpEmail = models.CharField("Correo electrónico", max_length=300, null=True)
     helpCelphone = models.CharField("Celular", max_length=40, null=True)
 
-    authLetter = models.FileField(upload_to='documents/', validators=[FileExtensionValidator(allowed_extensions=['pdf'])], null=False)
-    solvencia = models.FileField(upload_to='documents/', validators=[FileExtensionValidator(allowed_extensions=['pdf'])], null=False)
+    authLetter = models.FileField(
+                                    upload_to='documents/',
+                                    validators=[FileExtensionValidator(allowed_extensions=['pdf'])],
+                                    null=False)
+    solvencia = models.FileField(
+                                    upload_to='documents/',
+                                    validators=[FileExtensionValidator(allowed_extensions=['pdf'])],
+                                    null=False)
 
     status = models.CharField("Estado", max_length=2, choices=VERIFICATION_STATUS, null=False, default="N")
 

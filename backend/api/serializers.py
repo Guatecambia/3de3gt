@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Candidato, District, Party, Presentado
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 
 class DistrictSerializer(serializers.ModelSerializer):
@@ -62,7 +64,7 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
     used to manage Candidato model, on the admin section
     """
     partyType = serializers.CharField(source='party.tType', read_only=True)
-    
+
     class Meta:
         model = Candidato
         fields = (
@@ -170,3 +172,20 @@ class PresentadoAdminSerializer(serializers.ModelSerializer):
             'solvencia',
             'status'
         )
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
+class LoginUserSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Acceso denegado")

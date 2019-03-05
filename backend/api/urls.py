@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from . import views
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+
 
 urlpatterns = [
     url(r'^candidatos/exige', views.CandidatoAsk.as_view(), name='candidato-ask'),
@@ -14,4 +16,6 @@ urlpatterns = [
     url(r'^3de3-admin/candidatos/$', views.CandidatoAdminList.as_view(), name='candidato-admin'),
     url(r'^3de3-admin/candidatos/(?P<status>[A-Z]+)', views.CandidatoAdminList.as_view(), name='candidato-admin'),
     url(r'^3de3-admin/candidato/(?P<pk>[0-9]+)', views.CandidatoAdminEdit.as_view(), name='candidato-admin-edit'),
+    url('api/token/', obtain_jwt_token),
+    url('api/token/refresh/', refresh_jwt_token)
 ]

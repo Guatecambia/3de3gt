@@ -10,9 +10,23 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 
 const HTTP = axios.create( {
           baseURL: baseURL, 
+          headers: {
+            common: {
+              Authorization: null,
+            },
+          },
+          xsrfCookieName: 'csrftoken',
+          xsrfHeaderName: 'X-CSRFToken',
           withCredentials: true
         })
+if (localStorage.getItem('token')) {
+  HTTP.defaults.headers.common['Authorization'] = `JWT `+localStorage.getItem('t');
+}
+else {
+  this.$store.dispatch('nullSession');
+}
 export {
   HTTP,
   baseURL
 }
+
