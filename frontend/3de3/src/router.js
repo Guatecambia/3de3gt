@@ -39,6 +39,11 @@ let router = new Router({
       component: () => import('./views/AddYours.vue')
     },
     {
+      path: '/estadisticas',
+      name: 'estadisticas',
+      component: () => import('./views/Estadisticas.vue')
+    },
+    {
       path: '/3de3-login',
       name: 'login',
       component: () => import('./views/login.vue'),

@@ -24,7 +24,7 @@
                     <b-navbar-nav class="navbar navbar-nav nav-fill menu bd-navbar-nav flex-row smooth-scroll justify-content-center">
                       <b-nav-item to="/#aspirantes">Aspirantes</b-nav-item>
                       <b-nav-item to="/#exige">Exige 3de3</b-nav-item>
-                      <b-nav-item to="#estadisticas">Estadisitcas</b-nav-item>
+                      <b-nav-item to="/estadisticas">Estadisitcas</b-nav-item>
                       <b-nav-item to="/presenta">Publica tu 3de3</b-nav-item>
                     </b-navbar-nav>
                   </b-collapse>

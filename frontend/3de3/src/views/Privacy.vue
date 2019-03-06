@@ -8,8 +8,7 @@
         </div>
       </b-row>
       <b-row>
-        <div class="col-3"></div>
-        <div class="col-9">
+        <div class="col-12">
           <p>Siendo responsables con los datos personales que a través de esta plataforma electrónica se publicarán y comprometidos con la transparencia y rendición de cuentas, ponemos a su disposición el siguiente aviso de privacidad.</p>
           <p class="bold">I. Responsable</p>
           <p>La Iniciativa 3de3 Guatemala es impulsada por Acción Ciudadana, capítulo guatemalteco de Transparencia Internacional. Dirección: Avenida Reforma 12-01, Edificio Reforma Montufar, nivel 17, oficina 17-01. Teléfono: (502) 2388-3400. Sitio web: <a href="http://accionciudadana.org.gt/" target="_blank">http://accionciudadana.org.gt/</a>. </p>
