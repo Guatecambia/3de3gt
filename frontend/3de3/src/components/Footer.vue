@@ -3,26 +3,32 @@
     <b-container>
       <b-row class="footer-links">
         <div col="col-12">
-          <router-link to="/privacidad">Privacidad</router-link>
-          |
-          <router-link to="/faq">Preguntas Frecuentes</router-link>
-          |
-          <router-link to="/acerca-de">Acerca de</router-link>
+          <ul class="nav nav-fill">
+            <li class="nav-item">
+              <router-link to="/privacidad">Privacidad</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/faq">Preguntas Frecuentes</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/acerca-de">Acerca de</router-link>
+            </li>
+          </ul>
         </div>
       </b-row>
       <b-row class="footer-logos">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
+        <div class="col-sm-8 col-lg-6">
           <b-row>
             <div class="col-6">
-              <a href="http://accionciudadana.org.gt/"><img class="img-fluid" alt="Acción Ciudadana" src="../assets/ac.png" /></a>
+              <a href="http://accionciudadana.org.gt/" target="_blank"><img class="img-fluid" alt="Acción Ciudadana" src="../assets/ac.png" /></a>
             </div>
             <div class="col-6">
-              <a href="http://www.guatecambia.org.gt"><img class="img-fluid" alt="Guatecambia" src="../assets/guatecambia.png" /></a>
+              <a href="http://www.guatecambia.org.gt" target="_blank"><img class="img-fluid" alt="Guatecambia" src="../assets/guatecambia.png" /></a>
             </div>
           </b-row>
         </div>
-        <div class="col-4"></div>
+        <div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
       </b-row>
     </b-container>
   </div>
@@ -56,5 +62,8 @@ export default {
 }
 .footer-logos {
   padding: 50px 0 50px 0;
+}
+.separator {
+  display: inline-block !important;
 }
 </style>

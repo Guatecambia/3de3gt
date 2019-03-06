@@ -1,30 +1,30 @@
 <template>
   <div class="section ask3de3" id="exige">
-    <b-container-fluid>
+    <b-container>
       <div class="row title">
-        <div class="col-4">
-          <hr class="line col-12">
+        <div class="col-1 col-sm-2 col-md-4 line-container">
+            <hr class="line col-8 col-lg-12" />
         </div>
-        <div class="col-4">
-          <h2><span class="pink-font">E</span>xig<span class="blue-font">e</span> #3de3Guate</h2>
+        <div class="col-10 col-sm-8 col-md-4">
+          <h2 class="justify-content-center"><span class="pink-font">E</span>xig<span class="blue-font">e</span> #3de3</h2>
         </div>
-        <div class="col-4">
-          <hr class="line col-12">
+        <div class="col-1 col-sm-2 col-md-4 line-container">
+            <hr class="line col-8 col-lg-12" />
         </div>
       </div><!--title-->
-    </b-container-fluid>
+    </b-container>
     <b-container>
       <b-row class="title">
         <div class="col-4">Nombre</div>
-        <div class="col-4">Partido</div>
+        <div class="col-3">Partido</div>
         <div class="col-3">Cargo</div>
-        <div class="col-1">Escribele en</div>
+        <div class="col-2 text-center">Escríbele</div>
       </b-row>
       <b-row v-for="(applicant, index) in aspirant" class="ask">
         <div class="col-4">{{ applicant.name }} {{ applicant.lastname }}</div>
-        <div class="col-4">{{ applicant.party_name }}</div>
+        <div class="col-3">{{ applicant.party_name }}</div>
         <div class="col-3">{{ applicant.aspiredPosition }}</div>
-        <div class="col-1">
+        <div class="col-2 text-center">
           <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo.png"/></a>
           <b-button class="ask-icon" v-b-modal="'applicant'+index">
             <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo.png"/>

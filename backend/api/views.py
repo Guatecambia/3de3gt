@@ -3,7 +3,7 @@ from .serializers import CandidatoAdminSerializer, CandidatoSerializer, Presenta
 from .serializers import PresentadoSerializer, DistrictSerializer, LoginUserSerializer, UserSerializer
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 class DistrictEdit(generics.RetrieveUpdateDestroyAPIView):
@@ -28,6 +28,7 @@ class CandidatoAsk(generics.ListAPIView):
     """
     View Candidatos that haven't presented 3de3
     """
+    permission_classes = (AllowAny, )
     queryset = Candidato.objects.filter(inAskList=True)
     serializer_class = CandidatoSerializer
 

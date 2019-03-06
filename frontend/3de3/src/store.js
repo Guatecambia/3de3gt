@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {HTTP} from '../http-constants'
-import router from './router'
 
 Vue.use(Vuex)
 
@@ -44,9 +43,8 @@ export default new Vuex.Store({
             alert("usuario o contraseña incorrecta");
           })
     },
-    nullSession() {
+    nullToken() {
       this.commit('removeToken');
-      router.push('3de3-login');
     }
   },
   getters: {

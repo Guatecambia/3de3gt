@@ -48,5 +48,355 @@
         "created_at": "2019-02-27T17:59:00-06:00",
         "updated_at": "2019-02-27T17:59:00-06:00"
       }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 4,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 5,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 6,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 7,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 8,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 9,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 10,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 11,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 12,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 13,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 14,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 15,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 16,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 17,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 18,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 19,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 20,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 21,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 22,
+      "fields": {
+        "name": "Alejandro Eduardo",
+        "lastname": "Giammattei Falla",
+        "gender": "M",
+        "party": 1,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "DrGiammattei",
+        "facebook": "AlejandroGiammattei",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 23,
+      "fields": {
+        "name": "Zury Mayte",
+        "lastname": "Ríos Sosa",
+        "gender": "F",
+        "party": 2,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "ZuryxGuate",
+        "facebook": "zury.rios",
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
+    },
+    {
+      "model": "api.candidato",
+      "pk": 24,
+      "fields": {
+        "name": "Sandra Julieta",
+        "lastname": "Torres Casanova",
+        "gender": "F",
+        "party": 3,
+        "aspiredPosition": "EX",
+        "executivePosition": "P",
+        "twitter": "SandraTorresGUA",
+        "facebook": "SandraTorresGua",
+        "published": true,
+        "inAskList": false,
+        "created_at": "2019-02-27T17:59:00-06:00",
+        "updated_at": "2019-02-27T17:59:00-06:00"
+      }
     }
 ]

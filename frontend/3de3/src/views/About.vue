@@ -3,8 +3,7 @@
     <Header />
     <b-container class="about">
       <b-row>
-        <div class="col-3"></div>
-        <div class="col-9">
+        <div class="col-12">
           <h1>Ac<span class="blue-font">e</span>rca d<span class="pink-font">e</span></h1>
         </div>
       </b-row>

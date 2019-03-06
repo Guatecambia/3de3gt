@@ -1,36 +1,36 @@
 <template>
   <div class="section aspirant" id="aspirantes" ref="aspirantes">
-    <b-container-fluid>
+    <div class="container">
       <div class="row title">
-        <div class="col-4">
-          <hr class="line col-12">
+        <div class="col-1 col-sm-2 col-md-4 line-container">
+            <hr class="line col-8 col-lg-12" />
         </div>
-        <div class="col-4">
-          <h2>Candidatos/as</h2>
+        <div class="col-10 col-sm-8 col-md-4">
+          <h2 class="justify-content-center">Candidatos/as</h2>
         </div>
-        <div class="col-4">
-          <hr class="line col-12">
+        <div class="col-1 col-sm-2 col-md-4 line-container">
+            <hr class="line col-8 col-lg-12" />
         </div>
       </div><!--title-->
-    </b-container-fluid>
+    </div>
     <b-container>
       <div class="row statistics">
         <div class="col-12 statInfo">
           <h3>Candidatos/as que ya publicaron su 3de3</h3>
           <div class="row">
-            <div class="col-3">
+            <div class="col-6 col-md-3">
               <div class="big-num blue-font">{{ statistics.president }}</div>
               <div class="desc">Candidatos/as a la Presidencia</div>
             </div>
-            <div class="col-3">
+            <div class="col-6 col-md-3">
               <div class="big-num pink-font">{{ statistics.civicComitee }}</div>
               <div class="desc">Candidatos/as a Alcaldías por Comités Cívicos</div>
             </div>
-            <div class="col-3">
+            <div class="col-6 col-md-3">
               <div class="big-num pink-font">{{ statistics.muniByParty }}</div>
               <div class="desc">Candidatos/as a Alcaldías por Partidos Políticos</div>
             </div>
-            <div class="col-3">
+            <div class="col-6 col-md-3">
               <div class="big-num green-font">{{ statistics.congress }}</div>
               <div class="desc">Candidatos/as al Congreso</div>
             </div>
@@ -57,9 +57,12 @@
         </b-row>
       </b-container>
     </div>
+
+
     <b-container id="filters">
       <b-row>
-        <div class="col-4">
+        <div class="col-2 d-lg-none"></div>
+        <div class="col-8 col-lg-4 filter-block">
           <div class="filter-title">{{ applicantPositions.filterName }}</div>
           <select class="custom-select" id="select-position">
             <option selected>Todos</option>
@@ -67,7 +70,9 @@
             <option value="vicepresidente">Vicepresidente</option>
           </select>
         </div>
-        <div class="col-4">
+        <div class="col-2 d-lg-none"></div>
+        <div class="col-2 d-lg-none"></div>
+        <div class="col-8 col-lg-4 filter-block">
           <div class="filter-title">Buscar por partido</div>
           <select class="custom-select" id="select-party">
             <option selected>Todos</option>
@@ -75,7 +80,9 @@
             <option value="vicepresidente">Vicepresidente</option>
           </select>
         </div>
-        <div class="col-4">
+        <div class="col-2 d-lg-none"></div>
+        <div class="col-2 d-lg-none"></div>
+        <div class="col-8 col-lg-4 filter-block">
           <div class="filter-title">Buscar por género</div>
           <select class="custom-select" id="select-gender">
             <option selected>Todos</option>
@@ -83,87 +90,95 @@
             <option value="vicepresidente">Vicepresidente</option>
           </select>
         </div>
+        <div class="col-2 d-lg-none"></div>
       </b-row>
     </b-container>
+
+
+
     <b-container id="with-3de3">
       <b-row>
-        <div v-for="(applicant, index) in aspirant" class="col-3 aspirant-box">
-          <div class="picture-frame">
-            <div class="pic-buttons">
-              <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
-              <b-button class="ask-icon" v-b-modal="'applicantya'+index">
-                <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo-tr.png"/>
-              </b-button>
-            </div>
-            <div class="aspirant-pic">
-              <img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" />
-            </div>
-          </div>
-          <div class="party"> 
-            <img class="party-icon" v-if="applicant.partyIcon != ''" :src="'http://avatars.io/twitter/'+applicant.partyIcon" />
-            <img class="party-icon" v-if="applicant.partyIcon == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
-          </div>
-          <div class="aspirant-name">
-            {{ applicant.name }} {{ applicant.lastname }}
-          </div>
-          <div class="aspirant-position">
-            {{ applicant.aspiredPosition }}
-          </div>
-          <b-row class="aspirant-docs">
-            <div class="col-3">
-              <b-button class="declaration-icon" v-b-modal="'fiscal'+index">
-                <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
-              </b-button>
-              <b-modal ok-title="Aceptar" ok-only :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
-                <h2>Modal {{ index }}</h2>
-              </b-modal>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">              
-              <b-button class="declaration-icon" v-b-modal="'interest'+index">
-                <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
-              </b-button>
-              <b-modal ok-title="Aceptar" ok-only :id="'interest'+ index" size="xl" title="Declaración de Intereses">
-                <h6>Datos del declarante</h6>
-                <div class="declarant-data">
-                  <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
-                  <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
-                  <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
-                  <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
-                </div>
-                <h6>Declaración</h6>
-                <div v-for="(dataItem, index) in interestDeclarationData" class="declarant-form">
-                  <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
-                </div>
-              </b-modal>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-              <b-button class="declaration-icon" v-b-modal="'patrimonial'+index">
-                <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
-              </b-button>
-              <b-modal ok-title="Aceptar" ok-only :id="'patrimonial'+ index" size="xl" title="Declaración Patrimonial">
-                <h6>Datos del declarante</h6>
-                <div class="declarant-data">
-                  <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
-                  <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
-                  <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
-                  <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
-                </div>
-                <h6>Declaración</h6>
-                <div v-for="(dataItem, index) in patrimonialDeclarationData" class="declarant-form">
-                  <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
-                </div>
-              </b-modal>
-            </div>
-            <b-modal ok-title="Aceptar" ok-only :id="'applicantya'+index" size="lg" title="Copia el siguiente texto para poder exigir a cada candidato su #3de3">
-              <div class="declarant-data">
-                <span class="modal-text">{{ message.fbCopy }} @{{ applicant.facebook }}</span><b-button v-clipboard:copy="message.fbCopy + '@' + applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
-                <b-button class="btn btn-fb shareFb" @click="shareFb()">Escribe tu publicación</b-button><br/>
+        <template v-for="(applicant, index) in aspirant">
+          <div class="col-2 d-md-none"></div>
+          <div class="col-8 col-md-6 col-lg-4 col-xl-3 aspirant-box">
+            <div class="picture-frame">
+              <div class="pic-buttons">
+                <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
+                <b-button class="ask-icon" v-b-modal="'applicantya'+index">
+                  <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo-tr.png"/>
+                </b-button>
               </div>
-            </b-modal>
-          </b-row>
-        </div>
+              <div class="aspirant-pic">
+                <img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" />
+              </div>
+            </div>
+            <div class="party"> 
+              <img class="party-icon" v-if="applicant.partyIcon != ''" :src="'http://avatars.io/twitter/'+applicant.partyIcon" />
+              <img class="party-icon" v-if="applicant.partyIcon == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
+            </div>
+            <div class="aspirant-name">
+              {{ applicant.name }} {{ applicant.lastname }}
+            </div>
+            <div class="aspirant-position">
+              {{ applicant.aspiredPosition }}
+            </div>
+            <b-row class="aspirant-docs">
+              <div class="col-3">
+                <b-button class="declaration-icon" v-b-modal="'fiscal'+index">
+                  <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
+                </b-button>
+                <b-modal ok-title="Aceptar" ok-only :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
+                  <h2>Modal {{ index }}</h2>
+                </b-modal>
+              </div>
+              <div class="col-1"></div>
+              <div class="col-3">              
+                <b-button class="declaration-icon" v-b-modal="'interest'+index">
+                  <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
+                </b-button>
+                <b-modal ok-title="Aceptar" ok-only :id="'interest'+ index" size="xl" title="Declaración de Intereses">
+                  <h6>Datos del declarante</h6>
+                  <div class="declarant-data">
+                    <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
+                    <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
+                    <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
+                    <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
+                  </div>
+                  <h6>Declaración</h6>
+                  <div v-for="(dataItem, index) in interestDeclarationData" class="declarant-form">
+                    <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
+                  </div>
+                </b-modal>
+              </div>
+              <div class="col-1"></div>
+              <div class="col-3">
+                <b-button class="declaration-icon" v-b-modal="'patrimonial'+index">
+                  <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
+                </b-button>
+                <b-modal ok-title="Aceptar" ok-only :id="'patrimonial'+ index" size="xl" title="Declaración Patrimonial">
+                  <h6>Datos del declarante</h6>
+                  <div class="declarant-data">
+                    <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
+                    <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
+                    <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
+                    <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
+                  </div>
+                  <h6>Declaración</h6>
+                  <div v-for="(dataItem, index) in patrimonialDeclarationData" class="declarant-form">
+                    <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
+                  </div>
+                </b-modal>
+              </div>
+              <b-modal ok-title="Aceptar" ok-only :id="'applicantya'+index" size="lg" title="Copia el siguiente texto para poder exigir a cada candidato su #3de3">
+                <div class="declarant-data">
+                  <span class="modal-text">{{ message.fbCopy }} @{{ applicant.facebook }}</span><b-button v-clipboard:copy="message.fbCopy + '@' + applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
+                  <b-button class="btn btn-fb shareFb" @click="shareFb()">Escribe tu publicación</b-button><br/>
+                </div>
+              </b-modal>
+            </b-row>
+          </div>
+          <div class="col-2 d-md-none"></div>
+        </template>
       </b-row>
     </b-container>
   </div>
@@ -187,10 +202,10 @@ export default {
         filterName: "Buscar por cargo"
       },
       statistics: {
-        president: "10",
-        civicComitee: "20",
-        muniByParty: "90",
-        congress: "458"
+        president: "100",
+        civicComitee: "100",
+        muniByParty: "100",
+        congress: "100"
       },
       aspirant: [
       ],
@@ -380,6 +395,12 @@ a {
   background:#333;
   margin-top:50px;
 }
+a.nav-link {
+  height: 4em;
+  margin-top: 1em;
+  color: #fff;
+  font-weight: bold;
+}
 li.nav-item {
   background: #333;
   color: #FFF;
@@ -510,6 +531,20 @@ li.nav-item:hover a, li.nav-item.active a{
   padding: 2px 1px;
   margin-left:10px;
 }
+.line-container {
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  a.nav-link {
+    padding:0;
+  }
+}
+@media (max-width: 991px) {
+  .filter-block {
+    margin: 10px 0;
+  }
+}
+
 </style>
 <style>
 .modal-content {

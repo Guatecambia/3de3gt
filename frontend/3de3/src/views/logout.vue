@@ -6,7 +6,7 @@ export default {
   methods:{
     logmeout: function() {
       console.log("ejecutando el logoutn");
-      this.$store.dispatch('nullSession');
+      this.$store.dispatch('nullToken');
     }
 
   },
