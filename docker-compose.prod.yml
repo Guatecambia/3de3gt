@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+    db:
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+    backend:
+        command: gunicorn gt3de3.wsgi:application --bind 0.0.0.0:8000
+        volumes:
+            - ./productionMedia:/code/media
+        expose:
+            - 8000
+    bnginx:
+        container_name: backend_nginx
+        build: ./proxy-server/api
+        volumes: 
+            - ./productionMedia:/usr/src/app/media
+            - ./proxy-server/api/sites/:/etc/nginx/sites-available
+            - ./proxy-server/api/conf.d/:/etc/nginx/conf.d
+        depends_on:
+            - backend
+        expose:
+            - 80
+        environment:
+            VIRTUAL_HOST: test.3de3.gt
+
+
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
