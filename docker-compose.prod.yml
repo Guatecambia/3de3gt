@@ -23,7 +23,7 @@ services:
         expose:
             - 80
         environment:
-            VIRTUAL_HOST: test.3de3.gt
+            VIRTUAL_HOST: api.3de3.gt
 
 
 
