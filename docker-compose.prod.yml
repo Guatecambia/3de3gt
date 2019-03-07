@@ -24,10 +24,10 @@ services:
             - 80
         environment:
             VIRTUAL_HOST: api.3de3.gt
-    frontend:
-        command: npm run build
-        volumes:
-            - ./frontend:/app
+    # frontend:
+    #    command: npm run build
+    #    volumes:
+    #        - ./frontend:/app
     fnginx:
         container_name: frontend_nginx
         build: ./proxy-server/webapp
