@@ -4,4 +4,3 @@ djangorestframework==3.9.1
 flake8==3.7.5
 django-cors-headers==2.4.0
 djangorestframework_jwt==1.11.0
-gunicorn==19.9.0
