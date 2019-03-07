@@ -8,7 +8,7 @@ services:
         command: gunicorn gt3de3.wsgi:application --bind 0.0.0.0:8000
         volumes:
             - ./productionMedia:/code/media
-            - ./backend/gt3de3:/code/gt3de3
+            - ./backend/gt3de3/settings_secret.py:/code/gt3de3/settings_secret.py
         expose:
             - 8000
     bnginx:
@@ -16,6 +16,7 @@ services:
         build: ./proxy-server/api
         volumes: 
             - ./productionMedia:/usr/src/app/media
+            - ./proxy-server/api/nginx.conf:/etc/nginx/nginx.conf
             - ./proxy-server/api/sites/:/etc/nginx/sites-available
             - ./proxy-server/api/conf.d/:/etc/nginx/conf.d
         depends_on:
