@@ -32,6 +32,10 @@ services:
     fnginx:
         container_name: frontend_nginx
         build: ./proxy-server/webapp
+        expose:
+            - 80
+        environment:
+            VIRTUAL_HOST: www.3de3.gt
         volumes:
             - ./frontend/dist:/var/www
             - ./proxy-server/webapp/nginx.conf:/etc/nginx/nginx.conf
