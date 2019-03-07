@@ -24,9 +24,18 @@ services:
             - 80
         environment:
             VIRTUAL_HOST: api.3de3.gt
+    frontend:
+        command: npm run build
+        volumes:
+            - ./frontend:/app
 
-
-
+    fnginx:
+        container_name: frontend_nginx
+        build: ./proxy-server/webapp
+        volumes:
+            - ./frontend/dist:/var/www
+            - ./proxy-server/webapp/nginx.conf:/etc/nginx/nginx.conf
+            - ./proxy-server/webapp/sites/:/etc/nginx/sites-available
 networks:
   default:
     external:
