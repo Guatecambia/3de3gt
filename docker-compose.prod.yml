@@ -28,7 +28,8 @@ services:
         command: npm run build
         volumes:
             - ./frontend:/app
-
+        ports:
+            - "80:80"
     fnginx:
         container_name: frontend_nginx
         build: ./proxy-server/webapp
