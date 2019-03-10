@@ -24,8 +24,8 @@
                     <b-navbar-nav class="navbar navbar-nav nav-fill menu bd-navbar-nav flex-row smooth-scroll justify-content-center">
                       <b-nav-item to="/#aspirantes">Aspirantes</b-nav-item>
                       <b-nav-item to="/#exige">Exige 3de3</b-nav-item>
-                      <b-nav-item to="/estadisticas">Estadisitcas</b-nav-item>
-                      <b-nav-item to="/presenta">Publica tu 3de3</b-nav-item>
+                      <b-nav-item v-bind:class="{ active: $route.name === 'estadisticas' }" to="/estadisticas">Estadísticas</b-nav-item>
+                      <b-nav-item v-bind:class="{ active: $route.name === 'addyours' }"to="/presenta">Publica tu 3de3</b-nav-item>
                     </b-navbar-nav>
                   </b-collapse>
                 </b-navbar>
@@ -85,6 +85,9 @@ li.nav-item {
   padding: 5px 25px;
   background: #EF2466;
   color: #FFF;
+  border-left: 1px solid #EF2466;
+  border-top: 1px solid #EF2466;
+  border-bottom: 1px solid #EF2466;
 }
 
 li.nav-item a {
@@ -94,7 +97,17 @@ li.nav-item a {
 li.nav-item a:hover {
   color: #0096DB;
 }
-
+li.nav-item:hover, li.nav-item.active {
+  background: white;
+  border: 1px solid #EF2466;
+  color: #EF2466;
+}
+li.nav-item:hover a, li.nav-item.active a.active, li.nav-item:hover a.active{
+  color: #EF2466 !important;
+}
+li.nav-item a.active {
+  color: white !important;
+}
 .page-navbar{
   padding-top:10px;
 }

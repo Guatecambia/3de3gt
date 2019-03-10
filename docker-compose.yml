@@ -3,7 +3,10 @@ version: "3"
 services:
     db:
         container_name: 3de3_db
-        image: postgres
+        image: postgres:11.2-alpine
+        environment:
+            POSTGRES_PASSWORD: password-in-django-secrets-file
+            POSTGRES_DB: db-in-django-secrets-file
     backend:
         container_name: 3de3_api
         build: backend
@@ -14,3 +17,4 @@ services:
         build: frontend
         depends_on:
             - backend
+

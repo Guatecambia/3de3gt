@@ -83,6 +83,7 @@ export default {
 }
 .party-icon {
   width:60px;
+  height: 60px;
   position:absolute;
   border: 5px solid #fff;
   border-radius: 50% !important;

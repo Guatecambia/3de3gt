@@ -14,7 +14,7 @@ services:
     bnginx:
         container_name: backend_nginx
         build: ./proxy-server/api
-        volumes: 
+        volumes:
             - ./productionMedia:/usr/src/app/media
             - ./proxy-server/api/nginx.conf:/etc/nginx/nginx.conf
             - ./proxy-server/api/sites/:/etc/nginx/sites-available
@@ -34,7 +34,7 @@ services:
         expose:
             - 80
         environment:
-            VIRTUAL_HOST: www.3de3.gt
+            VIRTUAL_HOST: www.3de3.gt,3de3.gt
         volumes:
             - ./frontend/dist:/var/www
             - ./proxy-server/webapp/nginx.conf:/etc/nginx/nginx.conf
@@ -43,3 +43,4 @@ networks:
   default:
     external:
       name: nginx-proxy
+

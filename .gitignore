@@ -3,3 +3,4 @@
 *~
 backend/gt3de3/settings_secret.py
 backend/media
+postgres-data

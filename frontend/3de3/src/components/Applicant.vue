@@ -66,8 +66,7 @@
           <div class="filter-title">{{ applicantPositions.filterName }}</div>
           <select class="custom-select" id="select-position">
             <option selected>Todos</option>
-            <option value="presidente">Presidente</option>
-            <option value="vicepresidente">Vicepresidente</option>
+            <option value="vicepresidente">Los puestos aparecerán cuando los candidatos presenten su 3de3</option>
           </select>
         </div>
         <div class="col-2 d-lg-none"></div>
@@ -76,8 +75,37 @@
           <div class="filter-title">Buscar por partido</div>
           <select class="custom-select" id="select-party">
             <option selected>Todos</option>
-            <option value="presidente">Presidente</option>
-            <option value="vicepresidente">Vicepresidente</option>
+            <option value="1">Unidad Nacional de la Esperanza</option>
+            <option value="2">Partido de Avanzada Nacional</option>
+            <option value="3">VAMOS</option>
+            <option value="4">Unión del Cambio Nacional</option>
+            <option value="5">TODOS</option>
+            <option value="6">Encuentro por Guatemala</option>
+            <option value="7">VALOR</option>
+            <option value="8">Compromiso, Renovación y Orden</option>
+            <option value="9">Frente de Convergencia Nacional</option>
+            <option value="10">Visión con Valores</option>
+            <option value="11">FUERZA</option>
+            <option value="12">AVANZA</option>
+            <option value="13">Unidad Revolucionaria Nacional Guatemalteca</option>
+            <option value="14">Partido Productivdad y de Trabajo</option>
+            <option value="15">Movimiento Reformador</option>
+            <option value="16">Partido Liberal Guatemalteco</option>
+            <option value="17">Partido Humanista de Guatemala</option>
+            <option value="18">Partido Unionista</option>
+            <option value="19">Victoría</option>
+            <option value="20">Movimiento Político</option>
+            <option value="21">Partido Político Unidos</option>
+            <option value="22">Convergencia</option>
+            <option value="23">Bienestar Nacional</option>
+            <option value="24">Movimiento para la Liberación de los Pueblos</option>
+            <option value="25">Movimiento Semilla</option>
+            <option value="26">Libre</option>
+            <option value="27">Prosperidad Ciudadana</option>
+            <option value="28">Nueva Ciudadanía</option>
+            <option value="29">Partido REvolucionario Organizada</option>
+            <option value="30">Rescate Nacional de Ciudades</option>
+            <option value="31">Paz, Acción, Soberanía</option>
           </select>
         </div>
         <div class="col-2 d-lg-none"></div>
@@ -86,8 +114,8 @@
           <div class="filter-title">Buscar por género</div>
           <select class="custom-select" id="select-gender">
             <option selected>Todos</option>
-            <option value="presidente">Presidente</option>
-            <option value="vicepresidente">Vicepresidente</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
           </select>
         </div>
         <div class="col-2 d-lg-none"></div>
@@ -103,7 +131,7 @@
           <div class="col-8 col-md-6 col-lg-4 col-xl-3 aspirant-box">
             <div class="picture-frame">
               <div class="pic-buttons">
-                <a :href="'https://twitter.com/intent/tweet?text=Esto%20es%20una%20prueba%20%40'+applicant.twitter+'%20fin%20de%20prueba'" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
+                <a :href="'https://twitter.com/intent/tweet?text='+applicant.name+'%20'+applicant.lastname+'%20'+'promueve%20acciones%20concretas%20a%20favor%20de%20la%20transparencia%20y%20ya%20present%C3%B3%20sus%20%233de3guate.%20Consulta%20su%20informaci%C3%B3n%20en%20www.3de3.gt%20%40'+applicant.twitter" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
                 <b-button class="ask-icon" v-b-modal="'applicantya'+index">
                   <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo-tr.png"/>
                 </b-button>
@@ -171,13 +199,16 @@
               </div>
               <b-modal ok-title="Aceptar" ok-only :id="'applicantya'+index" size="lg" title="Copia el siguiente texto para poder exigir a cada candidato su #3de3">
                 <div class="declarant-data">
-                  <span class="modal-text">{{ message.fbCopy }} @{{ applicant.facebook }}</span><b-button v-clipboard:copy="message.fbCopy + '@' + applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
+                  <span class="modal-text">{{ message.fbCopy }} @{{ applicant.facebook }}</span><b-button v-clipboard:copy="message.fbCopy + applicant.name + ' ' + applicant.lastname + ' @' + applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
                   <b-button class="btn btn-fb shareFb" @click="shareFb()">Escribe tu publicación</b-button><br/>
                 </div>
               </b-modal>
             </b-row>
           </div>
           <div class="col-2 d-md-none"></div>
+        </template>
+        <template v-if="aspirant.length == 0">
+          <h3 class="text-center">Los candidatos/as que presenten su #3de3guate aparecerán aquí.</h3>
         </template>
       </b-row>
     </b-container>
@@ -192,7 +223,7 @@ export default {
     return {
       message: {
         copySucceeded: null,
-        fbCopy: "Publica tu #3de3 para que todos podamos conocer tus intereses ",
+        fbCopy: "Promovemos las acciones de transparencia y rendición de cuentas que los #candidatos3de3 y #candidatas3de3 cumplen. Consulta aquí el #3de3guate de ",
         cpError: "La versión de tu navegador no permite usar el botón de copiar, selecciona el texto y copialo manualmente"
       },
       applicantPositions: {
@@ -202,10 +233,10 @@ export default {
         filterName: "Buscar por cargo"
       },
       statistics: {
-        president: "100",
-        civicComitee: "100",
-        muniByParty: "100",
-        congress: "100"
+        president: "0",
+        civicComitee: "0",
+        muniByParty: "0",
+        congress: "0"
       },
       aspirant: [
       ],
@@ -342,6 +373,7 @@ export default {
         menu = 'EX';
       }
       this.applicantPositions.filterName = (menu == 'EX') ? "Buscar por cargo" : (menu == 'LEG') ? "Buscar por listado" : "Buscar por municipio"
+      
       HTTP.get('/candidatos/presentados/'+menu+'?format=json')
         .then(response => {
           this.aspirant = response.data
@@ -448,6 +480,7 @@ li.nav-item:hover a, li.nav-item.active a{
 }
 .party-icon {
   width:60px;
+  height: 60px;
   position:absolute;
   border: 5px solid #fff;
   border-radius: 50% !important;

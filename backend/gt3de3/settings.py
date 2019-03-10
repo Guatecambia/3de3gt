@@ -113,6 +113,7 @@ CORS_ALLOW_HEADERS = (
     'origin',
     'user-agent',
     'x-requested-with',
+    'x-csrftoken',
 )
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = (
@@ -124,7 +125,7 @@ CORS_ALLOW_METHODS = (
     'PUT',
 )
 CORS_EXPOSE_HEADERS = (
-    'authorization',
+    'Authorization',
     'Access-Control-Allow-Origin: *',
 )
 
