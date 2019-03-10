@@ -14,13 +14,13 @@ Vue.use(BootstrapVue);
 VueClipboard.config.autoSetContainer = true 
 Vue.use(VueClipboard);
 Vue.use(Vuelidate);
-Vue.use(VueAnalytics, {
+/*Vue.use(VueAnalytics, {
     id: 'UA-134357063-1',
     debug: {
       sendHitTask: process.env.NODE_ENV === 'production'
     },
     router
-})
+})*/
 
 new Vue({
   router,

@@ -37,17 +37,7 @@
           </b-modal>
         </div>
       </b-row>
-      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getAspirants">
-        <span class="text-success" slot="first-text">First</span>
-        <span class="text-danger" slot="prev-text">Prev</span>
-        <span class="text-warning" slot="next-text">Next</span>
-        <span class="text-info" slot="last-text">Last</span>
-        <div class="d-flex align-items-center h-100" slot="ellipsis-text">
-          <b-spinner small type="grow" />
-          <b-spinner small type="grow" />
-          <b-spinner small type="grow" />
-        </div>      
-      </b-pagination>
+      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getAspirants" />
     </b-container>
   </div>
 </template>
@@ -86,11 +76,10 @@ export default {
     },
     getAspirants: function(page) {
       if (page)
-        this.currentPage = page-1;
+        this.currentPage = page;
       else
-        this.currentPage = 0;
-      console.log('/candidatos/exige?limit='+this.perPage+'&offset='+(this.perPage*this.currentPage));
-      HTTP.get('/candidatos/exige?limit='+this.perPage+'&offset='+(this.perPage*this.currentPage))
+        this.currentPage = 1;
+      HTTP.get('/candidatos/exige?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1)))
         .then(response => {
           this.aspirant = response.data['results']
           this.rows = response.data['count']
@@ -168,7 +157,7 @@ export default {
 ul.pagination li:first-child a span, ul.pagination li:first-child span, ul.pagination li:last-child a span, ul.pagination li:last-child span{
   border-radius: 50%;
   border: 1px solid;
-  padding: 0 5px;
+  padding: 0 6px;
   margin-top: 5px;
 }
 </style>

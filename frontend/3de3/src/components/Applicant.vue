@@ -211,6 +211,9 @@
           <h3 class="text-center">Los candidatos/as que presenten su #3de3guate aparecerán aquí.</h3>
         </template>
       </b-row>
+      <template v-if="aspirant.length > 0">
+        <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getApplicants" />
+      </template>
     </b-container>
   </div>
 </template>
@@ -348,7 +351,11 @@ export default {
       legislative: {
       },
       muni: {
-      }
+      },
+      rows: 0,
+      perPage: 24,
+      currentPage: 0,
+      menu: 'EX',
     }
   },
   props: {
@@ -373,10 +380,18 @@ export default {
         menu = 'EX';
       }
       this.applicantPositions.filterName = (menu == 'EX') ? "Buscar por cargo" : (menu == 'LEG') ? "Buscar por listado" : "Buscar por municipio"
-      
-      HTTP.get('/candidatos/presentados/'+menu+'?format=json')
+      this.menu = menu;
+      this.getApplicants();
+    },
+    getApplicants: function(page) {
+      if (page)
+        this.currentPage = page;
+      else
+        this.currentPage = 1;
+      HTTP.get('/candidatos/presentados/'+this.menu+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1)))
         .then(response => {
-          this.aspirant = response.data
+          this.aspirant = response.data['results']
+          this.rows = response.data['count']
         })
         .catch(e => {
           this.errors = e
