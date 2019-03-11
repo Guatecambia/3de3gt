@@ -53,7 +53,12 @@
           </b-modal>
         </div>
       </b-row>
-      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getAspirants" />
+      <template v-if="aspirant.length == 0">
+        <h3 class="text-center" style="margin-top: 45px;">No se han encontrado candidatos/as para los filtros seleccionados</h3>
+      </template>
+      <template v-if="aspirant.length > 0">
+        <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getAspirants" />
+      </template>
     </b-container>
   </div>
 </template>
