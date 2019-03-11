@@ -64,59 +64,34 @@
         <div class="col-2 d-lg-none"></div>
         <div class="col-8 col-lg-4 filter-block">
           <div class="filter-title">{{ applicantPositions.filterName }}</div>
-          <select class="custom-select" id="select-position">
-            <option selected>Todos</option>
-            <option value="vicepresidente">Los puestos aparecerán cuando los candidatos presenten su 3de3</option>
-          </select>
+          <b-form-select
+            id="select-position"
+            v-model="filters.itemValue"
+            :options="positionSelect"
+            @change="applyAPFilters"
+          />
         </div>
         <div class="col-2 d-lg-none"></div>
         <div class="col-2 d-lg-none"></div>
         <div class="col-8 col-lg-4 filter-block">
           <div class="filter-title">Buscar por partido</div>
-          <select class="custom-select" id="select-party">
-            <option selected>Todos</option>
-            <option value="1">Unidad Nacional de la Esperanza</option>
-            <option value="2">Partido de Avanzada Nacional</option>
-            <option value="3">VAMOS</option>
-            <option value="4">Unión del Cambio Nacional</option>
-            <option value="5">TODOS</option>
-            <option value="6">Encuentro por Guatemala</option>
-            <option value="7">VALOR</option>
-            <option value="8">Compromiso, Renovación y Orden</option>
-            <option value="9">Frente de Convergencia Nacional</option>
-            <option value="10">Visión con Valores</option>
-            <option value="11">FUERZA</option>
-            <option value="12">AVANZA</option>
-            <option value="13">Unidad Revolucionaria Nacional Guatemalteca</option>
-            <option value="14">Partido Productivdad y de Trabajo</option>
-            <option value="15">Movimiento Reformador</option>
-            <option value="16">Partido Liberal Guatemalteco</option>
-            <option value="17">Partido Humanista de Guatemala</option>
-            <option value="18">Partido Unionista</option>
-            <option value="19">Victoría</option>
-            <option value="20">Movimiento Político</option>
-            <option value="21">Partido Político Unidos</option>
-            <option value="22">Convergencia</option>
-            <option value="23">Bienestar Nacional</option>
-            <option value="24">Movimiento para la Liberación de los Pueblos</option>
-            <option value="25">Movimiento Semilla</option>
-            <option value="26">Libre</option>
-            <option value="27">Prosperidad Ciudadana</option>
-            <option value="28">Nueva Ciudadanía</option>
-            <option value="29">Partido REvolucionario Organizada</option>
-            <option value="30">Rescate Nacional de Ciudades</option>
-            <option value="31">Paz, Acción, Soberanía</option>
-          </select>
+          <b-form-select
+            id="select-party"
+            v-model="filters.party"
+            :options="parties"
+            @change="applyPartyFilter"
+          />
         </div>
         <div class="col-2 d-lg-none"></div>
         <div class="col-2 d-lg-none"></div>
         <div class="col-8 col-lg-4 filter-block">
           <div class="filter-title">Buscar por género</div>
-          <select class="custom-select" id="select-gender">
-            <option selected>Todos</option>
-            <option value="M">Masculino</option>
-            <option value="F">Femenino</option>
-          </select>
+          <b-form-select
+            v-model="filters.gender"
+            id="select-gender"
+            :options="genders"
+            @change="applyGenderFilter"
+          />
         </div>
         <div class="col-2 d-lg-none"></div>
       </b-row>
@@ -229,6 +204,31 @@ export default {
         fbCopy: "Promovemos las acciones de transparencia y rendición de cuentas que los #candidatos3de3 y #candidatas3de3 cumplen. Consulta aquí el #3de3guate de ",
         cpError: "La versión de tu navegador no permite usar el botón de copiar, selecciona el texto y copialo manualmente"
       },
+      filters: {
+        party: null,
+        gender: null,
+        itemValue: null,
+        aspiredPosition: 'EX',
+      },
+      genders: [
+        { value:null, text:"Seleccione un género" },
+        { value:"F", text:"Femenino" },
+        { value:"M", text:"Masculino" },
+        { value:"O", text:"Otro" },
+      ],
+      parties: [
+      ],
+      munis: [
+      ],
+      districts: [
+      ],
+      positionSelect: [
+      ],
+      exPositions: [
+        { value:null, text:"Seleccione un cargo" },
+        { value:"P", text:"Presidente" },
+        { value:"V", text:"Vicepresidente" },
+      ],
       applicantPositions: {
         exActive: true,
         legActive: false,
@@ -269,38 +269,6 @@ export default {
           fieldName: "field 3",
           fieldValue: "value"
         },
-        {
-          fieldName: "field 4",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 5",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 6",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 7",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 8",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 9",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 10",
-          fieldValue: "Nunc in lorem luctus metus auctor tempor at id arcu. Etiam eu turpis ac odio euismod convallis sit amet vitae nisl. Suspendisse sed rutrum augue, ut aliquam neque. Donec volutpat consequat metus, eu pharetra ex sagittis in. Donec auctor ipsum sit amet luctus mattis. Suspendisse eu neque quis nunc accumsan dictum. Praesent non tellus vitae nibh hendrerit iaculis. Nulla facilisi. Proin faucibus, felis id consequat convallis, lacus elit rutrum quam, et volutpat turpis arcu aliquam nunc. Vestibulum sagittis leo a ante sodales, eu consequat urna imperdiet. Morbi semper dictum ipsum, quis iaculis tortor varius ut. Nulla cursus, orci cursus ornare mollis, lorem elit efficitur leo, quis bibendum erat lacus id mi. Maecenas malesuada augue sit amet erat interdum, at viverra nulla rutrum. Suspendisse et hendrerit eros. Sed molestie consequat vulputate."
-        },
-        {
-          fieldName: "field 11",
-          fieldValue: "value"
-        },
       ],
       patrimonialDeclarationData: [
         {
@@ -311,42 +279,6 @@ export default {
           fieldName: "field 2",
           fieldValue: "value"
         },
-        {
-          fieldName: "field 3",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 4",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 5",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 6",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 7",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 8",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 9",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 10",
-          fieldValue: "Nunc in lorem luctus metus auctor tempor at id arcu. Etiam eu turpis ac odio euismod convallis sit amet vitae nisl. Suspendisse sed rutrum augue, ut aliquam neque. Donec volutpat consequat metus, eu pharetra ex sagittis in. Donec auctor ipsum sit amet luctus mattis. Suspendisse eu neque quis nunc accumsan dictum. Praesent non tellus vitae nibh hendrerit iaculis. Nulla facilisi. Proin faucibus, felis id consequat convallis, lacus elit rutrum quam, et volutpat turpis arcu aliquam nunc. Vestibulum sagittis leo a ante sodales, eu consequat urna imperdiet. Morbi semper dictum ipsum, quis iaculis tortor varius ut. Nulla cursus, orci cursus ornare mollis, lorem elit efficitur leo, quis bibendum erat lacus id mi. Maecenas malesuada augue sit amet erat interdum, at viverra nulla rutrum. Suspendisse et hendrerit eros. Sed molestie consequat vulputate."
-        },
-        {
-          fieldName: "field 11",
-          fieldValue: "value"
-        },
       ],
       legislative: {
       },
@@ -355,7 +287,6 @@ export default {
       rows: 0,
       perPage: 24,
       currentPage: 0,
-      menu: 'EX',
     }
   },
   props: {
@@ -380,7 +311,9 @@ export default {
         menu = 'EX';
       }
       this.applicantPositions.filterName = (menu == 'EX') ? "Buscar por cargo" : (menu == 'LEG') ? "Buscar por listado" : "Buscar por municipio"
-      this.menu = menu;
+      this.positionSelect = (menu == 'EX') ? this.exPositions : (menu == 'LEG') ? this.districts : this.munis
+      this.filters.itemValue = null;
+      this.filters.aspiredPosition = menu;
       this.getApplicants();
     },
     getApplicants: function(page) {
@@ -388,7 +321,13 @@ export default {
         this.currentPage = page;
       else
         this.currentPage = 1;
-      HTTP.get('/candidatos/presentados/'+this.menu+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1)))
+      var filtersParam = '';
+      for (var filterDetail in this.filters) {
+        if (this.filters[filterDetail])
+          filtersParam += '&'+filterDetail+'='+this.filters[filterDetail];
+      }
+      console.log('/candidatos/presentados/'+this.filters.aspiredPosition+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1))+filtersParam);
+      HTTP.get('/candidatos/presentados/'+this.filters.aspiredPosition+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1))+filtersParam)
         .then(response => {
           this.aspirant = response.data['results']
           this.rows = response.data['count']
@@ -396,9 +335,52 @@ export default {
         .catch(e => {
           this.errors = e
         })
+    },
+    applyAPFilters: function(selected) {
+      this.filters.itemValue = selected;
+      this.getApplicants(1);
+    },
+    applyPartyFilter: function(selected) {
+      this.filters.party = selected;
+      this.getApplicants(1);
+    },
+    applyGenderFilter: function(selected) {
+      this.filters.gender = selected;
+      this.getApplicants(1);
+    },
+    getFilters: function() {
+      HTTP.get('/generico/partidosycomites?limit=1000&offset=0')
+        .then(response => {
+          this.parties = response.data['results'];
+          this.parties.unshift({value: null, text: "Seleccione partido o comité civico"});
+        })
+        .catch(e => {
+          this.errors = e
+        });
+      HTTP.get('/generico/municipios?limit=1000&offset=0')
+        .then(response => {
+          this.munis = response.data['results'];
+          this.munis.unshift({value: null, text: "Seleccione un municipio"});
+        })
+        .catch(e => {
+          this.errors = e
+        });
+      HTTP.get('/generico/distritos?limit=1000&offset=0')
+        .then(response => {
+          this.districts = response.data['results'];
+          this.districts.unshift({value: null, text: "Seleccione un listado"});
+        })
+        .catch(e => {
+          this.errors = e
+        });
+
+
     }
   },
   beforeMount() {
+    this.getFilters()
+  },
+  mounted() {
     this.activateMenu()
   }
 }

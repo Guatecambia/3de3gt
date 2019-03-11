@@ -101,11 +101,25 @@ class PresentedAsk(generics.ListAPIView):
     serializer_class = CandidatoSerializer
 
     def get_queryset(self):
+        queryset = Candidato.objects.filter(published=True)
+        partyParam = self.request.query_params.get('party')
+        genderParam = self.request.query_params.get('gender')
+        itemValueParam = self.request.query_params.get('itemValue')
         if 'aspirantType' in self.kwargs:
             aspirantType = self.kwargs['aspirantType']
-            return Candidato.objects.filter(published=True, aspiredPosition=aspirantType)
-        else:
-            return Candidato.objects.filter(published=True)
+            queryset = queryset.filter(aspiredPosition=aspirantType)
+        if (partyParam):
+            queryset = queryset.filter(party=partyParam)
+        if (genderParam):
+            queryset = queryset.filter(gender=genderParam)
+        if (itemValueParam):
+            if (aspirantType == 'EX'):
+                queryset = queryset.filter(executivePosition=itemValueParam)
+            if (aspirantType == 'LEG'):
+                queryset = queryset.filter(district=itemValueParam)
+            if (aspirantType == 'M'):
+                queryset = queryset.filter(municipality=itemValueParam)
+        return queryset
 
 
 class PresentedForm(generics.CreateAPIView):
