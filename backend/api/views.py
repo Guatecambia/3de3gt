@@ -62,13 +62,36 @@ class PartyListOnlyCC(generics.ListAPIView):
     serializer_class = PartySelectSerializer
 
 
+class PartyList(generics.ListAPIView):
+    """
+    List of all parties, ttype CC and PP
+    """
+    permission_classes = (AllowAny, )
+    queryset = Party.objects.all().order_by('name')
+    serializer_class = PartySelectSerializer
+
+
 class CandidatoAsk(generics.ListAPIView):
     """
     View Candidatos that haven't presented 3de3
     """
     permission_classes = (AllowAny, )
-    queryset = Candidato.objects.filter(inAskList=True)
     serializer_class = CandidatoSerializer
+    
+    def get_queryset(self):
+        partyParam = self.request.query_params.get('party')
+        positionParam = self.request.query_params.get('position')
+        queryset = Candidato.objects.filter(inAskList=True, )
+        if (partyParam):
+            queryset = queryset.filter(party=partyParam)
+        if (positionParam):
+            if (positionParam == 'LEG' or positionParam == 'M'):
+                queryset = queryset.filter(aspiredPosition=positionParam)
+            elif (positionParam == 'P' or positionParam == 'V'):
+                queryset = queryset.filter(aspiredPosition='EX', executivePosition=positionParam)
+        queryset = queryset.order_by('name','lastname')
+        return queryset
+      
 
 
 class PresentedAsk(generics.ListAPIView):

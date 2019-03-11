@@ -20,6 +20,22 @@
         <div class="col-3">Cargo</div>
         <div class="col-2 text-center">Escríbele</div>
       </b-row>
+      <b-row class="filters">
+        <div class="col-4"></div>
+        <div class="col-3"><b-form-select
+                              v-model="filters.party" 
+                              :options="parties"
+                              @change="applyPartyFilter"
+                            />
+        </div>
+        <div class="col-3"><b-form-select
+                              v-model="filters.position" 
+                              :options="positions"
+                              @change="applyPositionFilter"
+                            />
+        </div>
+        <div class="col-2"></div>
+      </b-row>
       <b-row v-for="(applicant, index) in aspirant" class="ask">
         <div class="col-4">{{ applicant.name }} {{ applicant.lastname }}</div>
         <div class="col-3">{{ applicant.party_name }}</div>
@@ -56,6 +72,19 @@ export default {
       aspirant: 
         [
         ],
+      filters: {
+        party: null,
+        position: null,
+      },
+      parties: [
+      ],
+      positions: [
+        { value: null, text: "Seleccione cargo"},
+        { value: "P", text: "Presidente" },
+        { value: "V", text: "Vicepresidente" },
+        { value: "LEG", text: "Diputado" },
+        { value: "M", text: "Alcalde" },
+      ],
       rows: 0,
       perPage: 25,
       currentPage: 0,
@@ -79,10 +108,33 @@ export default {
         this.currentPage = page;
       else
         this.currentPage = 1;
-      HTTP.get('/candidatos/exige?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1)))
+      var filtersParam = '';
+      for (var filterDetail in this.filters) {
+        if (this.filters[filterDetail])
+          filtersParam += '&'+filterDetail+'='+this.filters[filterDetail];
+      }
+      HTTP.get('/candidatos/exige?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1))+filtersParam)
         .then(response => {
           this.aspirant = response.data['results']
           this.rows = response.data['count']
+        })
+        .catch(e => {
+          this.errors = e
+        })
+    },
+    applyPartyFilter: function(selected) {
+      this.filters.party = selected;
+      this.getAspirants(1);
+    },
+    applyPositionFilter: function(selected) {
+      this.filters.position = selected;
+      this.getAspirants(1);
+    },
+    getFilters: function() {
+      HTTP.get('/generico/partidosycomites?limit=1000&offset=0')
+        .then(response => {
+          this.parties = response.data['results'];
+          this.parties.unshift({value: null, text: "Seleccione partido o comité civico"});
         })
         .catch(e => {
           this.errors = e
@@ -91,6 +143,7 @@ export default {
   },
   beforeMount() {
     this.getAspirants()
+    this.getFilters()
   }
 }
 </script>

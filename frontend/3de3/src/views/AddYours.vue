@@ -592,7 +592,8 @@ export default {
                   \nAlguien del equipo se comunicará con usted para corroborar los datos.");
         })
         .catch(function (error) {
-          alert("No se pudo enviar su información, por favor revise que sus datos esten completos en el formulario y que haya adjuntado dos archivos PDF");
+          alert("No se pudo enviar su información, por favor revise que sus datos esten completos en el formulario y \
+                  que haya adjuntado dos archivos PDF");
         });
       }
     }
