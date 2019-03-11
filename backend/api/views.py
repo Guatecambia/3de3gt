@@ -1,6 +1,8 @@
-from .models import Candidato, District, Presentado
-from .serializers import CandidatoAdminSerializer, CandidatoSerializer, PresentadoAdminSerializer
-from .serializers import PresentadoSerializer, DistrictSerializer, LoginUserSerializer, UserSerializer
+from .models import Candidato, District, Municipality, Party, Presentado
+from .serializers import CandidatoAdminSerializer, CandidatoSerializer, DistrictSerializer, DistrictSelectSerializer
+from .serializers import LoginUserSerializer, MunicipalitySelectSerializer, PartySelectSerializer
+from .serializers import PresentadoAdminSerializer
+from .serializers import PresentadoSerializer, UserSerializer
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -22,6 +24,42 @@ class DistrictList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated, )
     queryset = District.objects.all().order_by('id')
     serializer_class = DistrictSerializer
+
+
+class DistrictListById(generics.ListAPIView):
+    """
+    List districts
+    """
+    permission_classes = (AllowAny, )
+    queryset = District.objects.all().order_by('name')
+    serializer_class = DistrictSelectSerializer
+
+
+class MunicipalityList(generics.ListAPIView):
+    """
+    List municipalities for a html-select
+    """
+    permission_classes = (AllowAny, )
+    queryset = Municipality.objects.all().order_by('department','name')
+    serializer_class = MunicipalitySelectSerializer
+    
+
+class PartyListOnlyPP(generics.ListAPIView):
+    """
+    List of parties, ttype = PP
+    """
+    permission_classes = (AllowAny, )
+    queryset = Party.objects.filter(tType='PP').order_by('name')
+    serializer_class = PartySelectSerializer
+    
+    
+class PartyListOnlyCC(generics.ListAPIView):
+    """
+    List of parties, ttype = CC
+    """
+    permission_classes = (AllowAny, )
+    queryset = Party.objects.filter(tType='CC').order_by('name')
+    serializer_class = PartySelectSerializer
 
 
 class CandidatoAsk(generics.ListAPIView):

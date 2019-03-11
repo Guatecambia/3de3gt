@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Candidato, District, Party, Presentado
+from .models import Candidato, District, Municipality, Party, Presentado
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
@@ -13,6 +13,33 @@ class DistrictSerializer(serializers.ModelSerializer):
         )
 
 
+class DistrictSelectSerializer(serializers.ModelSerializer):
+    value = serializers.IntegerField(source='id')
+    text = serializers.CharField(source='name')
+    
+    class Meta:
+        model = District
+        fields = (
+            'value',
+            'text',
+        )
+
+
+class MunicipalitySelectSerializer(serializers.ModelSerializer):
+    value = serializers.IntegerField(source='id')
+    text = serializers.SerializerMethodField('form_text')
+    
+    class Meta:
+        model = Municipality
+        fields = (
+          'value',
+          'text',
+        )
+
+    def form_text(self, obj):
+        return obj.department + ' - ' + obj.name
+    
+
 class PartySerializer(serializers.ModelSerializer):
     class Meta:
         model = Party
@@ -21,6 +48,18 @@ class PartySerializer(serializers.ModelSerializer):
             'shortname',
             'facebook',
             'twitter'
+        )
+
+
+class PartySelectSerializer(serializers.ModelSerializer):
+    value = serializers.IntegerField(source='id')
+    text = serializers.CharField(source='name')
+    
+    class Meta:
+        model = Party
+        fields = (
+            'value',
+            'text',
         )
 
 
