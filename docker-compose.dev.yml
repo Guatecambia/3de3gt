@@ -8,7 +8,6 @@ services:
         ports:
             - "8000:80"
     frontend:
-        # command: npm run build
         command: npm run serve
         volumes:
             - ./frontend:/app
