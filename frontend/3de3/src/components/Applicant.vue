@@ -326,7 +326,6 @@ export default {
         if (this.filters[filterDetail])
           filtersParam += '&'+filterDetail+'='+this.filters[filterDetail];
       }
-      console.log('/candidatos/presentados/'+this.filters.aspiredPosition+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1))+filtersParam);
       HTTP.get('/candidatos/presentados/'+this.filters.aspiredPosition+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1))+filtersParam)
         .then(response => {
           this.aspirant = response.data['results']

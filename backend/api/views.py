@@ -148,8 +148,8 @@ class PresentadoList(generics.ListAPIView):
     serializer_class = PresentadoAdminSerializer
 
     def get_queryset(self):
-        if 'status' in self.kwargs:
-            status = self.kwargs['status']
+        status = self.kwargs['status']
+        if (status != 'ALL'):
             return Presentado.objects.filter(status=status).order_by('-created_at')
         else:
             return Presentado.objects.all().order_by('-created_at')

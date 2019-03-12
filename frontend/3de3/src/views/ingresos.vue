@@ -32,6 +32,7 @@
           </div>
         </div>
       </b-row>
+      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getPresentados" />
     </b-container>  
   </div>
 </template>
@@ -48,13 +49,21 @@ export default {
       presentados: [
       ],
       status: "ALL",
+      rows: 0,
+      perPage: 24,
+      currentPage: 0,
     }
   },
   methods: {
-    getPresentados: function() {
-      HTTP.get('/3de3-admin/presentados/')
+    getPresentados: function(page) {
+      if (page)
+        this.currentPage = page;
+      else
+        this.currentPage = 1;
+      HTTP.get('/3de3-admin/presentados/'+this.status+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1)))
         .then(response => {
-          this.presentados = response.data
+          this.presentados = response.data['results']
+          this.rows = response.data['count']
         })
         .catch(e => {
           this.errors = e
@@ -62,15 +71,7 @@ export default {
     },
     chStatus: function(newStatus) {
       this.status = newStatus;
-      if (newStatus == 'ALL')
-        newStatus = '';
-      HTTP.get('/3de3-admin/presentados/'+newStatus)
-        .then(response => {
-          this.presentados = response.data
-        })
-        .catch(e => {
-          this.errors = e
-        })
+      this.getPresentados(1);
     },
   },
   beforeMount() {
