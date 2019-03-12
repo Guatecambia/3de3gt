@@ -373,12 +373,20 @@ export default {
         .catch(e => {
           this.errors = e
         });
-
-
+    },
+    getApplicantStatistics: function() {
+      HTTP.get('/candidatos/counts/')
+        .then(response => {
+          this.statistics = response.data;
+        })
+        .catch(e => {
+          this.errors = e
+        });
     }
   },
   beforeMount() {
     this.getFilters()
+    this.getApplicantStatistics()
   },
   mounted() {
     this.activateMenu()

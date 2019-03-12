@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^candidatos/exige', views.CandidatoAsk.as_view(), name='candidato-ask'),
     url(r'^candidatos/presentados/$', views.PresentedAsk.as_view(), name='presented-ask'),
     url(r'^candidatos/presentados/(?P<aspirantType>[A-Z]+)', views.PresentedAsk.as_view(), name='presented-ask'),
+    url(r'^candidatos/counts/', views.CandidatoStatisticsView.as_view(), name='presented-statistics'),
     url(r'^candidatos/presentar/$', views.PresentedForm.as_view(), name='present'),
     url(r'^generico/distritos/', views.DistrictListById.as_view(), name='district-simple-list'),
     url(r'^generico/municipios/', views.MunicipalityList.as_view(), name='muni-simple-list'),

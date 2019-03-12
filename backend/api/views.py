@@ -1,11 +1,13 @@
 from .models import Candidato, District, Municipality, Party, Presentado
-from .serializers import CandidatoAdminSerializer, CandidatoSerializer, DistrictSerializer, DistrictSelectSerializer
-from .serializers import LoginUserSerializer, MunicipalitySelectSerializer, PartySelectSerializer
-from .serializers import PresentadoAdminSerializer
+from .serializers import CandidatoAdminSerializer, CandidatoSerializer
+from .serializers import DistrictSerializer, DistrictSelectSerializer, LoginUserSerializer
+from .serializers import MunicipalitySelectSerializer, PartySelectSerializer, PresentadoAdminSerializer
 from .serializers import PresentadoSerializer, UserSerializer
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, views
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.renderers import JSONRenderer
+from django.db.models import Count
 
 
 class DistrictEdit(generics.RetrieveUpdateDestroyAPIView):
@@ -178,3 +180,20 @@ class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, )
     queryset = Candidato.objects.all()
     serializer_class = CandidatoAdminSerializer
+
+
+class CandidatoStatisticsView(views.APIView):
+    renderer_classes = (JSONRenderer, )
+    
+    def get(self, request, format=None):
+        executiveCount = Candidato.objects.filter(published=True, aspiredPosition='EX').count()
+        legislativeCount = Candidato.objects.filter(published=True, aspiredPosition='LEG').count()
+        muniByPPCount = Candidato.objects.filter(published=True, aspiredPosition='M', party__tType='PP').count()
+        muniByCCCount = Candidato.objects.filter(published=True, aspiredPosition='M', party__tType='CC').count()
+        content = {
+            'president': executiveCount,
+            'congress': legislativeCount,
+            'muniByParty': muniByPPCount,
+            'civicComitee': muniByCCCount
+        }
+        return Response(content)
