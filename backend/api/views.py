@@ -7,7 +7,7 @@ from rest_framework import generics, permissions, views
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.renderers import JSONRenderer
-from django.db.models import Count
+from django.db.models import Count, Q
 
 
 class DistrictEdit(generics.RetrieveUpdateDestroyAPIView):
@@ -211,5 +211,39 @@ class CandidatoStatisticsView(views.APIView):
             'congress': legislativeCount,
             'muniByParty': muniByPPCount,
             'civicComitee': muniByCCCount
+        }
+        return Response(content)
+        
+        
+class StatisticsView(views.APIView):
+    permission_classes = (AllowAny, )
+    renderer_classes = (JSONRenderer, )
+    
+    def get(self, request, format=None):
+        malePresident = Candidato.objects.filter(published=True, aspiredPosition='EX', executivePosition='P', gender='M').count()
+        femalePresident = Candidato.objects.filter(published=True, aspiredPosition='EX', executivePosition='P', gender='F').count()
+        maleVicepresident = Candidato.objects.filter(published=True, aspiredPosition='EX', executivePosition='V', gender='M').count()
+        femaleVicepresident = Candidato.objects.filter(published=True, aspiredPosition='EX', executivePosition='V', gender='F').count()
+        congressNac = Candidato.objects.filter(published=True, aspiredPosition='LEG', district__name='Nacional').count()
+        congressDistr = Candidato.objects.filter(published=True, aspiredPosition='LEG').filter(~Q(district__name='Nacional'), ~Q(district__name='Parlacen')).count()
+        maleCongressNac = Candidato.objects.filter(published=True, aspiredPosition='LEG', district__name='Nacional', gender='M').count()
+        femaleCongressNac = Candidato.objects.filter(published=True, aspiredPosition='LEG', district__name='Nacional', gender='F').count()
+        maleCongressDistr = Candidato.objects.filter(published=True, aspiredPosition='LEG', gender='M').filter(~Q(district__name='Nacional'), ~Q(district__name='Parlacen')).count()
+        femaleCongressDistr = Candidato.objects.filter(published=True, aspiredPosition='LEG', gender='F').filter(~Q(district__name='Nacional'), ~Q(district__name='Parlacen')).count()
+        maleMuni = Candidato.objects.filter(published=True, aspiredPosition='M', gender='M').count()
+        femaleMuni = Candidato.objects.filter(published=True, aspiredPosition='M', gender='F').count()
+        content = {
+            'malePresident': malePresident,
+            'femalePresident': femalePresident,
+            'maleVicepresident': maleVicepresident,
+            'femaleVicepresident': femaleVicepresident,
+            'congressNac': congressNac,
+            'congressDistr': congressDistr,
+            'maleCongressNac': maleCongressNac,
+            'femaleCongressNac': femaleCongressNac,
+            'maleCongressDistr': maleCongressDistr,
+            'femaleCongressDistr': femaleCongressDistr,
+            'maleMuni': maleMuni,
+            'femaleMuni': femaleMuni
         }
         return Response(content)

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^generico/partidos/', views.PartyListOnlyPP.as_view(), name='pp-simple-list'),
     url(r'^generico/comites/', views.PartyListOnlyCC.as_view(), name='cc-simple-list'),
     url(r'^generico/partidosycomites/', views.PartyList.as_view(), name='pp-cc-simple-list'),
+    url(r'^generico/estadisticas/', views.StatisticsView.as_view(), name='statistics-frontend'),
     url(r'^3de3-admin/distritos/$', views.DistrictList.as_view(), name='district-admin'),
     url(r'^3de3-admin/distrito/(?P<pk>[0-9]+)', views.DistrictEdit.as_view(), name='district-admin-edit'),
     url(r'^3de3-admin/presentados/(?P<status>[A-Z]+)', views.PresentadoList.as_view(), name='presentado-admin'),
