@@ -54,7 +54,7 @@ class PartySerializer(serializers.ModelSerializer):
 class PartySelectSerializer(serializers.ModelSerializer):
     value = serializers.IntegerField(source='id')
     text = serializers.CharField(source='name')
-    
+
     class Meta:
         model = Party
         fields = (
@@ -137,6 +137,24 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
             'inAskList',
             'published'
         )
+
+
+class CandidatoAdminSelectSerializer(serializers.ModelSerializer):
+    """
+    Used to select the Presentado that will convert in Candidato
+    """
+    value = serializers.IntegerField(source='id')
+    text = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Party
+        fields = (
+            'value',
+            'text',
+        )
+        
+    def get_text(self, obj):
+        return obj.name + " " + obj.lastname + " - " + obj.party.name + " - " + obj.get_aspiredPosition_display()
 
 
 class PresentadoSerializer(serializers.ModelSerializer):

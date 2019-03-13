@@ -275,10 +275,27 @@
           <div class="col-12">
             <b-button @click="chStatus('N')" :pressed="(form.status == 'N')" variant="outline-dark" class="btn-lg statusBtn">Nuevo</b-button>
             <b-button @click="chStatus('BV')" :pressed="(form.status == 'BV')" variant="outline-warning" class="btn-lg statusBtn">Verificando</b-button>
-            <b-button @click="chStatus('C')" :pressed="(form.status == 'C')" variant="outline-success" class="btn-lg statusBtn">Convertido</b-button>
+            <b-button @click="checkForm" :pressed="(form.status == 'C')" variant="outline-success" class="btn-lg statusBtn">Convertido</b-button>
             <b-button @click="chStatus('D')" :pressed="(form.status == 'D')" variant="outline-danger" class="btn-lg statusBtn">Descartado</b-button>
           </div>
         </b-row>
+        <b-modal cancel-only id="convertModal" ref="convertModal" size="xl" title="Aprobar Candidato">
+          <h6>Aprobar Candidato</h6>
+          <p>Selecciona el candidato que aparece en la lista de #Exige 3de3, o presiona agregar si no aparecía.</p>
+          <div>
+            <b-form-select
+              v-model="candidato"
+              :options="notPublishedCandidatos"
+            />
+          </div>
+          <div slot="modal-footer">
+            <b-button variant="success" class="float-right" @click="converToExisting">Seleccionar</b-button>
+            <b-button variant="primary" class="float-right" @click="convertToNew">Crear uno Nuevo</b-button>
+          </div>
+          <div>
+            <p/><p/>
+          </div>
+        </b-modal>
         <b-row>
           <div class="col-12 justify-content-center" >
             <b-button type="submit" class="btn-submit btn-lg">Enviar</b-button>
@@ -330,6 +347,8 @@ export default {
         solvencia: '',
         status: ''
       },
+      notPublishedCandidatos: [],
+      candidato: null,
       fileURL: baseURL,
       genders: [
         {value: null, text: "Género"},
@@ -386,49 +405,117 @@ export default {
           this.errors = e
         })
     },
+    getNotPublishedCandidatos() {
+      HTTP.get('3de3-admin/selectcandidatos?limit=10000&offset=0')
+        .then(response => {
+          this.notPublishedCandidatos = response.data['results']
+        })
+        .catch(e => {
+          this.errors = e
+        })
+    },
+    checkForm: function() {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        alert("Por favor ingrese todos los campos obligatorios para continuar");
+      }
+      else {
+        this.$refs.convertModal.show()
+      }
+    },
+    gatherData: function() {
+      let formData = new FormData();
+      formData.append("name", this.form.name);
+      formData.append("lastname", this.form.lastname);
+      formData.append("gender", this.form.gender);
+      if (this.form.genderOther != null)
+        formData.append("genderOther", this.form.genderOther);
+      formData.append("ethnicGroup", this.form.ethnicGroup);
+      if (this.form.ethnicOther != null)
+        formData.append("ethnicOther", this.form.ethnicOther);
+      formData.append("twitter", this.form.twitter);
+      formData.append("facebook", this.form.facebook);
+      formData.append("maritalStatus", this.form.maritalStatus);
+      formData.append("aspiredPosition", this.form.aspiredPosition);
+      if ((this.form.executivePosition != null) && (this.form.aspiredPosition == "EX"))
+        formData.append("executivePosition", this.form.executivePosition);
+      if ((this.form.district != null) && (this.form.aspiredPosition == "LEG"))
+        formData.append("district", this.form.district);
+      if ((this.form.seat != null) && (this.form.aspiredPosition == "LEG"))
+        formData.append("seat", this.form.seat);
+      if ((this.form.municipality != null) && (this.form.aspiredPosition == "M"))
+        formData.append("municipality", this.form.municipality);
+      formData.append("party", this.form.party);
+      formData.append("celphone", this.form.celphone);
+      formData.append("phone", this.form.phone);
+      formData.append("email", this.form.email);
+      if (this.form.helpName != null)
+        formData.append("helpName", this.form.helpName);
+      if (this.form.helpLastname != null)
+        formData.append("helpLastname", this.form.helpLastname);
+      if (this.form.helpCelphone != null)
+        formData.append("helpCelphone", this.form.helpCelphone);
+      if (this.form.helpEmail != null)
+        formData.append("helpEmail", this.form.helpEmail);
+      formData.append("status", this.form.status);
+      return formData;    
+    },
+    converToExisting: function() {
+      if (this.candidato == null) {
+        alert("Debe seleccionar un candidato o presionar el botón 'Crear uno nuevo' para poder continuar");
+        return;
+      }
+      var formData = this.gatherData();
+      formData.append("inAskList", true);
+      var self = this;
+      HTTP.put(
+        '/3de3-admin/candidato/'+this.candidato, 
+        formData, 
+        {
+          headers: {
+              'Content-Type': 'text/plain'
+          }
+        }
+      )
+      .then(function (response) {
+        self.$router.push('/3de3-admin/candidato/'+self.candidato);
+      })
+      .catch(function (error) {
+        alert("No se pudo enviar su información "+error);
+      });
+    },
+    convertToNew: function() {
+      var formData = this.gatherData();
+      formData.append("presentedId", this.$route.params.id);
+      formData.append("inAskList", true)
+      var self = this;
+      HTTP.post(
+        '/3de3-admin/candidatos/', 
+        formData, 
+        {
+          headers: {
+              'Content-Type': 'text/plain'
+          }
+        }
+      )
+      .then(function (response) {
+        self.$router.push('/3de3-admin/candidato/'+response.data.id);
+      })
+      .catch(function (error) {
+        alert("No se pudo convertir a candidato "+error);
+      });
+
+    },
     processForm: function() {
       this.$v.$touch()
       if (this.$v.$invalid) {
         alert("Por favor ingrese todos los campos obligatorios para continuar");
       }
       else {
-        let formData = new FormData();
-        formData.append("name", this.form.name);
-        formData.append("lastname", this.form.lastname);
-        formData.append("gender", this.form.gender);
-        if (this.form.genderOther != null)
-          formData.append("genderOther", this.form.genderOther);
-        formData.append("ethnicGroup", this.form.ethnicGroup);
-        if (this.form.ethnicOther != null)
-          formData.append("ethnicOther", this.form.ethnicOther);
-        formData.append("twitter", this.form.twitter);
-        formData.append("facebook", this.form.facebook);
-        formData.append("maritalStatus", this.form.maritalStatus);
-        formData.append("aspiredPosition", this.form.aspiredPosition);
-        if ((this.form.executivePosition != null) && (this.form.aspiredPosition == "EX"))
-          formData.append("executivePosition", this.form.executivePosition);
-        if ((this.form.district != null) && (this.form.aspiredPosition == "LEG"))
-          formData.append("district", this.form.district);
-        if ((this.form.seat != null) && (this.form.aspiredPosition == "LEG"))
-          formData.append("seat", this.form.seat);
-        if ((this.form.municipality != null) && (this.form.aspiredPosition == "M"))
-          formData.append("municipality", this.form.municipality);
-        formData.append("party", this.form.party);
-        formData.append("celphone", this.form.celphone);
-        formData.append("phone", this.form.phone);
-        formData.append("email", this.form.email);
-        if (this.form.helpName != null)
-          formData.append("helpName", this.form.helpName);
-        if (this.form.helpLastname != null)
-          formData.append("helpLastname", this.form.helpLastname);
-        if (this.form.helpCelphone != null)
-          formData.append("helpCelphone", this.form.helpCelphone);
-        if (this.form.helpEmail != null)
-          formData.append("helpEmail", this.form.helpEmail);
-        formData.append("status", this.form.status);
+        var formData = this.gatherData();
         var self = this;
         HTTP.put(
-          '/3de3-admin/presentado/'+this.$route.params.id, 
+          '/3de3-admin/presentado/'+this.$route.params.id,
           formData, 
           {
             headers: {
@@ -441,12 +528,13 @@ export default {
         })
         .catch(function (error) {
           alert("No se pudo enviar su información"+error);
-        });
+        });        
       }
     }
   },
   beforeMount() {
     this.getIngreso()
+    this.getNotPublishedCandidatos()
   },
   validations: {
     form: {

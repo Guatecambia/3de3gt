@@ -30,6 +30,7 @@
           </div>
         </div>
       </b-row>
+      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getCandidatos" />
     </b-container>  
   </div>
 </template>
@@ -45,14 +46,22 @@ export default {
     return {
       candidatos: [
       ],
-      status: 'ALL'
+      status: 'ALL',
+      rows: 0,
+      perPage: 24,
+      currentPage: 0,
     }
   },
   methods: {
-    getCandidatos: function() {
-      HTTP.get('/3de3-admin/candidatos/')
+    getCandidatos: function(page) {
+      if (page)
+        this.currentPage = page;
+      else
+        this.currentPage = 1;
+      HTTP.get('/3de3-admin/candidatos/'+this.status+'?limit='+this.perPage+'&offset='+(this.perPage*(this.currentPage-1)))
         .then(response => {
-          this.candidatos = response.data
+          this.candidatos = response.data['results']
+          this.rows = response.data['count']
         })
         .catch(e => {
           this.errors = e
@@ -60,15 +69,7 @@ export default {
     },
     chStatus: function(newStatus) {
       this.status = newStatus;
-      if (newStatus == 'ALL')
-        newStatus = '';
-      HTTP.get('/3de3-admin/candidatos/'+newStatus)
-        .then(response => {
-          this.candidatos = response.data
-        })
-        .catch(e => {
-          this.errors = e
-        })
+      this.Candidatos(1);
     },
   },
   beforeMount() {

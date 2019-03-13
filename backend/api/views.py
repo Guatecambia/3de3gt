@@ -1,5 +1,5 @@
 from .models import Candidato, District, Municipality, Party, Presentado
-from .serializers import CandidatoAdminSerializer, CandidatoSerializer
+from .serializers import CandidatoAdminSerializer, CandidatoAdminSelectSerializer, CandidatoSerializer
 from .serializers import DistrictSerializer, DistrictSelectSerializer, LoginUserSerializer
 from .serializers import MunicipalitySelectSerializer, PartySelectSerializer, PresentadoAdminSerializer
 from .serializers import PresentadoSerializer, UserSerializer
@@ -163,14 +163,21 @@ class CandidatoAdminList(generics.ListCreateAPIView):
     serializer_class = CandidatoAdminSerializer
 
     def get_queryset(self):
-        if 'status' in self.kwargs:
-            status = self.kwargs['status']
+        status = self.kwargs['status']
+        if (status != 'ALL'):
             if (status == 'PUB'):
                 return Candidato.objects.filter(published=True).order_by('lastname')
             elif (status == 'ASK'):
                 return Candidato.objects.filter(inAskList=True).order_by('lastname')
         else:
             return Candidato.objects.all().order_by('lastname')
+            
+    def create(self, request, *args, **kwargs):
+        presentedId = request.data.get('presentedId')
+        presentado = Presentado.objects.get(id=presentedId)
+        presentado.status = 'C'
+        presentado.save()
+        return super(CandidatoAdminList, self).create(request, *args, **kwargs)
 
 
 class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
@@ -180,6 +187,15 @@ class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, )
     queryset = Candidato.objects.all()
     serializer_class = CandidatoAdminSerializer
+
+
+class CandidatoSelectList(generics.ListAPIView):
+    """
+    List of Candidatos, that are not published, in one field including name, lastname, party and aspiredPosition
+    """
+    permission_classes = (IsAuthenticated, )
+    queryset = Candidato.objects.filter(published=False).order_by('name','lastname')
+    serializer_class = CandidatoAdminSelectSerializer
 
 
 class CandidatoStatisticsView(views.APIView):
