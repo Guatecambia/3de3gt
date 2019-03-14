@@ -28,7 +28,6 @@
       </b-container>
     </div>
     <b-container id="statistics">
-    {{ statistics }}
     
     
       <b-collapse id="executiveStatistics" accordion="statistics">

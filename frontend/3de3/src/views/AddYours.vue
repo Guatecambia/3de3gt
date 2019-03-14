@@ -8,13 +8,17 @@
           <h2>Publica tu #3d<span class="blue-font">e</span>3</h2>
         </div>
       </b-row>
+      <b-row class="text-left">
+        <div class="col-12">
+          <b-button class="step-btn" variant="info" v-b-toggle="'instrucciones'">
+            &#9658; Instrucciones
+          </b-button>
+        </div>
+      </b-row>
       <b-row class="text">
         <div class="col-12">
           <div class="instrucciones-block">
-            <b-button class="instrucciones-btn" variant="info" v-b-toggle="'instrucciones'">
-              Instrucciones
-            </b-button>
-            <b-collapse :id="'instrucciones'" class="instrucciones-body">
+            <b-collapse :id="'instrucciones'" class="instrucciones-body" accordion="addyours">
 
               <h3>Manual para presentación de declaraciones</h3>
               <p>El presente instructivo está dirigido para todas y todos aquellos políticos comprometidos con la transformación política  de Guatemala, que reconocen la necesidad de reconstruir la confianza ciudadana en los políticos, y han decidido publicar de forma voluntaria sus tres declaraciones. </p>
@@ -26,398 +30,358 @@
               <p>Una vez recibidas las tres declaraciones y la carta de consentimiento de publicación firmada por el declarante, el equipo 3de3 llamará personalmente al candidato o persona designada como responsable por parte del partido o por el mismo candidato, para verificar que la información recibida haya sido enviada de manera consciente y voluntaria para su publicación en la plataforma electrónica 3de3.gt.</p>
               <p>Con la confirmación de la información se realizará una primera revisión de las declaraciones y de haber observaciones con respecto a información omitida en el formulario, se enviarán por correo electrónico y se contactará vía telefónica al candidato y contacto designado, para que se pueda completar.  Una vez que las observaciones han sido subsanadas -o en caso de no haber inconsistencias- se les notificará que sus declaraciones están listas para ser publicadas. Si el funcionario no atiende las observaciones señaladas, no se procederá a su publicación.</p>
               <p>Nota: No toda omisión genera observación. </p>
-              
-              <h3>Declaración Patrimonial</h3>
-              <p>Sección I. Datos del declarante.</p>
-              <ul>
-                <li>Asegurar que los datos corresponden al declarante. </li>
-                <li>Confirmar que se indique correctamente estado civil, pues ello permitirá saber si es necesario declarar información de cónyuge/concubinario o no.</li>
-              </ul>
-              <p>Sección II. Datos de identificación personal del cónyuge </p>
-              <ul>
-                <li>Llenar esta sección solo en caso de que el declarante sea casado/a</li>
-                <li>Por favor llenar cada uno de los campos que aplique</li>
-              </ul>
-              <p>Sección IV. Nombres y apellidos de hijos dependientes. </p>
-              <ul>
-                <li>Llenar esta sección solo en caso de que el declarante tenga hijos</li>
-                <li>Por favor llenar cada uno de los campos que aplique</li>
-              </ul>
-              <p>Sección V. Información Patrimonial</p>
-              <p>5.1. Activos</p>
-              <ul>
-                <li>A) Bienes –Activo-, el mismo se integra por los siguientes rubros:</li>
-                  <ul>
-                    <li>a. Bienes Muebles:</li>
-                      <ul>
-                        <li>1. Acreencias: Detallar el nombre completo de las instituciones, y/o personas, de quienes se es acreedor.</li>
-                        <li>2. Alhajas: Se debe individualizar separadamente las de oro, plata, platino y/o piedras preciosas, consignando el valor a que ascienden en conjunto.</li>
-                        <li>3. Bancos: Especificar las diferentes cuentas de ahorro, depósitos monetarios. Debe especificar el banco en el que tiene la cuenta. No es necesario agregar números de cuentas.</li>
-                        <li>4. Biblioteca: Sólo se debe consignar el valor a que ascienden en conjunto.</li>
-                        <li>5. Diversos: Detalle de todos aquellos bienes que posea, tales como:</li>
-                          <ul>
-                            <li>5.1 Contratos funerarios, mausoleos;</li>
-                            <li>5.2 Establecimientos comerciales;</li>
-                            <li>5.3 Inversiones nacionales o internacionales;</li>
-                            <li>5.4 Maquinaria, talleres;</li>
-                            <li>5.5 Mobiliario y equipo de oficina profesional;</li>
-                            <li>5.6 Acciones nominativas de Sociedades Mercantiles, así como cualquier otro ingreso de beneficio personal que se hayan obtenido.</li>
-                            <li>5.7 Títulos de agua, y derechos telefónicos; y,</li>
-                            <li>5.8 Títulos de Crédito.</li>
-                          </ul>
-                        <li>6. Menaje de casa: Indicar los muebles de su residencia consignando el valor a que ascienden en conjunto. Si se encuentran fuera del país por razón de su función pública, consignar su valor en conjunto, deberá indicar el país en donde se encuentran.</li>
-                        <li>7. Semovientes: Si se trata de lotes formados por varios semovientes, indique la cantidad en que están compuestos cada lote, la clase de estos, (bovino, equino, porcino, caballar u otros) así como el valor  en conjunto de los mismos.</li>
-                        <li>8. Vehículos: Se debe indicar tipo, marca, línea, serie, modelo, y color, consignando el valor estimado de cada uno.</li>
-                        <li>Si tiene bienes muebles en el exterior del país, deberá indicar el país. </li>
-                      </ul>
-                    <li>b. Bienes Inmuebles Urbanos o Rústicos:</li>
-                      <ul>
-                        <li>1. Su ubicación (municipio y departamento), con el valor declarado o el estimado.</li>
-                        <li>3. Detallar los bienes inmuebles que esté amortizando por medio de cuotas niveladas o abonos, indicando el valor nominal y el saldo deudor que a la fecha tenga.</li>
-                        <li>4. Si tiene bienes inmuebles en el exterior del país, deberá indicar su ubicación geográfica, consignando el valor del inmueble, aclarando si ya canceló dicha propiedad o se encuentra amortizando el valor de la misma, indicando el saldo deudor que a la fecha tenga, si fuera el caso.</li>
-                      </ul>
-                  </ul>
-                <li>B) Acreedores -Pasivo-, el mismo se integra de la siguiente forma:</li>
-                  <ul>
-                    <li>a. Bancos;</li>
-                    <li>b. Casas Comerciales;</li>
-                    <li>c. Personas Individuales; y</li>
-                    <li>d. Personas Jurídicas.</li>
-                  </ul>
-              </ul>
-              <p>Sección VI. Declaración Jurada</p>
-              <ul>
-                <li>Agregar nombre completo del declarante</li>
-                <li>Agregar fecha en la que presenta la declaración</li>
-              </ul>
-              <h3>Declaración de Intereses</h3>
-              <p>Sección I. Datos del declarante.</p>
-              <ul>
-                <li>Por favor llenar cada uno de los campos que aplique</li>
-                <li>En el campo: “Cargo público de elección popular que ocupa actualmente” aplica para aquellos funcionarios que estén buscando una reelección.</li>
-                <li>En el campo: “Cargo público por nombramiento que ocupa actualmente” se refiere a aquellos funcionarios públicos que son nombrados por autoridades competentes para ejercer el cargo (ministros, viceministros, secretarios, etc.).</li>
-                <li>En el campo: “partido político” indicar el partido por el que postula en las Elecciones Generales 2019.</li>
-                <li>En el campo: “Cargo público al que aspira” por favor llenarlo según corresponda:</li>
-                <ul>
-                  <li>En caso de ser al poder ejecutivo, solamente debe de indicar si es aspirante a Presidencia o Vicepresidencia, los otros campos de la sección debe dejarlos en blanco. </li>
-                  <li>Si aspira al Legislativo, por el listado nacional, únicamente debe dejarlo indicado con el número de casilla que ocupa, ejemplo: Diputado por el Listado Nacional, primera casilla. Los otros campos de la sección debe dejarlos en blanco.</li>
-                  <li>Si aspira al Legislativo, por listado distrital, debe de llenar los campos correspondientes. Cargo al que aspira, casilla que ocupa en el listado y distrito por el que se postula. Ejemplo: Diputado Distrital, primera casilla/Sacatepéquez.</li>
-                  <li>Si aspira a una alcaldía, debe de llenar los campos de la sección que correspondan. Cargo al que aspira, departamento y municipio. Ejemplo: Alcalde municipal/Progreso/Guastatoya.</li>
-                </ul>
-              </ul>
-              <p>Sección II. Grupo Familiar. </p>
-              <ul>
-                <li>Por favor declarar los datos solicitados en la sección, sobre su grupo familiar. En las instrucciones de la sección II, está detallado quienes son considerados grupo familiar en esta sección. Por familiares se considera: cónyuge, conviviente, hijos mayores de edad, hermanos, padres, cuñados, yernos, nueras.</li>
-              </ul>
-              <p>Sección III. Intereses económicos y Financieros. </p>
-              <ul>
-                <li>Por favor llenar todos los campos que corresponda. </li>
-                <li>En esta sección se reporta la información sobre intereses de carácter económico y financiero que podría influir en las decisiones tomadas por el declarante en razón del cargo que ostentará en caso de ser electo.</li>
-                <li>La parte No. 1 de esta sección, “Participación del declarante en direcciones y consejos administrativos”, corresponde a cargos o funciones que el declarante desempeña o ha desempeñado en los últimos 2 años  en órganos directivos de organizaciones con fines de lucro, es decir, empresas o sociedades mercantiles y organizaciones no lucrativas, pudiendo  recibir o no remuneración por esta participación.</li>
-                <li>La parte No. 2 de esta sección, “Participación en consejos de administración DE FAMILIARES Y DEPENDIENTES ECONÓMICOS”. Se refiere a cargos o funciones que al momento de la presentación de la declaración desempeña algún familiar (Cónyuge, conviviente, hijos, hermanos padres, yernos, nueras, suegros) del declarante o personas bajo su dependencia en órganos directivos de organizaciones con fines de lucro, es decir, empresas, pudiendo recibir o no una remuneración por esta participación. </li>
-              </ul>
-              <p>Sección IV. Actividades Profesionales y Empresariales. </p>
-              <ul>
-                <li>Por favor llenar todos los campos que apliquen.</li>
-                <li>Esta sección aporta información sobre actividades profesionales y empresariales, así como cargos y funciones que podrían ser percibidos o susceptibles de influir en decisiones tomadas por el declarante en el ejercicio de sus funciones, esto incluye aquellas empresas de las que declarante es propietario, si fueron o no remuneradas. La sección contiene tres componentes: Posición y cargos desempeñados por el declarante en entidades durante los últimos cinco años; actividades profesionales y/o empresariales desempeñadas como persona fiscal por el declarante en los últimos cinco años; y actividades profesionales/empresariales, cargos y funciones de familiares y dependientes económicos. </li>
-              </ul>
-              <p>Sección V. Financiamiento Electoral.</p>
-              <ul>
-                <li>En esta sección se declara la información correspondiente al financiamiento de la campaña electoral del declarante. Enlista los montos recibidos, las organizaciones y financistas que aportaron a la campaña , los límites y presupuesto de la campaña electoral. </li>
-              </ul>
-              <h3>Declaración Fiscal (solvencia)</h3>
-              <ul>
-                <li>Es el documento extendido por la Superintendencia de Administración Tributaria (SAT) en el que se indica que el declarante está solvente en sus obligaciones fiscales. </li>
-              </ul>
             </b-collapse>
           </div>
         </div>
       </b-row>
-      <b-row>
-        <div class="col-12"><h4>Formulario 3de3 Guatemala</h4></div>
-        <div class="col-12"><h5>Datos del declarante</h5></div>
+      <b-row class="text-left">
+        <div class="col-12">
+          <b-button class="step-btn" variant="info" v-b-toggle="'solvencia'">
+            &#9658; Paso 1
+          </b-button>
+        </div>
       </b-row>
-      <b-form @submit.prevent="processForm">
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model.trim="form.name" 
-              :class="{ error: $v.form['name'].$error }" 
-              @input="$v.form['name'].$touch()"
-              type="text" 
-              placeholder="Nombres" 
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.lastname"
-              :class="{ error: $v.form['lastname'].$error }" 
-              @input="$v.form['lastname'].$touch()" 
-              type="text" 
-              placeholder="Apellidos"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.gender" 
-              :options="genders"
-              :class="{ error: $v.form['gender'].$error }" 
-              @input="$v.form['gender'].$touch()"
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.genderOther" 
-              :disabled="form.gender != 'O'" 
-              :class="{ error: $v.form['genderOther'].$error }" 
-              @input="$v.form['genderOther'].$touch()"
-              type="text" 
-              placeholder="Especifique género"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.ethnicGroup" 
-              :options="ethnics"
-              :class="{ error: $v.form['ethnicGroup'].$error }" 
-              @input="$v.form['ethnicGroup'].$touch()"
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.ethnicOther" 
-              :disabled="form.ethnicGroup != 'O'" 
-              :class="{ error: $v.form['ethnicOther'].$error }" 
-              @input="$v.form['ethnicOther'].$touch()"
-              type="text" 
-              placeholder="Especifique grupo étnico"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.twitter" 
-              type="text" 
-              placeholder="cuenta-twitter" 
-              :class="{ error: $v.form['twitter'].$error }" 
-              @input="$v.form['twitter'].$touch()"
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <p class="text">En caso de no tener cuenta personal por favor registrar la cuenta del partido político al que pertenece.</p>
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.facebook" 
-              type="text" 
-              placeholder="cuenta-facebook"
-              :class="{ error: $v.form['facebook'].$error }" 
-              @input="$v.form['facebook'].$touch()"
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <p class="text">En caso de no tener cuenta personal por favor registrar la cuenta del partido político al que pertenece.</p>
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.maritalStatus" 
-              :options="maritalStatusList"
-              :class="{ error: $v.form['maritalStatus'].$error }" 
-              @input="$v.form['maritalStatus'].$touch()"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12"><h5>Datos del cargo</h5></div>
-        </b-row>
-        <b-row>
-          <b-form-radio-group 
-            v-model="form.aspiredPosition"
-            :class="{ error: $v.form['aspiredPosition'].$error }" 
-            @input="$v.form['aspiredPosition'].$touch()"
-          >
-            <b-form-radio value="EX">Ejecutivo</b-form-radio>
-            <b-form-radio value="LEG">Legislativo</b-form-radio>
-            <b-form-radio value="M">Municipalidad</b-form-radio>
-          </b-form-radio-group>
-        </b-row>
-        <b-row v-show="form.aspiredPosition == 'EX'">
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.executivePosition" 
-              :options="executivePositions"
-              :class="{ error: $v.form['executivePosition'].$error }" 
-              @input="$v.form['executivePosition'].$touch()"
-            />
-          </div>
-        </b-row>
-        <b-row v-show="form.aspiredPosition == 'LEG'">
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.district" 
-              :options="districts"
-              :class="{ error: $v.form['district'].$error }" 
-              @input="$v.form['district'].$touch()"
-            />
-          </div>
-          <div class="colr-12 col-lg-6">
-            <b-form-input 
-              v-model="form.seat" 
-              :class="{ error: $v.form['seat'].$error }" 
-              @input="$v.form['seat'].$touch()"
-              type="text" 
-              placeholder="Casilla" 
-            />
-          </div>
-        </b-row>
-        <b-row v-show="form.aspiredPosition == 'M'">
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.municipality" 
-              :class="{ error: $v.form['municipality'].$error }" 
-              @input="$v.form['municipality'].$touch()"
-              :options="munis"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <b-form-radio-group 
-            v-model="form.partyType"
-            :class="{ error: $v.form['partyType'].$error }" 
-            @input="$v.form['partyType'].$touch()"
-          >
-            <b-form-radio value="PP">Partido Político</b-form-radio>
-            <b-form-radio value="CC">Comité Cívico</b-form-radio>
-          </b-form-radio-group>
-        </b-row>
-        <b-row v-show="form.partyType == 'PP'">
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.party" 
-              :class="{ error: $v.form['party'].$error }" 
-              @input="$v.form['party'].$touch()"
-              :options="parties"
-            />
-          </div>
-        </b-row>
-        <b-row v-show="form.partyType == 'CC'">
-          <div class="col-12 col-lg-6">
-            <b-form-select 
-              v-model="form.party" 
-              :class="{ error: $v.form['party'].$error }" 
-              @input="$v.form['party'].$touch()"
-              :options="civicCommittees"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12"><h5>Información de contacto</h5></div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.celphone" 
-              type="text" 
-              placeholder="Celular" 
-              :class="{ error: $v.form['celphone'].$error }" 
-              @input="$v.form['celphone'].$touch()"
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.phone" 
-              type="text" 
-              placeholder="Oficina/Casa"
-              :class="{ error: $v.form['phone'].$error }" 
-              @input="$v.form['phone'].$touch()"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.email"
-              @input="$v.form['email'].$touch()"
-              :class="{ error: $v.form['email'].$error }"
-              placeholder="Correo electrónico"
-            />
-            <p class="error-message" v-if="!$v.form['email'].email">Ingrese una dirección de correo electrónico válida</p>
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12">
-            <p class="text">En caso de que exista una persona adicional al declarante que funja como contacto entre la iniciativa y el declarante, incluya la siguiente información.</p>
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.helpName" 
-              type="text" 
-              placeholder="Nombres" 
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.helpLastname" 
-              type="text" 
-              placeholder="Apellidos"
-            />
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.helpCelphone" 
-              type="text" 
-              placeholder="Teléfono" 
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.helpEmail" 
-              @input="$v.form['helpEmail'].$touch()"
-              :class="{ error: $v.form['helpEmail'].$error }"
-              type="text" 
-              placeholder="Correo electrónico"
-            />
-            <p class="error-message" v-if="!$v.form['email'].email">Ingrese una dirección de correo electrónico válida</p>
-          </div>
-        </b-row>
-        <b-row class="justify-content-center buttonholder">
-          <b-button variant="dark" size="lg" href="/static/carta_de_consentimiento_3de3.pdf" target="_blank">Carta de autorización<img class="form-input-img" src="../assets/download.png"/></b-button>
-        </b-row>
-        <b-row class="justify-content-center buttonholder">
-          <div class="col-lg-2"></div>
-          <div class="col-lg-2">
-            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['authLetter'].$error }" @input="$v.form['authLetter'].$touch()"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span><b-form-file v-model="form.authLetter" accept="application/pdf" hidden /></label>
-          </div>
-          <div class="col-lg-2">
-            <label class="btn-dark btn-lg upload" :class="{ error: $v.form['solvencia'].$error }" @input="$v.form['solvencia'].$touch()"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span><b-form-file v-model="form.solvencia" accept="application/pdf" hidden /></label>
-          </div>
-          <div class="col-lg-2">
-            <b-button class="upload" variant="dark" size="lg" href="https://docs.google.com/forms/d/e/1FAIpQLSfH9lLL5uOHOcAQw1Cvrof0w6WWUpVl4tpaYL_-_yEGP9F2MA/viewform" target="_blank"><img class="form-input-img-big" alt="Declaración de intereses" src="../assets/di.png"><span class="inner-button">Declaración de intereses</span></b-button>
-          </div>
-          <div class="col-lg-2">
-            <b-button class="upload" variant="dark" size="lg" href="https://docs.google.com/forms/d/e/1FAIpQLSfkpGGDv727PXsfxq5Ui94biw07ACVc9lIlV3SKso7kAzMrXA/viewform" target="_blank"><img class="form-input-img-big" alt="Declaración patrimonial" src="../assets/dp.png"><span class="inner-button">Declaración patrimonial</span></b-button>
-          </div>
-          <div class="col-lg-2"></div>
-        </b-row>
-        <b-row>
-          <div class="col-12 justify-content-center" >
-            <b-button type="submit" class="btn-submit btn-lg">Enviar</b-button>
-          </div>
-        </b-row>
-      </b-form>
+      <b-row>
+        <div class="col-12">
+          <b-collapse id="solvencia" accordion="addyours">
+            <p>Consigue tu solvencia fiscal</p>
+            <img class="img-fluid" src="../assets/solvencia.jpg" />
+          </b-collapse>
+        </div>
+      </b-row>
+      <b-row class="text-left">
+        <div class="col-12">
+          <b-button class="step-btn" variant="info" v-b-toggle="'download'">
+            &#9658; Paso 2
+          </b-button>
+        </div>
+      </b-row>
+      <b-row>
+        <div class="col-12">
+          <b-collapse id="download" accordion="addyours">
+            <p>Descarga la carta de autorización, llénala y tenla lista en formato PDF para subirla en el paso 3</p>
+            <b-row class="justify-content-center">
+              <b-button variant="dark" size="lg" href="/static/carta_de_consentimiento_3de3.pdf" target="_blank">Carta de autorización<img class="form-input-img" src="../assets/download.png"/></b-button>
+            </b-row>
+          </b-collapse>
+        </div>
+      </b-row>
+      <b-row class="text-left">
+        <div class="col-12">
+          <b-button class="step-btn" variant="info" v-b-toggle="'fill'">
+            &#9658; Paso 3
+          </b-button>
+        </div>
+      </b-row>
+      <b-row>
+        <div class="col-12">
+          <b-collapse id="fill" accordion="addyours">
+            <p>Llena el siguiente formulario, y no olvides de subir tu solvencia fiscal y carta de autorización</p>
+            <b-row>
+              <div class="col-12"><h4>Formulario 3de3 Guatemala</h4></div>
+              <div class="col-12"><h5>Datos del declarante</h5></div>
+            </b-row>
+            <b-form @submit.prevent="processForm">
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model.trim="form.name" 
+                    :class="{ error: $v.form['name'].$error }" 
+                    @input="$v.form['name'].$touch()"
+                    type="text" 
+                    placeholder="Nombres" 
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.lastname"
+                    :class="{ error: $v.form['lastname'].$error }" 
+                    @input="$v.form['lastname'].$touch()" 
+                    type="text" 
+                    placeholder="Apellidos"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.gender" 
+                    :options="genders"
+                    :class="{ error: $v.form['gender'].$error }" 
+                    @input="$v.form['gender'].$touch()"
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.genderOther" 
+                    :disabled="form.gender != 'O'" 
+                    :class="{ error: $v.form['genderOther'].$error }" 
+                    @input="$v.form['genderOther'].$touch()"
+                    type="text" 
+                    placeholder="Especifique género"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.ethnicGroup" 
+                    :options="ethnics"
+                    :class="{ error: $v.form['ethnicGroup'].$error }" 
+                    @input="$v.form['ethnicGroup'].$touch()"
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.ethnicOther" 
+                    :disabled="form.ethnicGroup != 'O'" 
+                    :class="{ error: $v.form['ethnicOther'].$error }" 
+                    @input="$v.form['ethnicOther'].$touch()"
+                    type="text" 
+                    placeholder="Especifique grupo étnico"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.twitter" 
+                    type="text" 
+                    placeholder="cuenta-twitter" 
+                    :class="{ error: $v.form['twitter'].$error }" 
+                    @input="$v.form['twitter'].$touch()"
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <p class="text">En caso de no tener cuenta personal por favor registrar la cuenta del partido político al que pertenece.</p>
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.facebook" 
+                    type="text" 
+                    placeholder="cuenta-facebook"
+                    :class="{ error: $v.form['facebook'].$error }" 
+                    @input="$v.form['facebook'].$touch()"
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <p class="text">En caso de no tener cuenta personal por favor registrar la cuenta del partido político al que pertenece.</p>
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.maritalStatus" 
+                    :options="maritalStatusList"
+                    :class="{ error: $v.form['maritalStatus'].$error }" 
+                    @input="$v.form['maritalStatus'].$touch()"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12"><h5>Datos del cargo</h5></div>
+              </b-row>
+              <b-row>
+                <b-form-radio-group 
+                  v-model="form.aspiredPosition"
+                  :class="{ error: $v.form['aspiredPosition'].$error }" 
+                  @input="$v.form['aspiredPosition'].$touch()"
+                >
+                  <b-form-radio value="EX">Ejecutivo</b-form-radio>
+                  <b-form-radio value="LEG">Legislativo</b-form-radio>
+                  <b-form-radio value="M">Municipalidad</b-form-radio>
+                </b-form-radio-group>
+              </b-row>
+              <b-row v-show="form.aspiredPosition == 'EX'">
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.executivePosition" 
+                    :options="executivePositions"
+                    :class="{ error: $v.form['executivePosition'].$error }" 
+                    @input="$v.form['executivePosition'].$touch()"
+                  />
+                </div>
+              </b-row>
+              <b-row v-show="form.aspiredPosition == 'LEG'">
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.district" 
+                    :options="districts"
+                    :class="{ error: $v.form['district'].$error }" 
+                    @input="$v.form['district'].$touch()"
+                  />
+                </div>
+                <div class="colr-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.seat" 
+                    :class="{ error: $v.form['seat'].$error }" 
+                    @input="$v.form['seat'].$touch()"
+                    type="text" 
+                    placeholder="Casilla" 
+                  />
+                </div>
+              </b-row>
+              <b-row v-show="form.aspiredPosition == 'M'">
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.municipality" 
+                    :class="{ error: $v.form['municipality'].$error }" 
+                    @input="$v.form['municipality'].$touch()"
+                    :options="munis"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <b-form-radio-group 
+                  v-model="form.partyType"
+                  :class="{ error: $v.form['partyType'].$error }" 
+                  @input="$v.form['partyType'].$touch()"
+                >
+                  <b-form-radio value="PP">Partido Político</b-form-radio>
+                  <b-form-radio value="CC">Comité Cívico</b-form-radio>
+                </b-form-radio-group>
+              </b-row>
+              <b-row v-show="form.partyType == 'PP'">
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.party" 
+                    :class="{ error: $v.form['party'].$error }" 
+                    @input="$v.form['party'].$touch()"
+                    :options="parties"
+                  />
+                </div>
+              </b-row>
+              <b-row v-show="form.partyType == 'CC'">
+                <div class="col-12 col-lg-6">
+                  <b-form-select 
+                    v-model="form.party" 
+                    :class="{ error: $v.form['party'].$error }" 
+                    @input="$v.form['party'].$touch()"
+                    :options="civicCommittees"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12"><h5>Información de contacto</h5></div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.celphone" 
+                    type="text" 
+                    placeholder="Celular" 
+                    :class="{ error: $v.form['celphone'].$error }" 
+                    @input="$v.form['celphone'].$touch()"
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.phone" 
+                    type="text" 
+                    placeholder="Oficina/Casa"
+                    :class="{ error: $v.form['phone'].$error }" 
+                    @input="$v.form['phone'].$touch()"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.email"
+                    @input="$v.form['email'].$touch()"
+                    :class="{ error: $v.form['email'].$error }"
+                    placeholder="Correo electrónico"
+                  />
+                  <p class="error-message" v-if="!$v.form['email'].email">Ingrese una dirección de correo electrónico válida</p>
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12">
+                  <p class="text">En caso de que exista una persona adicional al declarante que funja como contacto entre la iniciativa y el declarante, incluya la siguiente información.</p>
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.helpName" 
+                    type="text" 
+                    placeholder="Nombres" 
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.helpLastname" 
+                    type="text" 
+                    placeholder="Apellidos"
+                  />
+                </div>
+              </b-row>
+              <b-row>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.helpCelphone" 
+                    type="text" 
+                    placeholder="Teléfono" 
+                  />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <b-form-input 
+                    v-model="form.helpEmail" 
+                    @input="$v.form['helpEmail'].$touch()"
+                    :class="{ error: $v.form['helpEmail'].$error }"
+                    type="text" 
+                    placeholder="Correo electrónico"
+                  />
+                  <p class="error-message" v-if="!$v.form['email'].email">Ingrese una dirección de correo electrónico válida</p>
+                </div>
+              </b-row>
+              <b-row class="justify-content-center buttonholder">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-2">
+                  <label class="btn-dark btn-lg upload" :class="{ error: $v.form['authLetter'].$error }" @input="$v.form['authLetter'].$touch()"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span><b-form-file v-model="form.authLetter" accept="application/pdf" hidden /></label>
+                </div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2">
+                  <label class="btn-dark btn-lg upload" :class="{ error: $v.form['solvencia'].$error }" @input="$v.form['solvencia'].$touch()"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span><b-form-file v-model="form.solvencia" accept="application/pdf" hidden /></label>
+                </div>
+                <div class="col-lg-3"></div>
+              </b-row>
+              <b-row>
+                <div class="col-12 justify-content-center" >
+                  <b-button type="submit" class="btn-submit btn-lg">Enviar</b-button>
+                </div>
+              </b-row>
+            </b-form>
+          </b-collapse>
+        </div>
+      </b-row>
+      <b-row class="text-left">
+        <div class="col-12">
+          <b-button class="step-btn" variant="info" v-b-toggle="'gforms'">
+            &#9658; Paso 4
+          </b-button>
+        </div>
+      </b-row>
+      <b-row>
+        <div class="col-12">
+          <b-collapse id="gforms">
+            <p>Llena los siguientes formularios</p>
+            <b-row>
+              <div class="col-lg-3"></div>
+              <div class="col-lg-2">
+                <b-button class="upload" variant="dark" size="lg" href="https://docs.google.com/forms/d/e/1FAIpQLSfH9lLL5uOHOcAQw1Cvrof0w6WWUpVl4tpaYL_-_yEGP9F2MA/viewform" target="_blank"><img class="form-input-img-big" alt="Declaración de intereses" src="../assets/di.png"><span class="inner-button">Declaración de intereses</span></b-button>
+              </div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-2">
+                <b-button class="upload" variant="dark" size="lg" href="https://docs.google.com/forms/d/e/1FAIpQLSfkpGGDv727PXsfxq5Ui94biw07ACVc9lIlV3SKso7kAzMrXA/viewform" target="_blank"><img class="form-input-img-big" alt="Declaración patrimonial" src="../assets/dp.png"><span class="inner-button">Declaración patrimonial</span></b-button>
+              </div>
+              <div class="col-lg-3"></div>
+            </b-row>
+          </b-collapse>
+        </div>
+      </b-row>
     </b-container>
     <Footer />
   </div>
@@ -707,6 +671,28 @@ input::placeholder {
   border: 1px solid red;
   background-color: #e69fa6;
 }
+.instrucciones-block {
+  text-align:justify;
+}
+.steps-btn,{
+  background:none;
+  color: #333;
+  border:none;
+}
+.instrucciones-body {
+  padding-left: 30px;
+  margin-top:35px;
+}
+.step-btn, .btn-info, .btn-info:hover {
+  background:none;
+  color: #333;
+  border:none;
+  text-align: left;
+}
+.step-btn:focus, .step-btn:active, .btn-info:focus, .btn-info:active {
+   outline: none !important;
+   box-shadow: none;
+}
 </style>
 <style>
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -734,18 +720,5 @@ select option[value!=""] > select, select option[value!=null] > select {
 ::-moz-selection {
   background: #EF2466; 
   color: white;
-}
-.instrucciones-block {
-  text-align:justify;
-  margin-top:20px;
-}
-.instrucciones-btn,{
-  background:none;
-  color: #333;
-  border:none;
-}
-.instrucciones-body {
-  padding-left: 30px;
-  margin-top:35px;
 }
 </style>

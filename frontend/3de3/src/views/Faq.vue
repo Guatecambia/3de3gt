@@ -11,7 +11,7 @@
         <div v-for="(question, index) in interrogation" class="col-12">
           <div class="faq-question">
             <b-button class="question-btn" v-b-toggle="'quest'+index">
-              {{ question.question }}
+              &#9658; {{ question.question }}
             </b-button>
             <b-collapse :id="'quest'+index" class="question-body">
               {{ question.answer }}
