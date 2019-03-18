@@ -38,6 +38,10 @@ VERIFICATION_STATUS = (
                         ('BV', 'Verificando'),
                         ('D', 'Descartado')
 )
+G_DECLARATIONS = (
+                    ('I', 'Declaración de interés'),
+                    ('P', 'Declaración patrimonial')
+)
 
 
 class Party(models.Model):
@@ -114,6 +118,8 @@ class Candidato(models.Model):
 
     inAskList = models.BooleanField("En lista de exige #3de3", default=True, null=False)
     published = models.BooleanField("En lista de los que publicaron", default=False)
+    patrimonialLine = models.PositiveSmallIntegerField(null=True)
+    interestsLine = models.PositiveSmallIntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -212,3 +218,15 @@ class Presentado(models.Model):
             self.district = None
             self.seat = None
         super(Presentado, self).save(*args, **kwargs)
+        
+
+class DeclarationAnswer(models.Model):
+    class Meta:
+        verbose_name_plural = 'DeclarationAnswers'
+        verbose_name = 'DeclarationAnswer'
+
+    position = models.PositiveSmallIntegerField(null=False)
+    fieldName = models.CharField("Pregunta", max_length=350, null=False)
+    fieldValue = models.TextField("Respuesta", null=True)
+    formType = models.CharField("Formulario", max_length=1, null=False, choices=G_DECLARATIONS)
+    candidato = models.ForeignKey(Candidato, on_delete=models.PROTECT)

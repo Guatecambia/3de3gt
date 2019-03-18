@@ -136,39 +136,39 @@
               </div>
               <div class="col-1"></div>
               <div class="col-3">              
-                <b-button class="declaration-icon" v-b-modal="'interest'+index">
+                <b-button class="declaration-icon" @click="showInterests(applicant.id)">
                   <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
                 </b-button>
-                <b-modal ok-title="Aceptar" ok-only :id="'interest'+ index" size="xl" title="Declaración de Intereses">
+                <b-modal ok-title="Aceptar" ok-only :id="'interest'+ index" :ref="'interest'+ applicant.id" size="xl" title="Declaración de Intereses">
                   <h6>Datos del declarante</h6>
                   <div class="declarant-data">
-                    <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
-                    <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
-                    <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
-                    <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
+                    <span class="modal-key bold">Nombres y apellidos</span>: <span class="modal-value">{{ applicant.name }} {{ applicant.lastname }}</span><br/>
+                    <span class="modal-key bold">Género</span>: <span class="modal-value">{{ applicant.gender }}</span><br/>
+                    <span class="modal-key bold">Grupo Étnico</span>: <span class="modal-value">{{ applicant.ethnicGroup }}</span><br/>
+                    <span class="modal-key bold">Partído</span>: <span class="modal-value">{{ applicant.party_name }}</span><br/>
                   </div>
                   <h6>Declaración</h6>
                   <div v-for="(dataItem, index) in interestDeclarationData" class="declarant-form">
-                    <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
+                    <span class="modal-key bold">{{ dataItem.fieldName }}</span>&nbsp;<span class="modal-value">{{ dataItem.fieldValue }}</span>
                   </div>
                 </b-modal>
               </div>
               <div class="col-1"></div>
               <div class="col-3">
-                <b-button class="declaration-icon" v-b-modal="'patrimonial'+index">
+                <b-button class="declaration-icon" @click="showPatrimonial(applicant.id)">
                   <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
                 </b-button>
-                <b-modal ok-title="Aceptar" ok-only :id="'patrimonial'+ index" size="xl" title="Declaración Patrimonial">
+                <b-modal ok-title="Aceptar" ok-only :id="'patrimonial'+ applicant.id" :ref="'patrimonial'+ applicant.id" size="xl" title="Declaración Patrimonial">
                   <h6>Datos del declarante</h6>
                   <div class="declarant-data">
-                    <span class="modal-key">Nombres y apellidos</span>: <span class="modal-value">{{ aspirantData.name }} {{ aspirantData.lastname }}</span><br/>
-                    <span class="modal-key">Género</span>: <span class="modal-value">{{ aspirantData.gender }}</span><br/>
-                    <span class="modal-key">Grupo Étnico</span>: <span class="modal-value">{{ aspirantData.ethnicity }}</span><br/>
-                    <span class="modal-key">Partído</span>: <span class="modal-value">{{ aspirantData.party }}</span><br/>
+                    <span class="modal-key bold">Nombres y apellidos</span>: <span class="modal-value">{{ applicant.name }} {{ applicant.lastname }}</span><br/>
+                    <span class="modal-key bold">Género</span>: <span class="modal-value">{{ applicant.gender }}</span><br/>
+                    <span class="modal-key bold">Grupo Étnico</span>: <span class="modal-value">{{ applicant.ethnicGroup }}</span><br/>
+                    <span class="modal-key bold">Partído</span>: <span class="modal-value">{{ applicant.party_name }}</span><br/>
                   </div>
                   <h6>Declaración</h6>
                   <div v-for="(dataItem, index) in patrimonialDeclarationData" class="declarant-form">
-                    <span class="modal-key">{{ dataItem.fieldName }}</span>: <span class="modal-value">{{ dataItem.fieldValue }}</span>
+                    <span class="modal-key bold">{{ dataItem.fieldName }}</span>&nbsp;<span class="modal-value">{{ dataItem.fieldValue }}</span>
                   </div>
                 </b-modal>
               </div>
@@ -183,7 +183,7 @@
           <div class="col-2 d-md-none"></div>
         </template>
         <template v-if="aspirant.length == 0">
-          <h3 class="text-center">Los candidatos/as que presenten su #3de3guate aparecerán aquí.</h3>
+          <h3 class="text-center">Conoce aquí los/las candidatos/as que han presentado su #3de3guate</h3>
         </template>
       </b-row>
       <template v-if="aspirant.length > 0">
@@ -243,43 +243,8 @@ export default {
       },
       aspirant: [
       ],
-      aspirantData: {
-          name: "Declarante para",
-          lastname: "popup information",
-          gender: "M",
-          ethnicity: "I",
-          twitter: "prueba",
-          maritalStatus: "S",
-          party: "TODOS",
-          aspiredPosition: "EX",
-          executivePosition: "P",
-          partyPic: "https://3de3.mx/assets/partidos/morena-alianza-796e92d630b589fb98c5147352237b14c9ae51b8141f0c58dc4329b015182844.svg",
-          aspirantPic: "http://avatars.io/twitter/lopezobrador_"
-      },
-      interestDeclarationData: [
-        {
-          fieldName: "field 1",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 2",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 3",
-          fieldValue: "value"
-        },
-      ],
-      patrimonialDeclarationData: [
-        {
-          fieldName: "field 1",
-          fieldValue: "value"
-        },
-        {
-          fieldName: "field 2",
-          fieldValue: "value"
-        },
-      ],
+      interestDeclarationData: null,
+      patrimonialDeclarationData: null,
       legislative: {
       },
       muni: {
@@ -380,6 +345,28 @@ export default {
         })
         .catch(e => {
           this.errors = e
+        });
+    },
+    showPatrimonial: function(index) {
+      this.patrimonialDeclarationData = null;
+      this.$refs[('patrimonial'+ index)][0].show();
+      HTTP.get('candidato/patrimonial/'+index+'?limit='+1000+'&offset=0')
+        .then(response => {
+          this.patrimonialDeclarationData = response.data['results']
+        })
+        .catch(e => {
+          alert("Error al mostrar la declaración " + e);
+        });
+    },
+    showInterests: function(index) {
+      this.interestDeclarationData = null;
+      this.$refs[('interest'+ index)][0].show();
+      HTTP.get('candidato/intereses/'+index+'?limit='+1000+'&offset=0')
+        .then(response => {
+          this.interestDeclarationData = response.data['results']
+        })
+        .catch(e => {
+          alert("Error al mostrar la declaración " + e);
         });
     }
   },
@@ -570,6 +557,10 @@ li.nav-item:hover a, li.nav-item.active a{
 }
 .line-container {
   overflow: hidden;
+}
+.bold {
+  font-weight: bold;
+  color: #60bd55;
 }
 @media (max-width: 768px) {
   a.nav-link {

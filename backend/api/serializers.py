@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Candidato, District, Municipality, Party, Presentado
+from .models import Candidato, DeclarationAnswer, District, Municipality, Party, Presentado
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
@@ -68,6 +68,7 @@ class CandidatoSerializer(serializers.ModelSerializer):
     Used to display data on the frontend
     """
     gender = serializers.SerializerMethodField()
+    ethnicGroup = serializers.SerializerMethodField()
     party_name = serializers.CharField(source='party.name', read_only=True)
     partyIcon = serializers.CharField(source='party.twitter', read_only=True)
     aspiredPosition = serializers.SerializerMethodField()
@@ -75,6 +76,7 @@ class CandidatoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Candidato
         fields = (
+            'id',
             'name',
             'lastname',
             'gender',
@@ -85,11 +87,15 @@ class CandidatoSerializer(serializers.ModelSerializer):
             'aspiredPosition',
             'district',
             'seat',
-            'municipality'
+            'municipality',
+            'ethnicGroup'
         )
 
     def get_gender(self, obj):
         return obj.get_gender_display()
+        
+    def get_ethnicGroup(self, obj):
+        return obj.get_ethnicGroup_display()
 
     def get_aspiredPosition(self, obj):
         if (obj.aspiredPosition == 'EX'):
@@ -135,6 +141,8 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
             'authLetter',
             'solvencia',
             'inAskList',
+            'patrimonialLine',
+            'interestsLine',
             'published'
         )
 
@@ -246,3 +254,9 @@ class LoginUserSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Acceso denegado")
+        
+
+class DeclarationAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DeclarationAnswer
+        fields = ('position', 'fieldName', 'fieldValue', 'formType', 'candidato')

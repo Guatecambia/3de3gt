@@ -5,3 +5,4 @@ backend/gt3de3/settings_secret.py
 backend/media
 postgres-data
 docker-compose.prod.secret.yml
+backend/gt3de3/3de3gapps.json

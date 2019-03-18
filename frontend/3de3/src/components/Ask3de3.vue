@@ -54,7 +54,7 @@
         </div>
       </b-row>
       <template v-if="aspirant.length == 0">
-        <h3 class="text-center" style="margin-top: 45px;">No se han encontrado candidatos/as para los filtros seleccionados</h3>
+        <h3 class="text-center" style="margin-top: 45px;">No se han encontrado candidatos/as para esta selección</h3>
       </template>
       <template v-if="aspirant.length > 0">
         <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getAspirants" />

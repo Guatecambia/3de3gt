@@ -1,6 +1,6 @@
-from .models import Candidato, District, Municipality, Party, Presentado
+from .models import Candidato, DeclarationAnswer, District, Municipality, Party, Presentado
 from .serializers import CandidatoAdminSerializer, CandidatoAdminSelectSerializer, CandidatoSerializer
-from .serializers import DistrictSerializer, DistrictSelectSerializer, LoginUserSerializer
+from .serializers import DeclarationAnswerSerializer, DistrictSerializer, DistrictSelectSerializer, LoginUserSerializer
 from .serializers import MunicipalitySelectSerializer, PartySelectSerializer, PresentadoAdminSerializer
 from .serializers import PresentadoSerializer, UserSerializer
 from rest_framework import generics, permissions, views
@@ -8,6 +8,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.renderers import JSONRenderer
 from django.db.models import Count, Q
+from oauth2client.service_account import ServiceAccountCredentials
+from django.conf import settings
+import gspread
+import os
 
 
 class DistrictEdit(generics.RetrieveUpdateDestroyAPIView):
@@ -93,7 +97,25 @@ class CandidatoAsk(generics.ListAPIView):
                 queryset = queryset.filter(aspiredPosition='EX', executivePosition=positionParam)
         queryset = queryset.order_by('name','lastname')
         return queryset
-      
+
+
+class CandidatoPatrimonial(generics.ListAPIView):
+    permission_classes = (AllowAny, )
+    serializer_class = DeclarationAnswerSerializer
+
+    def get_queryset(self):
+        c_id = self.kwargs['pk']
+        queryset = DeclarationAnswer.objects.filter(formType='P', candidato__id=c_id).order_by('position')
+        return queryset
+
+class CandidatoInterests(generics.ListAPIView):
+    permission_classes = (AllowAny, )
+    serializer_class = DeclarationAnswerSerializer
+
+    def get_queryset(self):
+        c_id = self.kwargs['pk']
+        queryset = DeclarationAnswer.objects.filter(formType='I', candidato__id=c_id).order_by('position')
+        return queryset
 
 
 class PresentedAsk(generics.ListAPIView):
@@ -173,6 +195,7 @@ class CandidatoAdminList(generics.ListCreateAPIView):
             return Candidato.objects.all().order_by('lastname')
             
     def create(self, request, *args, **kwargs):
+        # set the original presented to "converted" status
         presentedId = request.data.get('presentedId')
         presentado = Presentado.objects.get(id=presentedId)
         presentado.status = 'C'
@@ -187,6 +210,36 @@ class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, )
     queryset = Candidato.objects.all()
     serializer_class = CandidatoAdminSerializer
+      
+    def update(self, request, *args, **kwargs):
+        # if the request has the parameters patrimonialLine or interestsLine, it should reload the data of the GForm
+        iLine = request.data.get('interestsLine')
+        pLine = request.data.get('patrimonialLine')
+        if (iLine and pLine):
+            c_id = self.kwargs['pk']
+            DeclarationAnswer.objects.filter(candidato__id=c_id).delete()
+            scope = ['https://spreadsheets.google.com/feeds',
+             'https://www.googleapis.com/auth/drive']
+            fileName = os.path.join(settings.BASE_DIR, 'gt3de3/3de3gapps.json')
+            credentials = ServiceAccountCredentials.from_json_keyfile_name(fileName, scope)
+            gDrive = gspread.authorize(credentials)
+            lineNumber = [iLine, pLine]
+            formTypes = ["I","P"]
+            for (i,gAppFile) in enumerate([settings.GAPP_INTERESTSFILE, settings.GAPP_PATRIMONIALFILE]):
+                dataFile = gDrive.open_by_url(gAppFile).sheet1
+                rowHead = dataFile.row_values(1)
+                rowAns = dataFile.row_values(int(lineNumber[i])+1)
+                for (it,val) in enumerate(rowHead):
+                    if (it > 0): 
+                        # skip first value, as it is timestamp.
+                        answer = DeclarationAnswer()
+                        answer.position = it
+                        answer.fieldName = val
+                        answer.fieldValue = rowAns[it]
+                        answer.formType = formTypes[i]
+                        answer.candidato_id = c_id
+                        answer.save()
+        return super(CandidatoAdminEdit, self).update(request, *args, **kwargs)
 
 
 class CandidatoSelectList(generics.ListAPIView):

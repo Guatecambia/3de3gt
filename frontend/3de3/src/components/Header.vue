@@ -22,7 +22,7 @@
                   <b-navbar-toggle target="nav_collapse" class="ml-auto"/>
                   <b-collapse is-nav  id="nav_collapse">
                     <b-navbar-nav class="navbar navbar-nav nav-fill menu bd-navbar-nav flex-row smooth-scroll justify-content-center">
-                      <b-nav-item to="/#aspirantes">Aspirantes</b-nav-item>
+                      <b-nav-item to="/#aspirantes">Candidatos</b-nav-item>
                       <b-nav-item to="/#exige">Exige 3de3</b-nav-item>
                       <b-nav-item v-bind:class="{ active: $route.name === 'estadisticas' }" to="/estadisticas">Estadísticas</b-nav-item>
                       <b-nav-item v-bind:class="{ active: $route.name === 'addyours' }"to="/presenta">Publica tu 3de3</b-nav-item>

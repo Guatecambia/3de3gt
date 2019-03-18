@@ -5,6 +5,8 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 urlpatterns = [
     url(r'^candidatos/exige', views.CandidatoAsk.as_view(), name='candidato-ask'),
+    url(r'^candidato/patrimonial/(?P<pk>[0-9]+)', views.CandidatoPatrimonial.as_view(), name="candidato-patrimonial"),
+    url(r'^candidato/intereses/(?P<pk>[0-9]+)', views.CandidatoInterests.as_view(), name="candidato-interests"),
     url(r'^candidatos/presentados/$', views.PresentedAsk.as_view(), name='presented-ask'),
     url(r'^candidatos/presentados/(?P<aspirantType>[A-Z]+)', views.PresentedAsk.as_view(), name='presented-ask'),
     url(r'^candidatos/counts/', views.CandidatoStatisticsView.as_view(), name='presented-statistics'),

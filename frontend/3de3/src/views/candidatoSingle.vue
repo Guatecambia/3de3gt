@@ -131,6 +131,27 @@
           </div>
         </b-row>
         <b-row>
+          <div class="col-12">
+            <b-button variant="primary" class="btn-lg" v-b-modal.declarations>Declaraciones patrimonial y de intereses</b-button>
+          </div>
+            <b-modal id="declarations" size="xl" title="Declaraciones" @ok="reloadLines">
+              <div>
+                <span>No. de respuesta para la declaración de intereses</span>
+                <b-form-input
+                  v-model="lineParameters.interestsLine" 
+                  type="text"
+                  placeholder="No. de respuesta declaración de intereses"
+                />
+                <span>No. de respuesta para la declaración patrimonial</span>
+                <b-form-input 
+                  v-model="lineParameters.patrimonialLine" 
+                  type="text" 
+                  placeholder="No. de respuesta declaración patrimonial" 
+                />
+              </div>
+            </b-modal>
+        </b-row>
+        <b-row>
           <div class="col-12"><h5>Datos personales</h5></div>
         </b-row>
         <b-row>
@@ -315,7 +336,13 @@ export default {
         helpEmail: null,
         authLetter: '',
         solvencia: '',
-        status: ''
+        status: '',
+        interestsLine: null,
+        patrimonialLine: null,
+      },
+      lineParameters: {
+        interestsLine: null,
+        patrimonialLine: null,
       },
       fileURL: baseURL,
       genders: [
@@ -367,18 +394,38 @@ export default {
             this.form.published = false
         }
         if (newStatus == 'PUB') {
+          if (this.lineParameters.interestsLine && this.lineParameters.patrimonialLine) {
             this.form.inAskList = false
             this.form.published = true
+          }
+          else {
+            alert("Debe de configurar las declaraciones patrimonial y de intereses antes de poder publicar");
+          }
         }
     },
     getCandidato: function() {
       HTTP.get('/3de3-admin/candidato/'+this.$route.params.id)
         .then(response => {
           this.form = response.data
+          /* null parameteres in general form, so if they don't change backend will do nothing, but
+          but if they are in the parameters, backend procedure will reload the lines */
+          this.lineParameters.interestsLine = this.form.interestsLine;
+          this.lineParameters.patrimonialLine = this.form.patrimonialLine;
+          this.form.interestsLine = null;
+          this.form.patrimonialLine = null;
         })
         .catch(e => {
           this.errors = e
         })
+    },
+    reloadLines: function() {
+      if (this.lineParameters.patrimonialLine && this.lineParameters.interestsLine) {
+        this.form.patrimonialLine = this.lineParameters.patrimonialLine;
+        this.form.interestsLine = this.lineParameters.interestsLine;
+      }
+      else {
+        alert("Debe ingresar número de respuesta en los dos archivos para poder cargar");
+      }
     },
     processForm: function() {
       this.$v.$touch()
@@ -426,6 +473,10 @@ export default {
           formData.append("helpCelphone", this.form.helpCelphone);
         if (this.form.helpEmail != null)
           formData.append("helpEmail", this.form.helpEmail);
+        if (this.form.interestsLine != null)
+          formData.append("interestsLine", this.form.interestsLine);
+        if (this.form.patrimonialLine != null)
+          formData.append("patrimonialLine", this.form.patrimonialLine);
         formData.append("inAskList", this.form.inAskList);
         formData.append("published", this.form.published);
         var self = this;
