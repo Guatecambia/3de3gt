@@ -441,7 +441,6 @@ export default {
       HTTP.get('/3de3-admin/candidato/'+this.$route.params.id)
         .then(response => {
           this.form = response.data
-          this.form.aspiredPosition = ((response.data.aspiredPosition == 'Presidente')?'EX':((response.data.aspiredPosition == 'Alcalde')?'M':'LEG'))
           /* null parameteres in general form, so if they don't change backend will do nothing, but
           but if they are in the parameters, backend procedure will reload the lines */
           this.lineParameters.interestsLine = this.form.interestsLine;

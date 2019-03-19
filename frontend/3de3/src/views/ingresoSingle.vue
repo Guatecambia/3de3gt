@@ -427,6 +427,7 @@ export default {
         .then(response => {
           this.form = response.data
           this.form.aspiredPosition = ((response.data.aspiredPosition == 'Presidente')?'EX':((response.data.aspiredPosition == 'Alcalde')?'M':'LEG'))
+          console.log(this.form.aspiredPosition);
         })
         .catch(e => {
           this.errors = e

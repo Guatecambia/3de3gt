@@ -26,7 +26,7 @@
             {{ applicant.name }} {{ applicant.lastname }}
           </div>
           <div class="aspirant-position">
-            {{ applicant.aspiredPosition }}
+            {{ applicant.aspiredPositionText }}
           </div>
         </div>
       </b-row>
