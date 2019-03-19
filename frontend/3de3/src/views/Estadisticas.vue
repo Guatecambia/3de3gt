@@ -289,7 +289,7 @@ export default {
     drawDonut: function(elementId,maleValue,femaleValue) {
       var canvas=document.getElementById(elementId);
       var ctx=canvas.getContext("2d");
-      var colors=['#333','#EF2466','gainsboro'];
+      var colors=['#EF2466','#333','gainsboro'];
       var values=[0,0,100];
       if ((maleValue + femaleValue)>0) {
         values=[

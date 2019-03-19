@@ -337,3 +337,31 @@ class StatisticsView(views.APIView):
             'femaleMuni': femaleMuni
         }
         return Response(content)
+        
+
+class StatisticsAdminView(views.APIView):
+    permission_classes = (IsAuthenticated, )
+    renderer_classes = (JSONRenderer, )
+    
+    def get(self, request, format=None):
+        presidentIndigenous = Candidato.objects.filter(published=True, aspiredPosition='EX', ethnicGroup='I').count()
+        presidentMixed = Candidato.objects.filter(published=True, aspiredPosition='EX', ethnicGroup='ML').count()
+        presidentOther = Candidato.objects.filter(published=True, aspiredPosition='EX', ethnicGroup='O').count()
+        congressIndigenous = Candidato.objects.filter(published=True, aspiredPosition='LEG', ethnicGroup='I').count()
+        congressMixed = Candidato.objects.filter(published=True, aspiredPosition='LEG', ethnicGroup='ML').count()
+        congressOther = Candidato.objects.filter(published=True, aspiredPosition='LEG', ethnicGroup='O').count()
+        muniIndigenous = Candidato.objects.filter(published=True, aspiredPosition='M', ethnicGroup='I').count()
+        muniMixed = Candidato.objects.filter(published=True, aspiredPosition='M', ethnicGroup='ML').count()
+        muniOther = Candidato.objects.filter(published=True, aspiredPosition='M', ethnicGroup='O').count()
+        content = {
+            'presidentIndigenous': presidentIndigenous,
+            'presidentMixed': presidentMixed,
+            'presidentOther': presidentOther,
+            'congressIndigenous': congressIndigenous,
+            'congressMixed': congressMixed,
+            'congressOther': congressOther,
+            'muniIndigenous': muniIndigenous,
+            'muniMixed': muniMixed,
+            'muniOther': muniOther
+        }
+        return Response(content)
