@@ -3,7 +3,7 @@
   <header class="page-navbar container">
     <div class="row page-menu">
         <div class="col-1">
-            <router-link id="navbar-brand" to="/"><img class="img-fluid" src="../assets/3de3.png" alt="3de3 Guatemala" /></router-link>
+            <router-link id="navbar-brand" to="/3de3-admin"><img class="img-fluid" src="../assets/3de3.png" alt="3de3 Guatemala" /></router-link>
         </div>
         <div class="col-11 page-menu-block">
           <nav>
