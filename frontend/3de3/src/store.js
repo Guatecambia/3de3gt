@@ -16,6 +16,14 @@ export default new Vuex.Store({
     auth: localStorage.getItem('as')
   },
   mutations: {
+    initStore(state) {
+      if (localStorage.getItem('t')) {
+        state.jwt = localStorage.getItem('t');
+      }
+      if (localStorage.getItem('as')) {
+        state.auth = localStorage.getItem('as');
+      }
+    },
     updateToken(state, newToken){
       localStorage.setItem('t', newToken);
       state.jwt = newToken;

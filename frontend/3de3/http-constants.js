@@ -27,7 +27,6 @@ HTTP.interceptors.response.use(function (response) {
   }, function (error) {
     if (error.response.status == 401) {
       store.dispatch('nullToken');
-      console.log('nullToken');
     } 
     return Promise.reject(error);
   });
@@ -41,7 +40,7 @@ HTTP.interceptors.request.use(function (config) {
     // Do something with request error
     return Promise.reject(error);
   });
-  
+
 export {
   HTTP,
   baseURL

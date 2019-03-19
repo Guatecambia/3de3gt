@@ -532,7 +532,7 @@ export default {
       }
     }
   },
-  beforeMount() {
+  mounted() {
     this.getIngreso()
     this.getNotPublishedCandidatos()
   },

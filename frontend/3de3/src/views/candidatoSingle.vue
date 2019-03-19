@@ -535,7 +535,7 @@ export default {
       });
     }
   },
-  beforeMount() {
+  mounted() {
     this.getCandidato()
   },
   validations: {

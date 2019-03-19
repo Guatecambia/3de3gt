@@ -35,7 +35,6 @@ export default {
       this.$router.push('login');
     }
     else {
-      console.log("se agrego el header auth");
       HTTP.defaults.headers.common['Authorization'] = `JWT `+localStorage.getItem('t');
     }
   }

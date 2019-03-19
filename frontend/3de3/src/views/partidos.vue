@@ -42,7 +42,7 @@ export default {
         })
     }
   },
-  beforeMount() {
+  mounted() {
     this.getDistricts()
   }
 }

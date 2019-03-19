@@ -127,7 +127,7 @@ export default {
       });
     }
   },
-  beforeMount() {
+  mounted() {
     if (this.$route.params.id)
       this.getDistrict()
   },

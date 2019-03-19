@@ -69,10 +69,11 @@ export default {
     },
     chStatus: function(newStatus) {
       this.status = newStatus;
-      this.Candidatos(1);
+      this.getCandidatos(1);
     },
   },
-  beforeMount() {
+  mounted() {
+    console.log("este debería estar despues del seteo");
     this.getCandidatos()
   }
 }

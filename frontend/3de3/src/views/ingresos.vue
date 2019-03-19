@@ -74,7 +74,7 @@ export default {
       this.getPresentados(1);
     },
   },
-  beforeMount() {
+  mounted() {
     this.getPresentados()
   }
 }
