@@ -200,7 +200,12 @@ class CandidatoAdminList(generics.ListCreateAPIView):
         presentado = Presentado.objects.get(id=presentedId)
         presentado.status = 'C'
         presentado.save()
-        return super(CandidatoAdminList, self).create(request, *args, **kwargs)
+        c = super(CandidatoAdminList, self).create(request, *args, **kwargs)
+        cObj = Candidato.objects.get(pk=c.data.get('id'))
+        cObj.authLetter.name = request.data.get('authLetter.name')
+        cObj.solvencia.name = request.data.get('solvencia.name')
+        cObj.save()
+        return c
 
 
 
@@ -276,7 +281,12 @@ class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
                         answer.formType = formTypes[i]
                         answer.candidato_id = c_id
                         answer.save()
-        return super(CandidatoAdminEdit, self).update(request, *args, **kwargs)
+        c = super(CandidatoAdminEdit, self).update(request, *args, **kwargs)
+        cObj = Candidato.objects.get(pk=c.data.get('id'))
+        cObj.authLetter.name = request.data.get('authLetter.name')
+        cObj.solvencia.name = request.data.get('solvencia.name')
+        cObj.save()
+        return c
 
 
 class CandidatoSelectList(generics.ListAPIView):

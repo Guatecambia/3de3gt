@@ -484,6 +484,10 @@ export default {
         formData.append("helpCelphone", this.form.helpCelphone);
       if (this.form.helpEmail != null)
         formData.append("helpEmail", this.form.helpEmail);
+      if (this.form.authLetter != null)
+        formData.append("authLetter.name", this.form.authLetter);
+      if (this.form.solvencia != null) 
+        formData.append("solvencia.name", this.form.solvencia);
       formData.append("status", this.form.status);
       return formData;    
     },

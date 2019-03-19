@@ -135,6 +135,9 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
     partyType = serializers.CharField(source='party.tType', read_only=True)
     partyIcon = serializers.CharField(source='party.twitter', read_only=True)
     aspiredPosition = serializers.SerializerMethodField()
+    authLetter = serializers.URLField(read_only=True)
+    solvencia = serializers.URLField(read_only=True)
+
 
     class Meta:
         model = Candidato

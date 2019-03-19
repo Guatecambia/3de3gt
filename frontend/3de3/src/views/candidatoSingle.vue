@@ -280,10 +280,10 @@
         <b-row class="justify-content-center buttonholder">
           <div class="col-lg-4"></div>
           <div class="col-lg-2">
-            <a :href="fileURL+'/'+form.authLetter"><label class="btn-dark btn-lg upload"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span></label></a>
+            <a target="_blank" :href="fileURL+'/'+form.authLetter"><label class="btn-dark btn-lg upload"><img class="form-input-img-big" alt="Carta de autorización" src="../assets/up.png"><span class="inner-button">Carta de autorización</span></label></a>
           </div>
           <div class="col-lg-2">
-            <a :href="fileURL+'/'+form.solvencia"><label class="btn-dark btn-lg upload"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span></label></a>
+            <a target="_blank" :href="fileURL+'/'+form.solvencia"><label class="btn-dark btn-lg upload"><img class="form-input-img-big" alt="Solvencia Fiscal" src="../assets/sf_up.png"><span class="inner-button">Solvencia fiscal</span></label></a>
           </div>
           <div class="col-lg-4"></div>
         </b-row>
