@@ -24,10 +24,20 @@
 </template>
 
 <script>
+import {HTTP} from '../../http-constants'
 export default {
   name: 'AdminHeader',
   props: {
     msg: String
+  },
+  beforeMount() {
+    if (!this.$store.getters.isAuth) {
+      this.$router.push('login');
+    }
+    else {
+      console.log("se agrego el header auth");
+      HTTP.defaults.headers.common['Authorization'] = `JWT `+localStorage.getItem('t');
+    }
   }
 }
 </script>
