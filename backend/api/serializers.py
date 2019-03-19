@@ -25,6 +25,30 @@ class DistrictSelectSerializer(serializers.ModelSerializer):
         )
 
 
+class PartyAdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Party
+        fields = (
+            'id',
+            'name',
+            'tType',
+            'shortName',
+            'phone',
+            'facebook',
+            'twitter',
+            'secretary',
+        )
+
+
+class MunicipalityAdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Municipality
+        fields = (
+            'id',
+            'name',
+            'department'
+        )
+
 class MunicipalitySelectSerializer(serializers.ModelSerializer):
     value = serializers.IntegerField(source='id')
     text = serializers.SerializerMethodField('form_text')
@@ -109,6 +133,8 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
     used to manage Candidato model, on the admin section
     """
     partyType = serializers.CharField(source='party.tType', read_only=True)
+    partyIcon = serializers.CharField(source='party.twitter', read_only=True)
+    aspiredPosition = serializers.SerializerMethodField()
 
     class Meta:
         model = Candidato
@@ -130,6 +156,7 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
             'municipality',
             'partyType',
             'party',
+            'partyIcon',
             'email',
             'celphone',
             'phone',
@@ -145,6 +172,12 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
             'interestsLine',
             'published'
         )
+        
+    def get_aspiredPosition(self, obj):
+        if (obj.aspiredPosition == 'EX'):
+            return obj.get_executivePosition_display()
+        else:
+            return obj.get_aspiredPosition_display()
 
 
 class CandidatoAdminSelectSerializer(serializers.ModelSerializer):
@@ -204,6 +237,8 @@ class PresentadoAdminSerializer(serializers.ModelSerializer):
     partyType = serializers.CharField(source='party.tType', read_only=True)
     authLetter = serializers.URLField(read_only=True)
     solvencia = serializers.URLField(read_only=True)
+    partyIcon = serializers.CharField(source='party.twitter', read_only=True)
+    aspiredPosition = serializers.SerializerMethodField()
 
     class Meta:
         model = Presentado
@@ -225,6 +260,7 @@ class PresentadoAdminSerializer(serializers.ModelSerializer):
             'municipality',
             'partyType',
             'party',
+            'partyIcon',
             'email',
             'celphone',
             'phone',
@@ -237,6 +273,12 @@ class PresentadoAdminSerializer(serializers.ModelSerializer):
             'solvencia',
             'status'
         )
+        
+    def get_aspiredPosition(self, obj):
+        if (obj.aspiredPosition == 'EX'):
+            return obj.get_executivePosition_display()
+        else:
+            return obj.get_aspiredPosition_display()
 
 
 class UserSerializer(serializers.ModelSerializer):

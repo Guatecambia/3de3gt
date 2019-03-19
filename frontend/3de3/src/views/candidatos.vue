@@ -16,11 +16,11 @@
         <div v-for="(applicant, index) in candidatos" class="col-3 aspirant-box" :class="{ASK: applicant.inAskList, PUB: applicant.published}">
           <div class="picture-frame">
             <div class="aspirant-pic">
-              <router-link :to="'/3de3-admin/candidato/'+applicant.id"><img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" /></router-link>
+              <router-link :to="'/3de3-admin/candidato/'+applicant.id"><img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" @error="loadGenericImage(index)" /></router-link>
             </div>
           </div>
           <div class="party"> 
-            <img class="party-icon" :src="applicant.partyPic" />
+            <img class="party-icon" :src="'http://avatars.io/twitter/'+applicant.partyIcon" />
           </div>
           <div class="aspirant-name">
             {{ applicant.name }} {{ applicant.lastname }}
@@ -71,9 +71,11 @@ export default {
       this.status = newStatus;
       this.getCandidatos(1);
     },
+    loadGenericImage: function(appIndex) {
+      this.candidatos[appIndex].twitter = 'placeholder';
+    }
   },
   mounted() {
-    console.log("este debería estar despues del seteo");
     this.getCandidatos()
   }
 }

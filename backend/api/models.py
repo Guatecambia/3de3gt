@@ -47,11 +47,11 @@ G_DECLARATIONS = (
 class Party(models.Model):
     name = models.CharField("Nombre del partido", max_length=200, null=False)
     tType = models.CharField("Tipo de entidad", max_length=2, choices=PARTY_TYPES, null=False)
-    shortName = models.CharField("Nombre corto", max_length=50)
-    phone = models.CharField("teléfono", max_length=150)
-    facebook = models.CharField("Página de Facebook", max_length=200)
-    twitter = models.CharField("twitter", max_length=50)
-    secretary = models.CharField("Secretario General", max_length=200)
+    shortName = models.CharField("Nombre corto", max_length=50, null=True)
+    phone = models.CharField("teléfono", max_length=150, null=True)
+    facebook = models.CharField("Página de Facebook", max_length=200, null=True)
+    twitter = models.CharField("twitter", max_length=50, null=True)
+    secretary = models.CharField("Secretario General", max_length=200, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -97,12 +97,12 @@ class Candidato(models.Model):
     # executiveFields
     executivePosition = models.CharField("Cargo al que aspira", max_length=1, choices=EXECUTIVE_POSITIONS, null=True)
     # legislativeFields
-    district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
+    district = models.ForeignKey(District, on_delete=models.PROTECT, null=True)
     seat = models.PositiveSmallIntegerField(null=True)
     # MunicipalityFields
-    municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, null=True)
+    municipality = models.ForeignKey(Municipality, on_delete=models.PROTECT, null=True)
 
-    party = models.ForeignKey(Party, on_delete=models.CASCADE, null=False)
+    party = models.ForeignKey(Party, on_delete=models.PROTECT, null=False)
     email = models.CharField("Correo electrónico", max_length=300, null=True)
     celphone = models.CharField("Celular", max_length=40, null=True)
     phone = models.CharField("Oficina/Casa", max_length=40, null=True)
@@ -166,12 +166,12 @@ class Presentado(models.Model):
     # executiveFields
     executivePosition = models.CharField("Cargo al que aspira", max_length=1, choices=EXECUTIVE_POSITIONS, null=True)
     # legislativeFields
-    district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
+    district = models.ForeignKey(District, on_delete=models.PROTECT, null=True)
     seat = models.PositiveSmallIntegerField(null=True)
     # MunicipalityFields
-    municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, null=True)
+    municipality = models.ForeignKey(Municipality, on_delete=models.PROTECT, null=True)
 
-    party = models.ForeignKey(Party, on_delete=models.CASCADE, null=False)
+    party = models.ForeignKey(Party, on_delete=models.PROTECT, null=False)
     email = models.CharField("Correo electrónico", max_length=300, null=False)
     celphone = models.CharField("Celular", max_length=40, null=False)
     phone = models.CharField("Oficina/Casa", max_length=40, null=False)

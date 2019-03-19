@@ -3,7 +3,7 @@
     <AdminHeader />
     <b-container>
       <b-row>
-        <div class="col-12 justify-content-center"><h2>Distrito</h2></div>
+        <div class="col-12 justify-content-center"><h2>Municipio</h2></div>
       </b-row>
       <b-form @submit.prevent="delInstance">
         <b-row>
@@ -17,11 +17,22 @@
         <b-row>
           <div class="col-12">
             <b-form-input 
-              v-model="district.name"
-              @input="$v.district['name'].$touch()"
-              :class="{ error: $v.district['name'].$error }"
+              v-model="muni.department"
+              @input="$v.muni['department'].$touch()"
+              :class="{ error: $v.muni['department'].$error }"
               type="text" 
-              placeholder="Nombre del distrito" 
+              placeholder="Nombre del departamento" 
+            />
+          </div>
+        </b-row>
+        <b-row>
+          <div class="col-12">
+            <b-form-input 
+              v-model="muni.name"
+              @input="$v.muni['name'].$touch()"
+              :class="{ error: $v.muni['name'].$error }"
+              type="text" 
+              placeholder="Nombre del municipio" 
             />
           </div>
         </b-row>
@@ -39,23 +50,24 @@ import AdminHeader from '@/components/AdminHeader.vue'
 import {HTTP} from '../../http-constants'
 import { required } from 'vuelidate/lib/validators';
 export default {
-  name: 'distritoSingle',
+  name: 'muniSingle',
   components: {
     AdminHeader,
   },
   data: function() {
     return {
-      district: {
+      muni: {
         id: '',
+        department: '',
         name: '',
       }
     }
   },
   methods: {
-    getDistrict: function() {
-      HTTP.get('/3de3-admin/distrito/'+this.$route.params.id)
+    getMuni: function() {
+      HTTP.get('/3de3-admin/muni/'+this.$route.params.id)
         .then(response => {
-          this.district = response.data
+          this.muni = response.data
         })
         .catch(e => {
           this.errors = e
@@ -69,11 +81,11 @@ export default {
       else {
         var self = this;
         let formData = new FormData();
-        formData.append("name", this.district.name);
-        console.log(this.district.name);
+        formData.append("department", this.muni.department);
+        formData.append("name", this.muni.name);
         if (this.$route.params.id) {
           HTTP.put(
-            '/3de3-admin/distrito/'+this.$route.params.id, 
+            '/3de3-admin/muni/'+this.$route.params.id, 
             formData, 
             {
               headers: {
@@ -83,7 +95,7 @@ export default {
           )
           .then(function (response) {
             console.log("Datos Guardados");
-            self.$router.push('/3de3-admin/distritos');
+            self.$router.push('/3de3-admin/municipios');
           })
           .catch(function (error) {
             alert("Error al guardar " + error);
@@ -91,7 +103,7 @@ export default {
         }
         else {
           HTTP.post(
-            '/3de3-admin/distritos/',
+            '/3de3-admin/munis/',
             formData,
             {
               headers: {
@@ -101,7 +113,7 @@ export default {
           )
           .then(function (response) {
             console.log("Datos Guardados");
-            self.$router.push('/3de3-admin/distritos');
+            self.$router.push('/3de3-admin/municipios');
           })
           .catch(function (error) {
             alert("Error al guardar " + error);
@@ -112,7 +124,7 @@ export default {
     delInstance: function() {
       var self = this;
       HTTP.delete(
-        '/3de3-admin/distrito/'+this.$route.params.id, 
+        '/3de3-admin/muni/'+this.$route.params.id, 
         {
           headers: {
               'Content-Type': 'text/plain'
@@ -121,7 +133,7 @@ export default {
       )
       .then(function (response) {
         console.log("Datos Guardados");
-        self.$router.push('/3de3-admin/distritos');
+        self.$router.push('/3de3-admin/municipios');
       })
       .catch(function (error) {
         alert("Error al guardar " + error);
@@ -130,12 +142,13 @@ export default {
   },
   mounted() {
     if (this.$route.params.id)
-      this.getDistrict()
+      this.getMuni()
   },
   validations: {
-    district: {
-      name: { required }
-    }
+    muni: {
+      name: { required },
+      department: { required }
+    },
   }
 }
 </script>

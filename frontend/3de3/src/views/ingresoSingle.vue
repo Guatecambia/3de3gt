@@ -375,24 +375,50 @@ export default {
         {value: "V", text: "Vicepresidente"}
       ],
       districts: [
-        {value: null, text: "Distrito"},
-        {value: 1, text: "Guatemala"},
-        {value: 2, text: "Distrito central"},
       ],
       munis: [
-        {value: null, text: "Municipio"},
       ],
       parties: [
-        {value: null, text: "Seleccione partido"},
-        {value: 1, text: "PAN" }
       ],
       civicCommittees: [
-        {value: null, text: "Seleccione comité civico"},
-        {value: 2, text: "comité civico C"}
       ],
     }
   },
   methods: {
+    getGenerics: function() {
+      HTTP.get('/generico/distritos?limit=1000&offset=0')
+        .then(response => {
+          this.districts = response.data['results'];
+          this.districts.unshift({value: null, text: "Listado"});
+        })
+        .catch(e => {
+          this.errors = e
+        });
+      HTTP.get('/generico/municipios?limit=1000&offset=0')
+        .then(response => {
+          this.munis = response.data['results'];
+          this.munis.unshift({value: null, text: "Municipio"});
+        })
+        .catch(e => {
+          this.errors = e
+        })
+      HTTP.get('/generico/partidos?limit=1000&offset=0')
+        .then(response => {
+          this.parties = response.data['results'];
+          this.parties.unshift({value: null, text: "Seleccione partido"});
+        })
+        .catch(e => {
+          this.errors = e
+        })
+      HTTP.get('/generico/comites?limit=1000&offset=0')
+        .then(response => {
+          this.civicCommittees = response.data['results'];
+          this.civicCommittees.unshift({value: null, text: "Seleccione comité civico"});
+        })
+        .catch(e => {
+          this.errors = e
+        })
+    },
     chStatus: function(newStatus) {
       this.form.status = newStatus;
     },
@@ -400,6 +426,7 @@ export default {
       HTTP.get('/3de3-admin/presentado/'+this.$route.params.id)
         .then(response => {
           this.form = response.data
+          this.form.aspiredPosition = ((response.data.aspiredPosition == 'Presidente')?'EX':((response.data.aspiredPosition == 'Alcalde')?'M':'LEG'))
         })
         .catch(e => {
           this.errors = e
@@ -533,8 +560,9 @@ export default {
     }
   },
   mounted() {
-    this.getIngreso()
+    this.getGenerics()
     this.getNotPublishedCandidatos()
+    this.getIngreso()
   },
   validations: {
     form: {

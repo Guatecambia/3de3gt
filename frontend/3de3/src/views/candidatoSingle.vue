@@ -388,6 +388,40 @@ export default {
     }
   },
   methods: {
+    getGenerics: function() {
+      HTTP.get('/generico/distritos?limit=1000&offset=0')
+        .then(response => {
+          this.districts = response.data['results'];
+          this.districts.unshift({value: null, text: "Listado"});
+        })
+        .catch(e => {
+          this.errors = e
+        });
+      HTTP.get('/generico/municipios?limit=1000&offset=0')
+        .then(response => {
+          this.munis = response.data['results'];
+          this.munis.unshift({value: null, text: "Municipio"});
+        })
+        .catch(e => {
+          this.errors = e
+        })
+      HTTP.get('/generico/partidos?limit=1000&offset=0')
+        .then(response => {
+          this.parties = response.data['results'];
+          this.parties.unshift({value: null, text: "Seleccione partido"});
+        })
+        .catch(e => {
+          this.errors = e
+        })
+      HTTP.get('/generico/comites?limit=1000&offset=0')
+        .then(response => {
+          this.civicCommittees = response.data['results'];
+          this.civicCommittees.unshift({value: null, text: "Seleccione comité civico"});
+        })
+        .catch(e => {
+          this.errors = e
+        })
+    },
     chStatus: function(newStatus) {
         if (newStatus == 'ASK') {
             this.form.inAskList = true
@@ -407,6 +441,7 @@ export default {
       HTTP.get('/3de3-admin/candidato/'+this.$route.params.id)
         .then(response => {
           this.form = response.data
+          this.form.aspiredPosition = ((response.data.aspiredPosition == 'Presidente')?'EX':((response.data.aspiredPosition == 'Alcalde')?'M':'LEG'))
           /* null parameteres in general form, so if they don't change backend will do nothing, but
           but if they are in the parameters, backend procedure will reload the lines */
           this.lineParameters.interestsLine = this.form.interestsLine;
@@ -536,6 +571,7 @@ export default {
     }
   },
   mounted() {
+    this.getGenerics()
     this.getCandidato()
   },
   validations: {

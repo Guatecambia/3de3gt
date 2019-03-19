@@ -73,6 +73,22 @@ let router = new Router({
       }
     },
     {
+      path: '/3de3-admin/partido/:id',
+      name: 'partido-single',
+      component: () => import('./views/partidoSingle.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/3de3-admin/partido',
+      name: 'partido-single-new',
+      component: () => import('./views/partidoSingle.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/3de3-admin/distritos',
       name: 'distritos',
       component: () => import('./views/distritos.vue'),
@@ -100,6 +116,22 @@ let router = new Router({
       path: '/3de3-admin/municipios',
       name: 'municipios',
       component: () => import('./views/municipios.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/3de3-admin/muni/:id',
+      name: 'muni-single-edit',
+      component: () => import('./views/municipioSingle.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/3de3-admin/muni',
+      name: 'muni-single-new',
+      component: () => import('./views/municipioSingle.vue'),
       meta: {
         requiresAuth: true
       }

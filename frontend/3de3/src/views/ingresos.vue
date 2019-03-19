@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="party"> 
-            <img class="party-icon" :src="applicant.partyPic" />
+            <img class="party-icon" :src="'http://avatars.io/twitter/'+applicant.partyIcon" />
           </div>
           <div class="aspirant-name">
             {{ applicant.name }} {{ applicant.lastname }}

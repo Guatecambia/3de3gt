@@ -3,7 +3,7 @@
     <AdminHeader />
     <b-container>
       <b-row>
-        <div class="col-12 justify-content-center"><h2>Distrito</h2></div>
+        <div class="col-12 justify-content-center"><h2>Partido</h2></div>
       </b-row>
       <b-form @submit.prevent="delInstance">
         <b-row>
@@ -17,11 +17,64 @@
         <b-row>
           <div class="col-12">
             <b-form-input 
-              v-model="district.name"
-              @input="$v.district['name'].$touch()"
-              :class="{ error: $v.district['name'].$error }"
+              v-model="party.name"
+              @input="$v.party['name'].$touch()"
+              :class="{ error: $v.party['name'].$error }"
               type="text" 
-              placeholder="Nombre del distrito" 
+              placeholder="Nombre del partido" 
+            />
+          </div>
+        </b-row>
+        <b-row>
+          <div class="col-12">
+            <b-form-input 
+              v-model="party.shortName"
+              type="text" 
+              placeholder="Nombre corto del partido" 
+            />
+          </div>
+        </b-row>
+        <b-row>
+          <div class="col-12">
+            <b-form-select 
+              v-model="party.tType" 
+              :options="party_types"
+            />
+          </div>
+        </b-row>
+        <b-row>
+          <div class="col-12">
+            <b-form-input 
+              v-model="party.phone"
+              type="text" 
+              placeholder="Telefono del partido" 
+            />
+          </div>
+        </b-row>
+        <b-row>
+          <div class="col-12">
+            <b-form-input 
+              v-model="party.twitter"
+              type="text" 
+              placeholder="Twitter del partido" 
+            />
+          </div>
+        </b-row>
+        <b-row>
+          <div class="col-12">
+            <b-form-input 
+              v-model="party.facebook"
+              type="text" 
+              placeholder="Facebook del partido" 
+            />
+          </div>
+        </b-row>
+        <b-row>
+          <div class="col-12">
+            <b-form-input 
+              v-model="party.secretary"
+              type="text" 
+              placeholder="Secretario del partido" 
             />
           </div>
         </b-row>
@@ -39,23 +92,33 @@ import AdminHeader from '@/components/AdminHeader.vue'
 import {HTTP} from '../../http-constants'
 import { required } from 'vuelidate/lib/validators';
 export default {
-  name: 'distritoSingle',
+  name: 'partidoSingle',
   components: {
     AdminHeader,
   },
   data: function() {
     return {
-      district: {
+      party: {
         id: '',
         name: '',
-      }
+        shortName: '',
+        tType: '',
+        phone: '',
+        facebook: '',
+        twitter: '',
+        secretary: '',
+      },
+      party_types: [
+        { value: "PP", text: "Partido Político"},
+        { value: "CC", text: "Comité Civico" }
+      ]
     }
   },
   methods: {
-    getDistrict: function() {
-      HTTP.get('/3de3-admin/distrito/'+this.$route.params.id)
+    getParty: function() {
+      HTTP.get('/3de3-admin/partido/'+this.$route.params.id)
         .then(response => {
-          this.district = response.data
+          this.party = response.data
         })
         .catch(e => {
           this.errors = e
@@ -69,11 +132,16 @@ export default {
       else {
         var self = this;
         let formData = new FormData();
-        formData.append("name", this.district.name);
-        console.log(this.district.name);
+        formData.append("name", this.party.name);
+        formData.append("tType", this.party.tType);
+        formData.append("shortName", this.party.shortName);
+        formData.append("phone", this.party.phone);
+        formData.append("facebook", this.party.facebook);
+        formData.append("twitter", this.party.twitter);
+        formData.append("secretary", this.party.secretary);
         if (this.$route.params.id) {
           HTTP.put(
-            '/3de3-admin/distrito/'+this.$route.params.id, 
+            '/3de3-admin/partido/'+this.$route.params.id, 
             formData, 
             {
               headers: {
@@ -83,7 +151,7 @@ export default {
           )
           .then(function (response) {
             console.log("Datos Guardados");
-            self.$router.push('/3de3-admin/distritos');
+            self.$router.push('/3de3-admin/partidos');
           })
           .catch(function (error) {
             alert("Error al guardar " + error);
@@ -91,7 +159,7 @@ export default {
         }
         else {
           HTTP.post(
-            '/3de3-admin/distritos/',
+            '/3de3-admin/partidos/',
             formData,
             {
               headers: {
@@ -101,7 +169,7 @@ export default {
           )
           .then(function (response) {
             console.log("Datos Guardados");
-            self.$router.push('/3de3-admin/distritos');
+            self.$router.push('/3de3-admin/partidos');
           })
           .catch(function (error) {
             alert("Error al guardar " + error);
@@ -112,7 +180,7 @@ export default {
     delInstance: function() {
       var self = this;
       HTTP.delete(
-        '/3de3-admin/distrito/'+this.$route.params.id, 
+        '/3de3-admin/partido/'+this.$route.params.id, 
         {
           headers: {
               'Content-Type': 'text/plain'
@@ -121,7 +189,7 @@ export default {
       )
       .then(function (response) {
         console.log("Datos Guardados");
-        self.$router.push('/3de3-admin/distritos');
+        self.$router.push('/3de3-admin/partidos');
       })
       .catch(function (error) {
         alert("Error al guardar " + error);
@@ -130,11 +198,12 @@ export default {
   },
   mounted() {
     if (this.$route.params.id)
-      this.getDistrict()
+      this.getParty()
   },
   validations: {
-    district: {
-      name: { required }
+    party: {
+      name: { required },
+      tType: { required }
     }
   }
 }

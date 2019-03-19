@@ -1,8 +1,8 @@
 from .models import Candidato, DeclarationAnswer, District, Municipality, Party, Presentado
 from .serializers import CandidatoAdminSerializer, CandidatoAdminSelectSerializer, CandidatoSerializer
 from .serializers import DeclarationAnswerSerializer, DistrictSerializer, DistrictSelectSerializer, LoginUserSerializer
-from .serializers import MunicipalitySelectSerializer, PartySelectSerializer, PresentadoAdminSerializer
-from .serializers import PresentadoSerializer, UserSerializer
+from .serializers import MunicipalityAdminSerializer, MunicipalitySelectSerializer, PartyAdminSerializer
+from .serializers import PartySelectSerializer, PresentadoAdminSerializer, PresentadoSerializer, UserSerializer
 from rest_framework import generics, permissions, views
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -28,7 +28,7 @@ class DistrictList(generics.ListCreateAPIView):
     List and create districts
     """
     permission_classes = (IsAuthenticated, )
-    queryset = District.objects.all().order_by('id')
+    queryset = District.objects.all().order_by('name')
     serializer_class = DistrictSerializer
 
 
@@ -203,6 +203,43 @@ class CandidatoAdminList(generics.ListCreateAPIView):
         return super(CandidatoAdminList, self).create(request, *args, **kwargs)
 
 
+
+class PartyAdminList(generics.ListCreateAPIView):
+    """
+    List and create Parties
+    """
+    permission_classes = (IsAuthenticated, )
+    queryset = Party.objects.all().order_by('name')
+    serializer_class = PartyAdminSerializer
+            
+
+class PartyAdminEdit(generics.RetrieveUpdateDestroyAPIView):
+    """
+    List and create Parties
+    """
+    permission_classes = (IsAuthenticated, )
+    queryset = Party.objects.all()
+    serializer_class = PartyAdminSerializer
+
+
+class MunicipalityAdminList(generics.ListCreateAPIView):
+    """
+    List and create Parties
+    """
+    permission_classes = (IsAuthenticated, )
+    queryset = Municipality.objects.all().order_by('department','name')
+    serializer_class = MunicipalityAdminSerializer
+
+
+class MunicipalityEdit(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve and edit specific form answers
+    """
+    permission_classes = (IsAuthenticated, )
+    queryset = Municipality.objects.all()
+    serializer_class = MunicipalityAdminSerializer
+
+        
 class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, edit and delete specific Candidatos
