@@ -96,6 +96,7 @@ class CandidatoSerializer(serializers.ModelSerializer):
     party_name = serializers.CharField(source='party.name', read_only=True)
     partyIcon = serializers.CharField(source='party.twitter', read_only=True)
     aspiredPosition = serializers.SerializerMethodField()
+    solvencia = serializers.URLField(read_only=True)
 
     class Meta:
         model = Candidato
@@ -112,7 +113,8 @@ class CandidatoSerializer(serializers.ModelSerializer):
             'district',
             'seat',
             'municipality',
-            'ethnicGroup'
+            'ethnicGroup',
+            'solvencia',
         )
 
     def get_gender(self, obj):
@@ -137,7 +139,6 @@ class CandidatoAdminSerializer(serializers.ModelSerializer):
     aspiredPositionText = serializers.SerializerMethodField()
     authLetter = serializers.URLField(read_only=True)
     solvencia = serializers.URLField(read_only=True)
-
 
     class Meta:
         model = Candidato

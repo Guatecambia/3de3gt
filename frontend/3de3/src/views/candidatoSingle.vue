@@ -511,6 +511,10 @@ export default {
           formData.append("interestsLine", this.form.interestsLine);
         if (this.form.patrimonialLine != null)
           formData.append("patrimonialLine", this.form.patrimonialLine);
+        if (this.form.authLetter != null)
+          formData.append("authLetter.name", this.form.authLetter);
+        if (this.form.solvencia != null) 
+          formData.append("solvencia.name", this.form.solvencia);
         formData.append("inAskList", this.form.inAskList);
         formData.append("published", this.form.published);
         var self = this;

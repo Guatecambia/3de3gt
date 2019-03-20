@@ -127,12 +127,12 @@
             </div>
             <b-row class="aspirant-docs">
               <div class="col-3">
-                <b-button class="declaration-icon" v-b-modal="'fiscal'+index">
+                <b-button class="declaration-icon" target="_blank" :href="fileURL+'/'+applicant.solvencia">
                   <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
                 </b-button>
-                <b-modal ok-title="Aceptar" ok-only :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
+                <!--b-modal ok-title="Aceptar" ok-only :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
                   <h2>Modal {{ index }}</h2>
-                </b-modal>
+                </b-modal-->
               </div>
               <div class="col-1"></div>
               <div class="col-3">              
@@ -195,10 +195,12 @@
 
 <script>
 import {HTTP} from '../../http-constants'
+import {baseURL} from '../../http-constants'
 export default {
   name: 'Applicant',
   data: function() {
     return {
+      fileURL: baseURL,
       message: {
         copySucceeded: null,
         fbCopy: "Promovemos las acciones de transparencia y rendición de cuentas que los #candidatos3de3 y #candidatas3de3 cumplen. Consulta aquí el #3de3guate de ",
