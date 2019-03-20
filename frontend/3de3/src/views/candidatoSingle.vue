@@ -429,8 +429,13 @@ export default {
         }
         if (newStatus == 'PUB') {
           if (this.lineParameters.interestsLine && this.lineParameters.patrimonialLine) {
-            this.form.inAskList = false
-            this.form.published = true
+            if (this.form.solvencia && this.form.authLetter) {
+              this.form.inAskList = false
+              this.form.published = true
+            }
+            else {
+              alert("Para poder publicar debe tener solvencia y carta de autorización. Para eso debe convertirlo desde un Ingreso");
+            }
           }
           else {
             alert("Debe de configurar las declaraciones patrimonial y de intereses antes de poder publicar");

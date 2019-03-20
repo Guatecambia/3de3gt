@@ -4,6 +4,7 @@ from .serializers import DeclarationAnswerSerializer, DistrictSerializer, Distri
 from .serializers import MunicipalityAdminSerializer, MunicipalitySelectSerializer, PartyAdminSerializer
 from .serializers import PartySelectSerializer, PresentadoAdminSerializer, PresentadoSerializer, UserSerializer
 from rest_framework import generics, permissions, views
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.renderers import JSONRenderer
@@ -254,6 +255,14 @@ class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CandidatoAdminSerializer
       
     def update(self, request, *args, **kwargs):
+        # if files are null, return 400 error
+        if (
+            (not(request.data.get('authLetter.name') and request.data.get('solvencia.name'))) 
+            and 
+            (request.data.get('published') in ('true', 't', 'True', '1'))
+        ):
+            print(request.data.get('published') in ('false', 'f', 'False', '0'))
+            return Response({'fileError':'authLetter and solvencia are mandatory'}, status=status.HTTP_404_NOT_FOUND)
         # if the request has the parameters patrimonialLine or interestsLine, it should reload the data of the GForm
         iLine = request.data.get('interestsLine')
         pLine = request.data.get('patrimonialLine')
