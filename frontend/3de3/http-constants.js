@@ -40,6 +40,17 @@ HTTP.interceptors.request.use(function (config) {
     // Do something with request error
     return Promise.reject(error);
   });
+  
+//NProgress start
+HTTP.interceptors.request.use(config => {
+  NProgress.start()
+  return config
+});
+HTTP.interceptors.response.use(response => {
+  NProgress.done()
+  return response
+})
+//NProgress stop
 
 export {
   HTTP,
