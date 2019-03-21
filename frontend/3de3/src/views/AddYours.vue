@@ -59,9 +59,10 @@
       <b-row>
         <div class="col-12">
           <b-collapse id="download" accordion="addyours">
-            <p>Descarga la carta de autorización, llénala y tenla lista en formato PDF para subirla en el paso 3</p>
+            <p>Descarga la carta de autorización, llénala y tenla lista en formato <span style="font-weight:bold;">PDF</span> para subirla en el paso 3</p>
             <b-row class="justify-content-center">
-              <b-button variant="dark" size="lg" href="/static/carta_de_consentimiento_3de3.pdf" target="_blank">Carta de autorización<img class="form-input-img" src="../assets/download.png"/></b-button>
+              <b-button style="margin-right:5px;" variant="dark" size="lg" href="/static/carta_de_consentimiento_3de3.pdf" target="_blank">Carta de autorización (PDF)<img class="form-input-img" src="../assets/download.png"/></b-button>
+              <b-button style="margin-left:5px;" variant="dark" size="lg" href="/static/carta_de_consentimiento_3de3.docx" target="_blank">Carta de autorización (DOCX)<img class="form-input-img" src="../assets/download.png"/></b-button>
             </b-row>
           </b-collapse>
         </div>
