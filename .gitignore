@@ -6,3 +6,4 @@ backend/media
 postgres-data
 docker-compose.prod.secret.yml
 backend/gt3de3/3de3gapps.json
+productionMedia
