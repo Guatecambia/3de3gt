@@ -53,6 +53,20 @@
           </div>
         </b-row>
         <b-row>
+          <div class="col-12 col-lg-6">
+            <b-form-input 
+              v-model="form.facebook" 
+              type="text" 
+              placeholder="cuenta-facebook"
+              :class="{ error: $v.form['facebook'].$error }" 
+              @input="$v.form['facebook'].$touch()"
+            />
+          </div>
+          <div class="col-12 col-lg-6">
+            <p class="text">En caso de no tener cuenta personal por favor registrar la cuenta del partido político al que pertenece.</p>
+          </div>
+        </b-row>
+        <b-row>
           <b-form-radio-group 
             v-model="form.aspiredPosition"
             :class="{ error: $v.form['aspiredPosition'].$error }" 
@@ -188,26 +202,11 @@
         </b-row>
         <b-row>
           <div class="col-12 col-lg-6">
-            <b-form-input 
-              v-model="form.facebook" 
-              type="text" 
-              placeholder="cuenta-facebook"
-            />
-          </div>
-          <div class="col-12 col-lg-6">
-            <p class="text">En caso de no tener cuenta personal por favor registrar la cuenta del partido político al que pertenece.</p>
-          </div>
-        </b-row>
-        <b-row>
-          <div class="col-12 col-lg-6">
             <b-form-select 
               v-model="form.maritalStatus" 
               :options="maritalStatusList"
             />
           </div>
-        </b-row>
-        <b-row>
-          <div class="col-12"><h5>Datos del cargo</h5></div>
         </b-row>
         <b-row>
           <div class="col-12"><h5>Información de contacto</h5></div>
@@ -587,6 +586,7 @@ export default {
       name: { required },
       lastname: { required },
       twitter: { required },
+      facebook: { required },
       aspiredPosition: { required },
       partyType: { required },
       party: { required: requiredIf(function() {
