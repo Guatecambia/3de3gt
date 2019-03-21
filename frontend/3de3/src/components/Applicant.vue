@@ -127,12 +127,12 @@
             </div>
             <b-row class="aspirant-docs">
               <div class="col-3">
-                <b-button class="declaration-icon" target="_blank" :href="fileURL+'/'+applicant.solvencia">
-                  <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg"/>
+                <b-button class="declaration-icon" target="_blank" v-b-modal="'fiscal'+index">
+                  <img class="img-fluid" alt="Solvencia Fiscal" src="../assets/sf.jpg" v/>
                 </b-button>
-                <!--b-modal ok-title="Aceptar" ok-only :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
-                  <h2>Modal {{ index }}</h2>
-                </b-modal-->
+                <b-modal ok-title="Aceptar" ok-only :id="'fiscal'+ index" size="xl" title="Solvencia Fiscal">
+                  <embed :src="fileURL+'/'+applicant.solvencia" width="100%" height="375" />
+                </b-modal>
               </div>
               <div class="col-1"></div>
               <div class="col-3">              
