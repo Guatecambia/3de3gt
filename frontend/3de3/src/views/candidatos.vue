@@ -10,6 +10,7 @@
           <b-button @click="chStatus('ALL')" :pressed="(status == 'ALL')" variant="outline-primary" class="btn-lg statusBtn">Todos</b-button>
           <b-button @click="chStatus('ASK')" :pressed="(status == 'ASK')" variant="outline-warning" class="btn-lg statusBtn">Exige #3de3</b-button>
           <b-button @click="chStatus('PUB')" :pressed="(status == 'PUB')" variant="outline-success" class="btn-lg statusBtn">Publicados</b-button>
+          <b-button @click="chStatus('NP')" :pressed="(status == 'NP')" variant="outline-dark" class="btn-lg statusBtn">Sin publicar</b-button>
         </div>
       </b-row>
       <b-row>

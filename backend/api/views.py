@@ -195,6 +195,8 @@ class CandidatoAdminList(generics.ListCreateAPIView):
                     return Candidato.objects.filter(published=True).order_by(Lower('name'),Lower('lastname'))
                 elif (status == 'ASK'):
                     return Candidato.objects.filter(inAskList=True).order_by(Lower('name'),Lower('lastname'))
+                elif (status == 'NP'):
+                    return Candidato.objects.filter(inAskList=False, published=False).order_by(Lower('name'), Lower('lastname'))
             else:
                 return Candidato.objects.all().order_by(Lower('name'),Lower('lastname'))
         else:

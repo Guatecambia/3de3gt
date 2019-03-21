@@ -142,6 +142,7 @@
           <div class="col-12">
             <b-button @click="chStatus('ASK')" :pressed="(form.inAskList == true)" variant="outline-warning" class="btn-lg statusBtn">Exige #3de3</b-button>
             <b-button @click="chStatus('PUB')" :pressed="(form.published == true)" variant="outline-success" class="btn-lg statusBtn">Publicado</b-button>
+            <b-button @click="chStatus('NP')" :pressed="((form.inAskList == false) && (form.published == false))" variant="outline-dark" class="btn-lg statusBtn">No publicado</b-button>
           </div>
         </b-row>
         <b-row>
@@ -422,9 +423,13 @@ export default {
         })
     },
     chStatus: function(newStatus) {
+        if (newStatus == 'NP') {
+          this.form.inAskList = false
+          this.form.published = false
+        }
         if (newStatus == 'ASK') {
-            this.form.inAskList = true
-            this.form.published = false
+          this.form.inAskList = true
+          this.form.published = false
         }
         if (newStatus == 'PUB') {
           if (this.lineParameters.interestsLine && this.lineParameters.patrimonialLine) {

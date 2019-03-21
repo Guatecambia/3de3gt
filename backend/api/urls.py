@@ -26,7 +26,6 @@ urlpatterns = [
     url(r'^3de3-admin/partido/(?P<pk>[0-9]+)', views.PartyAdminEdit.as_view(), name='partido-admin-edit'),
     url(r'^3de3-admin/munis/$', views.MunicipalityAdminList.as_view(), name='partido-admin-create'),
     url(r'^3de3-admin/muni/(?P<pk>[0-9]+)', views.MunicipalityEdit.as_view(), name='municipality-admin-edit'),
-    url(r'^3de3-admin/candidatos/$', views.CandidatoAdminList.as_view(), name='candidato-admin'),
     url(r'^3de3-admin/candidatos/(?P<status>[A-Z]+)', views.CandidatoAdminList.as_view(), name='candidato-admin'),
     url(r'^3de3-admin/candidato/(?P<pk>[0-9]+)', views.CandidatoAdminEdit.as_view(), name='candidato-admin-edit'),
     url(r'^3de3-admin/selectcandidatos', views.CandidatoSelectList.as_view(), name='candidato-admin-select-list'),
