@@ -289,7 +289,7 @@
             />
           </div>
           <div slot="modal-footer">
-            <b-button variant="success" class="float-right" @click="converToExisting">Seleccionar</b-button>
+            <b-button variant="success" class="float-right" @click="convertToExisting">Seleccionar</b-button>
             <b-button variant="primary" class="float-right" @click="convertToNew">Crear uno Nuevo</b-button>
           </div>
           <div>
@@ -492,12 +492,13 @@ export default {
       formData.append("status", this.form.status);
       return formData;    
     },
-    converToExisting: function() {
+    convertToExisting: function() {
       if (this.candidato == null) {
         alert("Debe seleccionar un candidato o presionar el botón 'Crear uno nuevo' para poder continuar");
         return;
       }
       var formData = this.gatherData();
+      formData.append("presentedId", this.$route.params.id);
       formData.append("inAskList", true);
       var self = this;
       HTTP.put(

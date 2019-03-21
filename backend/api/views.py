@@ -11,6 +11,7 @@ from rest_framework.renderers import JSONRenderer
 from django.db.models import Count, Q
 from oauth2client.service_account import ServiceAccountCredentials
 from django.conf import settings
+from django.db.models.functions import Lower
 import gspread
 import os
 
@@ -29,7 +30,7 @@ class DistrictList(generics.ListCreateAPIView):
     List and create districts
     """
     permission_classes = (IsAuthenticated, )
-    queryset = District.objects.all().order_by('name')
+    queryset = District.objects.all().order_by(Lower('name'))
     serializer_class = DistrictSerializer
 
 
@@ -38,7 +39,7 @@ class DistrictListById(generics.ListAPIView):
     List districts
     """
     permission_classes = (AllowAny, )
-    queryset = District.objects.all().order_by('name')
+    queryset = District.objects.all().order_by(Lower('name'))
     serializer_class = DistrictSelectSerializer
 
 
@@ -56,7 +57,7 @@ class PartyListOnlyPP(generics.ListAPIView):
     List of parties, ttype = PP
     """
     permission_classes = (AllowAny, )
-    queryset = Party.objects.filter(tType='PP').order_by('name')
+    queryset = Party.objects.filter(tType='PP').order_by(Lower('name'))
     serializer_class = PartySelectSerializer
     
     
@@ -65,7 +66,7 @@ class PartyListOnlyCC(generics.ListAPIView):
     List of parties, ttype = CC
     """
     permission_classes = (AllowAny, )
-    queryset = Party.objects.filter(tType='CC').order_by('name')
+    queryset = Party.objects.filter(tType='CC').order_by(Lower('name'))
     serializer_class = PartySelectSerializer
 
 
@@ -74,7 +75,7 @@ class PartyList(generics.ListAPIView):
     List of all parties, ttype CC and PP
     """
     permission_classes = (AllowAny, )
-    queryset = Party.objects.all().order_by('name')
+    queryset = Party.objects.all().order_by(Lower('name'))
     serializer_class = PartySelectSerializer
 
 
@@ -96,7 +97,7 @@ class CandidatoAsk(generics.ListAPIView):
                 queryset = queryset.filter(aspiredPosition=positionParam)
             elif (positionParam == 'P' or positionParam == 'V'):
                 queryset = queryset.filter(aspiredPosition='EX', executivePosition=positionParam)
-        queryset = queryset.order_by('name','lastname')
+        queryset = queryset.order_by(Lower('name'),Lower('lastname'))
         return queryset
 
 
@@ -144,6 +145,7 @@ class PresentedAsk(generics.ListAPIView):
                 queryset = queryset.filter(district=itemValueParam)
             if (aspirantType == 'M'):
                 queryset = queryset.filter(municipality=itemValueParam)
+        queryset = queryset.order_by('created_at')
         return queryset
 
 
@@ -186,27 +188,34 @@ class CandidatoAdminList(generics.ListCreateAPIView):
     serializer_class = CandidatoAdminSerializer
 
     def get_queryset(self):
-        status = self.kwargs['status']
-        if (status != 'ALL'):
-            if (status == 'PUB'):
-                return Candidato.objects.filter(published=True).order_by('lastname')
-            elif (status == 'ASK'):
-                return Candidato.objects.filter(inAskList=True).order_by('lastname')
+        if (self.kwargs['status']):
+            status = self.kwargs['status']
+            if (status != 'ALL'):
+                if (status == 'PUB'):
+                    return Candidato.objects.filter(published=True).order_by(Lower('name'),Lower('lastname'))
+                elif (status == 'ASK'):
+                    return Candidato.objects.filter(inAskList=True).order_by(Lower('name'),Lower('lastname'))
+            else:
+                return Candidato.objects.all().order_by(Lower('name'),Lower('lastname'))
         else:
-            return Candidato.objects.all().order_by('lastname')
+            return Candidato.objects.all().order_by(Lower('name'),Lower('lastname'))
             
     def create(self, request, *args, **kwargs):
-        # set the original presented to "converted" status
-        presentedId = request.data.get('presentedId')
-        presentado = Presentado.objects.get(id=presentedId)
-        presentado.status = 'C'
-        presentado.save()
-        c = super(CandidatoAdminList, self).create(request, *args, **kwargs)
-        cObj = Candidato.objects.get(pk=c.data.get('id'))
-        cObj.authLetter.name = request.data.get('authLetter.name')
-        cObj.solvencia.name = request.data.get('solvencia.name')
-        cObj.save()
-        return c
+        if (request.data.get('presentedId')):
+            # if it is converting, set the original presented to "converted" status
+            presentedId = request.data.get('presentedId')
+            presentado = Presentado.objects.get(id=presentedId)
+            presentado.status = 'C'
+            presentado.save()
+            c = super(CandidatoAdminList, self).create(request, *args, **kwargs)
+            cObj = Candidato.objects.get(pk=c.data.get('id'))
+            cObj.authLetter.name = request.data.get('authLetter.name')
+            cObj.solvencia.name = request.data.get('solvencia.name')
+            cObj.created_at = presentado.created_at
+            cObj.save()
+            return c
+        else:
+            return super(CandidatoAdminList, self).create(request, *args, **kwargs)
 
 
 
@@ -215,7 +224,7 @@ class PartyAdminList(generics.ListCreateAPIView):
     List and create Parties
     """
     permission_classes = (IsAuthenticated, )
-    queryset = Party.objects.all().order_by('name')
+    queryset = Party.objects.all().order_by(Lower('name'))
     serializer_class = PartyAdminSerializer
             
 
@@ -290,10 +299,18 @@ class CandidatoAdminEdit(generics.RetrieveUpdateDestroyAPIView):
                         answer.formType = formTypes[i]
                         answer.candidato_id = c_id
                         answer.save()
+        # if it is converting a presentado, set the original presented to "converted" status
+        if (request.data.get('presentedId')):
+            presentedId = request.data.get('presentedId')
+            presentado = Presentado.objects.get(id=presentedId)
+            presentado.status = 'C'
+            presentado.save()
         c = super(CandidatoAdminEdit, self).update(request, *args, **kwargs)
         cObj = Candidato.objects.get(pk=c.data.get('id'))
         cObj.authLetter.name = request.data.get('authLetter.name')
         cObj.solvencia.name = request.data.get('solvencia.name')
+        if (request.data.get('presentedId')):
+            cObj.created_at = presentado.created_at
         cObj.save()
         return c
 
@@ -303,7 +320,7 @@ class CandidatoSelectList(generics.ListAPIView):
     List of Candidatos, that are not published, in one field including name, lastname, party and aspiredPosition
     """
     permission_classes = (IsAuthenticated, )
-    queryset = Candidato.objects.filter(published=False).order_by('name','lastname')
+    queryset = Candidato.objects.filter(published=False).order_by(Lower('name'),Lower('lastname'))
     serializer_class = CandidatoAdminSelectSerializer
 
 
