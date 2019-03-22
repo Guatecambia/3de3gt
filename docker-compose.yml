@@ -12,9 +12,3 @@ services:
         build: backend
         depends_on:
             - db
-    frontend:
-        container_name: 3de3_page
-        build: frontend
-        depends_on:
-            - backend
-

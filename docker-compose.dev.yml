@@ -8,8 +8,12 @@ services:
         ports:
             - "8000:80"
     frontend:
-        command: npm run serve
-        # command: npm run build
+        container_name: 3de3_page
+        build: frontend
+        depends_on:
+            - backend
+        # command: npm run serve
+        command: npm run build
         volumes:
             - ./frontend:/app
         ports:
