@@ -6,7 +6,7 @@ let baseURL
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:8000'
 } else {
-  baseURL = 'http://api.3de3.gt'
+  baseURL = 'https://api.3de3.gt'
 }
 
 const HTTP = axios.create( {
