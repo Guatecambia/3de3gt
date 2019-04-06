@@ -19,14 +19,14 @@
       <b-row class="footer-logos">
         <div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
         <div class="col-sm-8 col-lg-6">
-          <b-row>
+          <!--b-row>
             <div class="col-6">
               <a href="http://accionciudadana.org.gt/" target="_blank"><img class="img-fluid" alt="Acción Ciudadana" src="../assets/ac.png" /></a>
             </div>
             <div class="col-6">
               <a href="http://www.guatecambia.org.gt" target="_blank"><img class="img-fluid" alt="Guatecambia" src="../assets/guatecambia.png" /></a>
             </div>
-          </b-row>
+          </b-row-->
         </div>
         <div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
       </b-row>

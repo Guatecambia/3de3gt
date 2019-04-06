@@ -140,16 +140,24 @@
                   <img class="img-fluid" alt="Declaración de Intereses" src="../assets/di.jpg"/>
                 </b-button>
                 <b-modal ok-title="Aceptar" ok-only :id="'interest'+ index" :ref="'interest'+ applicant.id" size="xl" title="Declaración de Intereses">
-                  <h6>Datos del declarante</h6>
-                  <div class="declarant-data">
-                    <span class="modal-key bold">Nombres y apellidos</span>: <span class="modal-value">{{ applicant.name }} {{ applicant.lastname }}</span><br/>
-                    <span class="modal-key bold">Género</span>: <span class="modal-value">{{ applicant.gender }}</span><br/>
-                    <span class="modal-key bold">Grupo Étnico</span>: <span class="modal-value">{{ applicant.ethnicGroup }}</span><br/>
-                    <span class="modal-key bold">Partído</span>: <span class="modal-value">{{ applicant.party_name }}</span><br/>
-                  </div>
-                  <h6>Declaración</h6>
-                  <div v-for="(dataItem, index) in interestDeclarationData" class="declarant-form">
-                    <span class="modal-key bold">{{ dataItem.fieldName }}</span>&nbsp;<span class="modal-value">{{ dataItem.fieldValue }}</span>
+                  <div v-for="(dataItem, index) in interestDeclarationData">
+                    <h6 v-if="dataItem.position == 1">Datos del declarante</h6>
+                    <h6 v-if="dataItem.position == 7">Trayectoria política e información de postulación</h6>
+                    <h6 v-if="dataItem.position == 16">Grupo familiar o dependientes</h6>
+                    <h6 v-if="dataItem.position == 17">Intereses económicos y financieros</h6>
+                    <h7 v-if="dataItem.position == 17">Participación del declarante en direcciones y consejos administrativos</h7>
+                    <h7 v-if="dataItem.position == 23">Participación en consejos de administración de familiares y dependientes económicos</h7>
+                    <h6 v-if="dataItem.position == 24">Actividades profesionales y empresariales</h6>
+                    <h7 v-if="dataItem.position == 24">Participación del declarante</h7>
+                    <h6 v-if="dataItem.position == 28">Participación en actividades profesionales y empresariales de familiares y personas bajo su dependencia</h6>
+                    <h6 v-if="dataItem.position == 29">Gastos personales durante el proceso electoral</h6>
+                    <div class="declarant-form">
+                      <span class="modal-key bold">{{ dataItem.fieldName }}</span>&nbsp;<span class="modal-value">{{ dataItem.fieldValue }}</span>
+                    </div>
+                    <div v-if="dataItem.position == 6" class="declarant-form">
+                      <span class="modal-key bold">Grupo Étnico</span>: <span class="modal-value">{{ applicant.ethnicGroup }}</span><br/>
+                      <span class="modal-key bold">Partído</span>: <span class="modal-value">{{ applicant.party_name }}</span><br/>                    
+                    </div>
                   </div>
                 </b-modal>
               </div>
@@ -159,16 +167,36 @@
                   <img class="img-fluid" alt="Declaración Patrimonial" src="../assets/dp.jpg"/>
                 </b-button>
                 <b-modal ok-title="Aceptar" ok-only :id="'patrimonial'+ applicant.id" :ref="'patrimonial'+ applicant.id" size="xl" title="Declaración Patrimonial">
-                  <h6>Datos del declarante</h6>
-                  <div class="declarant-data">
-                    <span class="modal-key bold">Nombres y apellidos</span>: <span class="modal-value">{{ applicant.name }} {{ applicant.lastname }}</span><br/>
-                    <span class="modal-key bold">Género</span>: <span class="modal-value">{{ applicant.gender }}</span><br/>
-                    <span class="modal-key bold">Grupo Étnico</span>: <span class="modal-value">{{ applicant.ethnicGroup }}</span><br/>
-                    <span class="modal-key bold">Partído</span>: <span class="modal-value">{{ applicant.party_name }}</span><br/>
-                  </div>
-                  <h6>Declaración</h6>
-                  <div v-for="(dataItem, index) in patrimonialDeclarationData" class="declarant-form">
-                    <span class="modal-key bold">{{ dataItem.fieldName }}</span>&nbsp;<span class="modal-value">{{ dataItem.fieldValue }}</span>
+                  <div v-for="(dataItem, index) in patrimonialDeclarationData">
+                    <h6 v-if="dataItem.position == 1">Datos del declarante</h6>
+                    <h6 v-if="dataItem.position == 6">Información Patrimonial</h6>
+                    <h7 v-if="dataItem.position == 6">Bancos nacionales</h7>
+                    <h7 v-if="dataItem.position == 9">Bancos extranjeros</h7>
+                    <h7 v-if="dataItem.position == 12">Acreencias (cuentas por cobrar)</h7>
+                    <h7 v-if="dataItem.position == 15">Menaje de casa</h7>
+                    <h7 v-if="dataItem.position == 18">Vehículos</h7>
+                    <h7 v-if="dataItem.position == 21">Alhajas</h7>
+                    <h7 v-if="dataItem.position == 24">Biblioteca</h7>
+                    <h7 v-if="dataItem.position == 27">Semovientes</h7>
+                    <h7 v-if="dataItem.position == 30">Diversos</h7>
+                    <h7 v-if="dataItem.position == 33">Bienes inmuebles urbanos</h7>
+                    <h7 v-if="dataItem.position == 36">Bienes inmuebles rústicos</h7>
+                    <h7 v-if="dataItem.position == 39">Participación en sociedades mercantiles</h7>
+                    <h7 v-if="dataItem.position == 42">Participación en empresas individuales</h7>
+                    <h7 v-if="dataItem.position == 45">Total de activos</h7>
+                    <h6 v-if="dataItem.position == 48">Pasivos</h6>
+                    <h7 v-if="dataItem.position == 48">Bancos nacionales</h7>
+                    <h7 v-if="dataItem.position == 51">Bancos extranjeros</h7>
+                    <h7 v-if="dataItem.position == 54">Casas comerciales</h7>
+                    <h7 v-if="dataItem.position == 57">Personas individuales</h7>
+                    <h7 v-if="dataItem.position == 60">Total de pasivos</h7>
+                    <div class="declarant-form">
+                      <span class="modal-key bold">{{ dataItem.fieldName }}</span>&nbsp;<span class="modal-value">{{ dataItem.fieldValue }}</span>
+                    </div>
+                    <div v-if="dataItem.position == 3" class="declarant-form">
+                      <span class="modal-key bold">Grupo Étnico</span>: <span class="modal-value">{{ applicant.ethnicGroup }}</span><br/>
+                      <span class="modal-key bold">Partído</span>: <span class="modal-value">{{ applicant.party_name }}</span><br/>                    
+                    </div>
                   </div>
                 </b-modal>
               </div>
@@ -612,5 +640,14 @@ h5.modal-title {
   font-weight: bolder;
   text-align:left;
   margin-top: 20px;
+}
+.modal-body h7 {
+  color: #ee2466;
+  font-weight: bold;
+  text-align:left;
+  margin-top: 12px;
+}
+.declarant-form {
+  margin-left:15px;
 }
 </style>
