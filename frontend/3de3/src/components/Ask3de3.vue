@@ -21,7 +21,14 @@
         <div class="col-2 text-center">Escríbele</div>
       </b-row>
       <b-row class="filters">
-        <div class="col-4"></div>
+        <div class="col-4"><b-form-input 
+                              v-model="filters.name"
+                              type="search"
+                              placeholder="Búsqueda por nombre"
+                              v-on:keyup.space.native="applyNameFilter"
+                              @change="applyNameFilter"
+                            />
+        </div>
         <div class="col-3"><b-form-select
                               v-model="filters.party" 
                               :options="parties"
@@ -80,6 +87,7 @@ export default {
       filters: {
         party: null,
         position: null,
+        name: null,
       },
       parties: [
       ],
@@ -133,6 +141,9 @@ export default {
     },
     applyPositionFilter: function(selected) {
       this.filters.position = selected;
+      this.getAspirants(1);
+    },
+    applyNameFilter: function(key) {
       this.getAspirants(1);
     },
     getFilters: function() {

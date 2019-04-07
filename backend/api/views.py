@@ -89,6 +89,7 @@ class CandidatoAsk(generics.ListAPIView):
     def get_queryset(self):
         partyParam = self.request.query_params.get('party')
         positionParam = self.request.query_params.get('position')
+        nameParam = self.request.query_params.get('name')
         queryset = Candidato.objects.filter(inAskList=True, )
         if (partyParam):
             queryset = queryset.filter(party=partyParam)
@@ -97,6 +98,8 @@ class CandidatoAsk(generics.ListAPIView):
                 queryset = queryset.filter(aspiredPosition=positionParam)
             elif (positionParam == 'P' or positionParam == 'V'):
                 queryset = queryset.filter(aspiredPosition='EX', executivePosition=positionParam)
+        if (nameParam):
+            queryset = queryset.filter(Q(name__icontains=nameParam)|Q(lastname__icontains=nameParam))
         queryset = queryset.order_by(Lower('name'),Lower('lastname'))
         return queryset
 
