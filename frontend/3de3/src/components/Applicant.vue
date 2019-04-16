@@ -106,10 +106,8 @@
           <div class="col-8 col-md-6 col-lg-4 col-xl-3 aspirant-box">
             <div class="picture-frame">
               <div class="pic-buttons">
-                <a :href="'https://twitter.com/intent/tweet?text='+applicant.name+'%20'+applicant.lastname+'%20'+'promueve%20acciones%20concretas%20a%20favor%20de%20la%20transparencia%20y%20ya%20present%C3%B3%20sus%20%233de3guate.%20Consulta%20su%20informaci%C3%B3n%20en%20www.3de3.gt%20%40'+applicant.twitter" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
-                <b-button class="ask-icon" v-b-modal="'applicantya'+index">
-                  <img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo-tr.png"/>
-                </b-button>
+                <a target="_blank" :href="'https://twitter.com/'+applicant.twitter" data-show-count="false"><img class="sn-btn" src="../assets/twitter-logo-tr.png"/></a>
+                <a target="_blank" :href="'https://www.facebook.com/'+applicant.facebook"><img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo-tr.png"/></a>
               </div>
               <div class="aspirant-pic">
                 <img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" />
@@ -200,12 +198,6 @@
                   </div>
                 </b-modal>
               </div>
-              <b-modal ok-title="Aceptar" ok-only :id="'applicantya'+index" size="lg" title="Copia el siguiente texto para poder exigir a cada candidato su #3de3">
-                <div class="declarant-data">
-                  <span class="modal-text">{{ message.fbCopy }} @{{ applicant.facebook }}</span><b-button v-clipboard:copy="message.fbCopy + applicant.name + ' ' + applicant.lastname + ' @' + applicant.facebook" v-clipboard:error="copyError" size="sm" variant="outline-light">Copiar</b-button><br/>
-                  <b-button class="btn btn-fb shareFb" @click="shareFb()">Escribe tu publicación</b-button><br/>
-                </div>
-              </b-modal>
             </b-row>
           </div>
           <div class="col-2 d-md-none"></div>
