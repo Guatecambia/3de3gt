@@ -11,8 +11,8 @@
               <div class="col-12">
                 <div class="float-right rs-holder">
                   <a href="https://www.instagram.com/3de3guate/" target="_blank"><img class="rs-ico" src="../assets/ig.jpg"/></a>
-                  <a href="https://www.facebook.com/3de3guatemala/" target="_blank"><img class="rs-ico" src="../assets/tw.jpg"/></a>
-                  <a href="https://twitter.com/3de3guate" target="_blank"><img class="rs-ico" src="../assets/fb.jpg"/></a>
+                  <a href="https://twitter.com/3de3guate" target="_blank"><img class="rs-ico" src="../assets/tw.jpg"/></a>
+                  <a href="https://www.facebook.com/3de3guatemala/" target="_blank"><img class="rs-ico" src="../assets/fb.jpg"/></a>
                 </div>
               </div>
             </div>
