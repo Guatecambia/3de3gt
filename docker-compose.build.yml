@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+    backend:
+        command: python manage.py runserver 0.0.0.0:80
+        volumes:
+            - ./backend:/code
+        ports:
+            - "8000:80"
+    frontend:
+        container_name: 3de3_page
+        build: frontend
+        depends_on:
+            - backend
+        command: npm run build
+        volumes:
+            - ./frontend:/app
+        ports:
+            - "80:8080"
