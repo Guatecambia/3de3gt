@@ -162,6 +162,7 @@
             v-model="form.partyType"
             :class="{ error: $v.form['partyType'].$error }" 
             @input="$v.form['partyType'].$touch()"
+            @change="clearParty()"
           >
             <b-form-radio value="PP">Partido Político</b-form-radio>
             <b-form-radio value="CC">Comité Cívico</b-form-radio>
@@ -563,6 +564,9 @@ export default {
           alert("No se pudo enviar su información"+error);
         });        
       }
+    },
+    clearParty: function() {
+      this.form.party = null;
     }
   },
   mounted() {
@@ -606,14 +610,7 @@ export default {
                                           })
       },
       partyType: { required },
-      party: { required: requiredIf(function() {
-                                      return (this.form.partyType == "PP") ? true : false;
-                                    })
-      },
-      committee: { required: requiredIf(function() {
-                                      return (this.form.partyType == "CC") ? true : false;
-                                    })
-      },
+      party: { required },
       celphone: { required },
       phone: { required },
       email: { required, email },
