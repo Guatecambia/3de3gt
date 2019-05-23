@@ -367,7 +367,7 @@ class StatisticsView(views.APIView):
         congressPartyDistr = Candidato.objects.filter(published=True, aspiredPosition='LEG').filter(~Q(district__name=' Nacional')).filter(~Q(district__name=' Parlacen')).values('party__name','party__shortName','party__twitter').annotate(total=Count('name')).order_by('-total', 'party__shortName')
         congressPartyNac = Candidato.objects.filter(published=True, aspiredPosition='LEG', district__name=' Nacional').values('party__name','party__shortName','party__twitter').annotate(total=Count('name')).order_by('-total', 'party__shortName')
         congressSeatNac = Candidato.objects.values('seat').filter(published=True, aspiredPosition='LEG', district__name=' Nacional').annotate(total=Count('seat')).order_by('-total', 'seat')
-        congressSeatDistr = Candidato.objects.values('seat').filter(published=True, aspiredPosition='LEG').filter(~Q(district__name=' Nacional')).filter(~Q(name=' Parlacen')).annotate(total=Count('seat')).order_by('-total', 'seat')
+        congressSeatDistr = Candidato.objects.values('seat').filter(published=True, aspiredPosition='LEG').filter(~Q(district__name=' Nacional')).filter(~Q(district__name=' Parlacen')).annotate(total=Count('seat')).order_by('-total', 'seat')
         congressDistrQty = District.objects.filter(candidato__published=True, candidato__aspiredPosition='LEG').filter(~Q(name=' Nacional')).filter(~Q(name=' Parlacen')).values('name').annotate(total=Count('name')).order_by('-total')
         content = {
             'malePresident': malePresident,
