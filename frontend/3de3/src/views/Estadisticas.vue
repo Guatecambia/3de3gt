@@ -102,7 +102,7 @@
       
       <b-collapse id="legislativeStatistics" accordion="statistics">
         <b-row>
-          <div class="col-12" style="margin-bottom:20px;">
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
             <span class="bold final-numbers">Declarantes por el listado en el que participan</span>
           </div>
           <div class="col-12">
@@ -190,6 +190,151 @@
             </b-row>
           </div>
         </b-row>
+        
+        
+        <b-row>
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
+            <span class="bold final-numbers">Distritos de los declarantes</span>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="dis in statistics.congressDistrQty">
+                      <td width="40%">Distrito {{ dis.name }}</td>
+                      <td width="40%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.congressDistrQty[0].total,dis.total)+'%;'"></div>
+                        </div>
+                      </td width="20%">
+                      <td>{{ dis.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+        </b-row>
+
+        
+        
+        <b-row>
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
+            <span class="bold final-numbers">Partidos políticos de los declarantes</span>
+          </div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px;">
+                <span class="bold final-numbers">Listado Nacional</span>
+              </div>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="pp in statistics.congressPartyNac">
+                      <td width="20%">
+                        <div class="party"> 
+                          <img class="party-icon" v-if="pp.party__twitter != ''" :src="'http://avatars.io/twitter/'+pp.party__twitter" />
+                          <img class="party-icon" v-if="pp.party__twitter == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
+                        </div>
+                      </td>
+                      <td width="40%">{{ pp.party__shortName }}</td>
+                      <td width="40%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.congressPartyNac[0].total,pp.total)+'%;'"></div>
+                        </div>
+                      </td>
+                      <td>{{ pp.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px;">
+                <span class="bold final-numbers">Listado Distrital</span>
+              </div>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="pp in statistics.congressPartyDistr">
+                      <td width="20%">
+                        <div class="party"> 
+                          <img class="party-icon" v-if="pp.party__twitter != ''" :src="'http://avatars.io/twitter/'+pp.party__twitter" />
+                          <img class="party-icon" v-if="pp.party__twitter == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
+                        </div>
+                      </td>
+                      <td width="40%">{{ pp.party__shortName }}</td>
+                      <td width="40%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.congressPartyDistr[0].total,pp.total)+'%;'"></div>
+                        </div>
+                      </td>
+                      <td>{{ pp.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+        </b-row>
+
+
+        <b-row>
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
+            <span class="bold final-numbers">Casilla de los declarantes</span>
+          </div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px;">
+                <span class="bold final-numbers">Listado Nacional</span>
+              </div>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="cs in statistics.congressSeatNac">
+                      <td width="30%">Casilla {{ cs.seat }}</td>
+                      <td width="50%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.congressSeatNac[0].total,cs.total)+'%;'"></div>
+                        </div>
+                      </td>
+                      <td width="20%">{{ cs.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px;">
+                <span class="bold final-numbers">Listado Distrital</span>
+              </div>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="cs in statistics.congressSeatDistr">
+                      <td width="30%">Casilla {{ cs.seat }}</td>
+                      <td width="50%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.congressSeatDistr[0].total,cs.total)+'%;'"></div>
+                        </div>
+                      </td>
+                      <td width="20%">{{ cs.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+        </b-row>
+
+
       </b-collapse>
       
       
@@ -265,6 +410,7 @@ export default {
         femaleCongressDistr: 0,
         maleMuni: 0,
         femaleMuni: 0,
+        maxCongresPartyNac: 0
       },
     }
   },
@@ -336,6 +482,9 @@ export default {
         .catch(e => {
           this.errors = e
         });
+    },
+    getWidth: function(maxValue, currentValue) {
+      return (currentValue/maxValue)*100;
     }
   },
   beforeMount() {
@@ -408,5 +557,16 @@ li.nav-item:hover a, li.nav-item.active a{
 }
 .lNum {
   font-size: 1em;
+}
+.party-icon {
+  width:35px;
+  height: 35px;
+}
+.progress-border {
+  background-color: #DCDCDC;
+  height: 24px;
+}
+.progress-bar {
+  background-color: #000;
 }
 </style>
