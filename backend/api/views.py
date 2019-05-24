@@ -369,6 +369,11 @@ class StatisticsView(views.APIView):
         congressSeatNac = Candidato.objects.values('seat').filter(published=True, aspiredPosition='LEG', district__name=' Nacional').annotate(total=Count('seat')).order_by('-total', 'seat')
         congressSeatDistr = Candidato.objects.values('seat').filter(published=True, aspiredPosition='LEG').filter(~Q(district__name=' Nacional')).filter(~Q(district__name=' Parlacen')).annotate(total=Count('seat')).order_by('-total', 'seat')
         congressDistrQty = District.objects.filter(candidato__published=True, candidato__aspiredPosition='LEG').filter(~Q(name=' Nacional')).filter(~Q(name=' Parlacen')).values('name').annotate(total=Count('name')).order_by('-total')
+        muniDepartment = Candidato.objects.filter(published=True, aspiredPosition='M').values('municipality__department').annotate(total=Count('municipality__department')).order_by('-total','municipality__department')
+        muniPP = Party.objects.filter(candidato__published=True, candidato__aspiredPosition='M').values('shortName','twitter','name').annotate(total=Count('name')).order_by('-total', 'shortName')
+        muniByPPCount = Candidato.objects.filter(published=True, aspiredPosition='M', party__tType='PP').count()
+        muniByCCCount = Candidato.objects.filter(published=True, aspiredPosition='M', party__tType='CC').count()
+        muniCCDepartment = Municipality.objects.values('department').filter(candidato__published=True, candidato__aspiredPosition='M', candidato__party__tType='CC').annotate(total=Count('department')).order_by('-total', 'department')
         content = {
             'malePresident': malePresident,
             'femalePresident': femalePresident,
@@ -386,7 +391,12 @@ class StatisticsView(views.APIView):
             'congressPartyDistr': congressPartyDistr,
             'congressSeatNac': congressSeatNac,
             'congressSeatDistr': congressSeatDistr,
-            'congressDistrQty': congressDistrQty
+            'congressDistrQty': congressDistrQty,
+            'muniDepartment': muniDepartment,
+            'muniPP': muniPP,
+            'muniByPPCount': muniByPPCount,
+            'muniByCCCount': muniByCCCount,
+            'muniCCDepartment': muniCCDepartment            
         }
         return Response(content)
         

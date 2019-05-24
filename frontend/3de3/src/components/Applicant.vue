@@ -110,11 +110,11 @@
                 <a target="_blank" :href="'https://www.facebook.com/'+applicant.facebook"><img class="sn-btn" alt="Declaración de Intereses" src="../assets/fb-logo-tr.png"/></a>
               </div>
               <div class="aspirant-pic">
-                <img class="img-fluid" :src="'http://avatars.io/twitter/'+applicant.twitter" />
+                <img class="img-fluid" :src="'https://avatars.io/twitter/'+applicant.twitter" />
               </div>
             </div>
             <div class="party"> 
-              <img class="party-icon" v-if="applicant.partyIcon != ''" :src="'http://avatars.io/twitter/'+applicant.partyIcon" />
+              <img class="party-icon" v-if="applicant.partyIcon != ''" :src="'https://avatars.io/twitter/'+applicant.partyIcon" />
               <img class="party-icon" v-if="applicant.partyIcon == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
             </div>
             <div class="aspirant-name">

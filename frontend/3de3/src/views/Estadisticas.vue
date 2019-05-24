@@ -236,7 +236,7 @@
                     <tr v-for="pp in statistics.congressPartyNac">
                       <td width="20%">
                         <div class="party"> 
-                          <img class="party-icon" v-if="pp.party__twitter != ''" :src="'http://avatars.io/twitter/'+pp.party__twitter" />
+                          <img class="party-icon" v-if="pp.party__twitter != ''" :src="'https://avatars.io/twitter/'+pp.party__twitter" />
                           <img class="party-icon" v-if="pp.party__twitter == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
                         </div>
                       </td>
@@ -264,7 +264,7 @@
                     <tr v-for="pp in statistics.congressPartyDistr">
                       <td width="20%">
                         <div class="party"> 
-                          <img class="party-icon" v-if="pp.party__twitter != ''" :src="'http://avatars.io/twitter/'+pp.party__twitter" />
+                          <img class="party-icon" v-if="pp.party__twitter != ''" :src="'https://avatars.io/twitter/'+pp.party__twitter" />
                           <img class="party-icon" v-if="pp.party__twitter == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
                         </div>
                       </td>
@@ -340,7 +340,7 @@
       
       <b-collapse id="muniStatistics" accordion="statistics">
         <b-row>
-          <div class="col-12" style="margin-bottom:20px;">
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
             <span class="bold final-numbers">Declarantes por género</span>
           </div>
           <div class="col-12">
@@ -373,6 +373,124 @@
             </b-row>
           </div>
         </b-row>
+        
+        
+        <b-row>
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
+            <span class="bold final-numbers">Departamentos con mas declarantes para alcalde</span>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="dep in statistics.muniDepartment">
+                      <td width="40%">Departamento de {{ dep.municipality__department }}</td>
+                      <td width="40%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.muniDepartment[0].total,dep.total)+'%;'"></div>
+                        </div>
+                      </td width="20%">
+                      <td>{{ dep.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+        </b-row>
+
+
+        <b-row>
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
+            <span class="bold final-numbers">Partidos y comités con mas declarantes para alcalde</span>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="pp in statistics.muniPP">
+                      <td width="10%">
+                        <div class="party"> 
+                          <img class="party-icon" v-if="pp.twitter != ''" :src="'https://avatars.io/twitter/'+pp.twitter" />
+                          <img class="party-icon" v-if="pp.twitter == ''" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUFBauBwABLAC4/sC9MAAAAABJRU5ErkJggg==" />
+                        </div>
+                      </td>
+                      <td width="40%">{{ pp.name }}</td>
+                      <td width="40%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.muniPP[0].total,pp.total)+'%;'"></div>
+                        </div>
+                      </td width="10%">
+                      <td>{{ pp.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+        </b-row>
+
+
+        <b-row>
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
+            <span class="bold final-numbers">Declarantes por partidos y comités</span>
+          </div>
+          <div class="col-12">
+            <b-row>
+              <div class="col-md-1 col-2"></div>
+              <div class="col-md-4 col-8">
+                <div class="lNac final-numbers">
+                  <span class="lTitle">Partido Político</span>
+                  {{ Math.round(statistics.muniByPPCount/(statistics.muniByPPCount+statistics.muniByCCCount)*100)||0 }}%<br/>{{ statistics.muniByPPCount }} partidos
+                </div>
+              </div>
+              <div class="col-md-1 col-2"></div>
+              <div class="col-md-1 col-2"></div>
+              <div class="col-md-4 col-8">
+                <div class="lDistr final-numbers">
+                  <span class="lTitle">Comité Civico</span>
+                  {{ Math.round(statistics.muniByCCCount/(statistics.muniByPPCount+statistics.muniByCCCount)*100)||0 }}%<br/>{{ statistics.muniByCCCount }} comités
+                </div>
+              </div>
+              <div class="col-md-1 col-2"></div>
+            </b-row>
+          </div>
+        </b-row>
+
+
+        <b-row>
+          <div class="col-12" style="margin-bottom:20px; margin-top:25px;">
+            <span class="bold final-numbers">Departamentos con mas declarantes por parte de Comités Civicos</span>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+          <div class="col-12 col-md-6">
+            <b-row>
+              <div class="col-12" style="margin-bottom:20px:">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="cc in statistics.muniCCDepartment">
+                      <td width="40%">{{ cc.department }}</td>
+                      <td width="40%">
+                        <div class="progress-border">
+                          <div class="progress-bar" :style="'height:24px; width:'+getWidth(statistics.muniCCDepartment[0].total,cc.total)+'%;'"></div>
+                        </div>
+                      </td width="20%">
+                      <td>{{ cc.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </b-row>
+          </div>
+          <div class="col-md-3 d-none d-md-block"></div>
+        </b-row>
+
       </b-collapse>
       
       
