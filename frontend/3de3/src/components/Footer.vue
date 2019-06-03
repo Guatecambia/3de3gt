@@ -31,6 +31,9 @@
         <div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
       </b-row>
     </b-container>
+    <div class="promotedContent">
+      <p class="promotedP"><img src="../assets/mochila.png"/>¡Conoce más herramientas de tecnología cívica para estas elecciones en <a target="_blank" href="http://mochilaelectoral.gt">mochilaelectoral.gt</a>!</p>
+    </div>
   </div>
 </template>
 
@@ -45,6 +48,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@font-face {
+  font-family: Apercu;
+  src: url('../assets/apercu/apercu_regular.otf');
+}
+@font-face {
+  font-family: Apercu;
+  font-weight: bold;
+  src: url('../assets/apercu/apercu_bold.otf');
+}
 .footer {
   background-color:#333;
 }
@@ -65,5 +77,28 @@ export default {
 }
 .separator {
   display: inline-block !important;
+}
+.promotedContent {
+  position:fixed;
+  bottom:0;
+  z-index:1200;
+  width:100%;
+  background: #444471;
+}
+
+.promotedP{
+  text-align:center;
+  color: #FFF;
+  margin: 10px;
+  font-family: 'Apercu', 'Heebo';
+}
+
+.promotedP a, .promotedP a:hover, .promotedP a:visited{
+  color: #27B1AA;
+  font-weight:bold;
+}
+
+.promotedP img {
+  height: 50px;
 }
 </style>

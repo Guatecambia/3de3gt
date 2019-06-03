@@ -207,7 +207,7 @@
         </template>
       </b-row>
       <template v-if="aspirant.length > 0">
-        <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="getApplicants" />
+        <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" size="sm" align="center" @change="pagerApplicants" />
       </template>
     </b-container>
   </div>
@@ -303,7 +303,13 @@ export default {
       this.filters.aspiredPosition = menu;
       this.getApplicants();
     },
+    pagerApplicants: function(page) {
+      var element = this.$el.querySelector("#with-3de3");
+      element.scrollIntoView();
+      this.getApplicants(page);
+    },
     getApplicants: function(page) {
+      this.aspirant = [];
       if (page)
         this.currentPage = page;
       else

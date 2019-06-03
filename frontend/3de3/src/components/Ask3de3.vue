@@ -1,6 +1,6 @@
 <template>
   <div class="section ask3de3" id="exige">
-    <b-container>
+    <div class="container">
       <div class="row title">
         <div class="col-1 col-sm-2 col-md-4 line-container">
             <hr class="line col-8 col-lg-12" />
@@ -12,13 +12,13 @@
             <hr class="line col-8 col-lg-12" />
         </div>
       </div><!--title-->
-    </b-container>
+    </div>
     <b-container>
       <b-row class="title">
         <div class="col-4">Nombre</div>
         <div class="col-3">Partido</div>
         <div class="col-3">Cargo</div>
-        <div class="col-2 text-center">Escríbele</div>
+        <div class="col-2 text-center"></div>
       </b-row>
       <b-row class="filters">
         <div class="col-4"><b-form-input 
@@ -228,5 +228,8 @@ ul.pagination li:first-child a span, ul.pagination li:first-child span, ul.pagin
   border: 1px solid;
   padding: 0 6px;
   margin-top: 5px;
+}
+.line-container {
+  overflow: hidden;
 }
 </style>
